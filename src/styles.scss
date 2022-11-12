@@ -44,6 +44,7 @@
 }
 
 body {
+  position: relative;
   font-family: "regular";
   font-size: 1.125rem;
   color: #000000;
@@ -51,4 +52,12 @@ body {
 
 .custom-transition {
   transition: all 400ms ease;
+}
+
+input,
+textarea,
+select {
+  &:focus {
+    outline: none;
+  }
 }

@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
+import { AddPostComponent } from './pages/add-post/add-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HeaderComponent,
-    SocialLinksComponent
+    SocialLinksComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,

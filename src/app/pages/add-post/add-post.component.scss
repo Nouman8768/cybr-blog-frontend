@@ -1,0 +1,31 @@
+section.add-post {
+  h1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: #f7fa00;
+      width: 200px;
+      height: 4px;
+      bottom: -1rem;
+    }
+  }
+  form {
+    input,
+    textarea,
+    select {
+      font-size: 1.2rem;
+      border: 2px solid #a69d9d;
+      background-color: #ebe4e4;
+      font-weight: 100;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+    }
+    input[type="file"] {
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
