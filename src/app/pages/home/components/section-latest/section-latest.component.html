@@ -1,0 +1,34 @@
+<section class="latest py-8">
+  <div class="container mx-auto px-3 flex gap-16">
+    <div class="main w-full llg:w-2/3">
+      <div class="slider">
+        <app-slider></app-slider>
+      </div>
+      <div
+        class="column-posts mt-8 flex justify-between flex-col xl:flex-row gap-8"
+      >
+        <app-column-post></app-column-post>
+        <app-column-post></app-column-post>
+      </div>
+      <div class="side-posts grid md:grid-cols-2 gap-8 mt-16">
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+      </div>
+    </div>
+    <aside class="sidebar w-1/3 llg:flex flex-col gap-16 hidden">
+      <div class="sidebar-posts flex flex-col gap-8">
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+        <app-sidebar-post></app-sidebar-post>
+      </div>
+      <div class="social-links">
+        <app-sidebar-social-links></app-sidebar-social-links>
+      </div>
+    </aside>
+  </div>
+</section>

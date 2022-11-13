@@ -1,0 +1,7 @@
+.column-post {
+  &:hover {
+    .dots {
+      display: flex;
+    }
+  }
+}

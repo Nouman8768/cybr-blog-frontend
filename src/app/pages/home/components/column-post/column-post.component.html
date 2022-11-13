@@ -1,0 +1,59 @@
+<div class="column-post flex-1">
+  <div class="post-image w-full h-full 2xl:h-[326px] overflow-hidden relative">
+    <a href="#" class="flex items-center justify-center w-full h-full">
+      <img src="/assets/images/post2.jpg" class="scale-[3]" alt="" />
+    </a>
+    <div
+      class="dots absolute top-0 right-2 text-5xl flex-col leading-3 cursor-pointer px-3 hidden"
+      (click)="options = !options"
+    >
+      <span>.</span>
+      <span>.</span>
+      <span>.</span>
+    </div>
+    <div
+      id="post-options"
+      class="post-options absolute top-8 right-6 flex flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+      *ngIf="options === true"
+    >
+      <a href="">Edit</a>
+      <a href="">Delete</a>
+    </div>
+    <div
+      class="detailes absolute bottom-0 text-white flex flex-col gap-4 px-4 py-8"
+    >
+      <div class="category">
+        <a href="" class="bg-primary text-black font-[bold] px-3 py-1">
+          <span>Fashion</span>
+        </a>
+      </div>
+      <div class="title">
+        <a href="#" class="text-xl font-[bold] leading-5"
+          >Lorem ipsum dolor sit, amet consectetur adipisicing elit</a
+        >
+      </div>
+      <div class="author-date flex gap-8 xl:justify-between items-center">
+        <div class="author">
+          <a href="" class="flex items-center gap-2">
+            <div
+              class="icon flex items-center justify-center w-4 max-h-4 overflow-hidden"
+            >
+              <img src="/assets/icons/author.png" alt="" />
+            </div>
+            <div class="name"><span>mkzubairi</span></div>
+          </a>
+        </div>
+        <div class="date flex items-center gap-2">
+          <div
+            class="icon flex items-center justify-center w-4 h-4 overflow-hidden"
+          >
+            <img src="/assets/icons/date.svg" alt="" />
+          </div>
+          <div>
+            <span>July 11, 2022</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
