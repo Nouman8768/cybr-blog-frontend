@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PostSchema } from 'src/app/pages/Posts/post.schema';
 
 @Component({
   selector: 'app-column-post',
@@ -9,5 +10,6 @@ export class ColumnPostComponent implements OnInit {
   options: boolean = false;
   constructor() {}
 
+  @Input() result!: PostSchema[];
   ngOnInit(): void {}
 }

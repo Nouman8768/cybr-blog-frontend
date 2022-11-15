@@ -1,33 +1,12 @@
-<div class="side-post flex gap-4">
+<div class="side-post flex items-start gap-4 relative">
   <div class="post-image w-[200px] h-[90px] overflow-hidden relative">
     <a href="#" class="flex items-center justify-center w-full h-full">
       <img src="/assets/images/post2.jpg" class="scale-[1.5]" alt="" />
     </a>
-    <div
-      class="dots absolute top-0 right-2 text-5xl flex-col leading-3 cursor-pointer px-3 hidden"
-      (click)="options = !options"
-    >
-      <span>.</span>
-      <span>.</span>
-      <span>.</span>
-    </div>
-    <div
-      id="post-options"
-      class="post-options absolute top-4 right-6 flex flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
-      *ngIf="options === true"
-    >
-      <a href="">Edit</a>
-      <a href="">Delete</a>
-    </div>
   </div>
-  <div class="detailes flex flex-col gap-3">
-    <div class="category">
-      <a href="" class="bg-primary text-black font-[bold] px-3 py-1">
-        <span>Fashion</span>
-      </a>
-    </div>
+  <div class="detailes flex flex-col mt-[-0.3rem]">
     <div class="title">
-      <a href="#" class="text-base font-[bold] leading-5"
+      <a href="#" class="text-base font-[bold]"
         >Lorem Ipsum is simply dummy Text of the printing
       </a>
     </div>
@@ -55,5 +34,21 @@
         </div>
       </div>
     </div>
+  </div>
+  <div
+    class="dots absolute top-[-1rem] right-0 text-3xl flex-col leading-[0.5rem] cursor-pointer px-3 hidden bg-white bg-opacity-50 backdrop-blur-md py-2"
+    (click)="options = !options"
+  >
+    <span>.</span>
+    <span>.</span>
+    <span>.</span>
+  </div>
+  <div
+    id="post-options"
+    class="post-options absolute top-0 right-6 flex flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+    *ngIf="options === true"
+  >
+    <a href="">Edit</a>
+    <a href="">Delete</a>
   </div>
 </div>

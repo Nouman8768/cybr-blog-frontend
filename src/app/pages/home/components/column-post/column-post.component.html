@@ -1,7 +1,11 @@
 <div class="column-post flex-1">
   <div class="post-image w-full h-full 2xl:h-[326px] overflow-hidden relative">
     <a href="#" class="flex items-center justify-center w-full h-full">
-      <img src="/assets/images/post2.jpg" class="scale-[3]" alt="" />
+      <img
+        src="http://localhost:3000/{{ result[0].image }}"
+        class="scale-[3]"
+        alt=""
+      />
     </a>
     <div
       class="dots absolute top-0 right-2 text-5xl flex-col leading-3 cursor-pointer px-3 hidden"
@@ -23,14 +27,17 @@
       class="detailes absolute bottom-0 text-white flex flex-col gap-4 px-4 py-8"
     >
       <div class="category">
-        <a href="" class="bg-primary text-black font-[bold] px-3 py-1">
-          <span>Fashion</span>
+        <a
+          href=""
+          class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
+        >
+          <span>{{ result[0].category }}</span>
         </a>
       </div>
       <div class="title">
-        <a href="#" class="text-xl font-[bold] leading-5"
-          >Lorem ipsum dolor sit, amet consectetur adipisicing elit</a
-        >
+        <a href="#" class="text-xl font-[bold] leading-5">{{
+          result[0].title
+        }}</a>
       </div>
       <div class="author-date flex gap-8 xl:justify-between items-center">
         <div class="author">
