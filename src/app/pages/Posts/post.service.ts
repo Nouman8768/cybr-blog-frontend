@@ -8,20 +8,38 @@ import { PostSchema } from './post.schema';
 })
 export class PostService {
   constructor(private readonly http: HttpClient) {}
-  host: string = 'http://localhost:3000';
+  post!: PostSchema;
+  url: string = 'http://localhost:3000';
+
+  public setter(post: PostSchema) {
+    this.post = post;
+  }
+  public getter() {
+    return this.post;
+  }
 
   public async addPost(post: PostSchema): Promise<PostSchema> {
-    let res = this.http.post<PostSchema>(`${this.host}/blog-post`, post);
+    let res = this.http.post<PostSchema>(`${this.url}/blog-post`, post);
     let data = await lastValueFrom(res);
     return data;
   }
 
   public getPosts(): Observable<PostSchema[]> {
-    return this.http.get<PostSchema[]>(`${this.host}/blog-post`);
+    return this.http.get<PostSchema[]>(`${this.url}/blog-post`);
+  }
+
+  public async updatePost(id: string, post: PostSchema): Promise<PostSchema> {
+    let res = this.http.patch<PostSchema>(`${this.url}/blog-post/${id}`, post, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    let data = await lastValueFrom(res);
+    return data;
   }
 
   public async uploadImage(imageBody: FormData): Promise<FormData> {
-    let res = this.http.post<any>(`${this.host}/image`, imageBody);
+    let res = this.http.post<any>(`${this.url}/image`, imageBody);
     let data = await lastValueFrom(res);
     return data['url'];
   }

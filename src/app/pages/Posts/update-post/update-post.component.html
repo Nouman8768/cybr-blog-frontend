@@ -3,7 +3,7 @@
     <div class="wrapper md:w-2/3 mx-auto">
       <h1 class="text-4xl font-[medium] text-center mb-11">Modify Post</h1>
       <form
-        (ngSubmit)="submitPostForm()"
+        (ngSubmit)="submitUpdateForm()"
         [formGroup]="postForm"
         class="flex flex-col gap-4"
       >
@@ -48,10 +48,14 @@
             <span class="font-[bold]">You Choosed</span>
             <img [src]="selectedImage" alt="" class="p-[0.5rem] w-full" />
           </div>
-          <div class="old w-[450px] h-[350px] overflow-hidden">
-            <span class="font-[bold]">Existing Image</span>
-            <img src="" class="w-full" alt="" />
-          </div>
+        </div>
+        <div class="old w-[450px] h-[350px] overflow-hidden">
+          <span class="font-[bold]">Existing Image</span>
+          <img
+            src="http://localhost:3000/{{ postForm.value.image }}"
+            class="w-full"
+            alt=""
+          />
         </div>
         <button
           [disabled]="postForm.invalid"

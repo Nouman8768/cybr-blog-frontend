@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PostSchema } from 'src/app/pages/Posts/post.schema';
 import { PostService } from 'src/app/pages/Posts/post.service';
 
@@ -8,12 +9,15 @@ import { PostService } from 'src/app/pages/Posts/post.service';
   styleUrls: ['./column-post.component.scss'],
 })
 export class ColumnPostComponent implements OnInit {
-  options: boolean = false;
-  constructor(private postService: PostService) {}
+  constructor(
+    private postService: PostService,
+    private readonly route: Router
+  ) {}
 
+  options: boolean = false;
   columnPosts!: PostSchema[];
 
-  async ngOnInit() {
+  ngOnInit() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
       this.columnPosts = data.slice(0, 2);
     });
@@ -38,5 +42,10 @@ export class ColumnPostComponent implements OnInit {
         });
       }
     }, 800);
+  }
+
+  async sendDetailstoUpdatePage(details: PostSchema) {
+    this.postService.setter(details);
+    this.route.navigate(['update-post']);
   }
 }

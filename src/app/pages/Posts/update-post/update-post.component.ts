@@ -11,22 +11,34 @@ import { PostService } from '../post.service';
 export class UpdatePostComponent implements OnInit {
   constructor(private postService: PostService) {}
 
-  postForm: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
-    body: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required]),
-  });
-
+  postForm!: FormGroup;
   file!: File;
   selectedImage!: string;
   result!: PostSchema;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.postService.getter());
+    const data = this.postService.getter();
+    this.postForm = new FormGroup({
+      _id: new FormControl(data?._id),
+      title: new FormControl(data?.title, [Validators.required]),
+      category: new FormControl(data?.category, [Validators.required]),
+      body: new FormControl(data?.body, [Validators.required]),
+      image: new FormControl(data?.image, [Validators.required]),
+    });
+    console.log(this.postForm.value);
+  }
+  async submitUpdateForm() {
+    await this.submitImage();
+    await this.updatePost();
+  }
 
-  async savePost() {
-    this.result = await this.postService.addPost(this.postForm.value);
-    console.log(this.result);
+  async updatePost() {
+    console.log('Response Before', this.postForm.value);
+    const response = await this.postService.updatePost(
+      this.postForm.value._id,
+      this.postForm.value
+    );
   }
 
   async submitImage() {
@@ -35,28 +47,22 @@ export class UpdatePostComponent implements OnInit {
       formData.append('file', this.file);
 
       const uploadImage = await this.postService.uploadImage(formData);
-
-      console.log('uploaded response: ', uploadImage);
+      this.postForm.value.image = uploadImage;
     }
   }
 
   async attachFile(event: any) {
     this.file = (event.target as HTMLInputElement).files![0];
-    this.postForm.patchValue({ image: this.file });
+    // this.postForm.patchValue({ image: this.file });
     const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-    this.postForm.get('image')?.updateValueAndValidity();
+    // this.postForm.get('image')?.updateValueAndValidity();
     if (this.file && allowedMimeTypes.includes(this.file.type)) {
       const reader = new FileReader();
       reader.onload = () => {
         this.selectedImage = reader.result as string;
-        console.log('Image', this.selectedImage);
+        // console.log('Image', this.selectedImage);
       };
       reader.readAsDataURL(this.file);
     }
-  }
-
-  async submitPostForm() {
-    await this.submitImage();
-    await this.savePost();
   }
 }

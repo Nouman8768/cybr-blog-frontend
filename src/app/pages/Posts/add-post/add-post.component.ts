@@ -24,6 +24,11 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  async submitPostForm() {
+    await this.submitImage();
+    await this.savePost();
+  }
+
   async savePost() {
     this.result = await this.postService.addPost(this.postForm.value);
     console.log(this.result);
@@ -53,10 +58,5 @@ export class AddPostComponent implements OnInit {
       };
       reader.readAsDataURL(this.file);
     }
-  }
-
-  async submitPostForm() {
-    await this.submitImage();
-    await this.savePost();
   }
 }
