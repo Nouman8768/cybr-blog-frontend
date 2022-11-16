@@ -1,63 +1,69 @@
-<div class="column-post flex-1">
-  <div class="post-image w-full h-full 2xl:h-[326px] overflow-hidden relative">
-    <a href="#" class="flex items-center justify-center w-full h-full">
-      <img
-        src="http://localhost:3000/{{ result[0].image }}"
-        class="scale-[3]"
-        alt=""
-      />
-    </a>
+<div class="columnPost mt-8 flex justify-between flex-col xl:flex-row gap-8">
+  <div
+    class="column-post flex-1 ngf"
+    *ngFor="let post of columnPosts; index as i"
+  >
     <div
-      class="dots absolute top-0 right-2 text-5xl flex-col leading-3 cursor-pointer px-3 hidden"
-      (click)="options = !options"
+      class="post-image w-full h-full 2xl:h-[326px] overflow-hidden relative"
     >
-      <span>.</span>
-      <span>.</span>
-      <span>.</span>
-    </div>
-    <div
-      id="post-options"
-      class="post-options absolute top-8 right-6 flex flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
-      *ngIf="options === true"
-    >
-      <a href="">Edit</a>
-      <a href="">Delete</a>
-    </div>
-    <div
-      class="detailes absolute bottom-0 text-white flex flex-col gap-4 px-4 py-8"
-    >
-      <div class="category">
-        <a
-          href=""
-          class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
-        >
-          <span>{{ result[0].category }}</span>
-        </a>
+      <a href="#" class="flex items-center justify-center w-full h-full">
+        <img
+          src="http://localhost:3000/{{ post.image }}"
+          class="scale-[3]"
+          alt=""
+        />
+      </a>
+      <div
+        id="cdots0"
+        class="cdots absolute top-0 right-2 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3"
+        [ngClass]="'cdots' + i"
+        (click)="options = !options"
+      >
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
       </div>
-      <div class="title">
-        <a href="#" class="text-xl font-[bold] leading-5">{{
-          result[0].title
-        }}</a>
+      <div
+        class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+        [ngClass]="'coptions' + i"
+      >
+        <a href="" class="block">Edit</a>
+        <a href="">Delete</a>
       </div>
-      <div class="author-date flex gap-8 xl:justify-between items-center">
-        <div class="author">
-          <a href="" class="flex items-center gap-2">
-            <div
-              class="icon flex items-center justify-center w-4 max-h-4 overflow-hidden"
-            >
-              <img src="/assets/icons/author.png" alt="" />
-            </div>
-            <div class="name"><span>mkzubairi</span></div>
+      <div
+        class="detailes absolute bottom-0 text-white flex flex-col gap-4 px-4 py-8 gradient w-full"
+      >
+        <div class="category">
+          <a
+            href=""
+            class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
+          >
+            <span>{{ post.category }}</span>
           </a>
         </div>
-        <div class="date flex items-center gap-2">
-          <div
-            class="icon flex items-center justify-center w-4 h-4 overflow-hidden"
-          >
-            <img src="/assets/icons/date.svg" alt="" />
+        <div class="title">
+          <a href="#" class="text-xl font-[bold] leading-5">{{ post.title }}</a>
+        </div>
+        <div class="author-date flex gap-8 xl:justify-between items-center">
+          <div class="author">
+            <a href="" class="flex items-center gap-2">
+              <div
+                class="icon flex items-center justify-center w-4 max-h-4 overflow-hidden"
+              >
+                <img src="/assets/icons/author.png" alt="" />
+              </div>
+              <div class="name"><span>mkzubairi</span></div>
+            </a>
           </div>
-          <div>
-            <span>July 11, 2022</span>
+          <div class="date flex items-center gap-2">
+            <div
+              class="icon flex items-center justify-center w-4 h-4 overflow-hidden"
+            >
+              <img src="/assets/icons/date.svg" alt="" />
+            </div>
+            <div>
+              <span>July 11, 2022</span>
+            </div>
           </div>
         </div>
       </div>

@@ -62,3 +62,11 @@ select {
     outline: none;
   }
 }
+
+.gradient {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.9559174011401436) 15%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}

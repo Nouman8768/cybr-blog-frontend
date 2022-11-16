@@ -17,6 +17,7 @@ import { SliderPostComponent } from './pages/home/components/slider/slider-post/
 import { SidebarSocialLinksComponent } from './pages/home/components/sidebar-social-links/sidebar-social-links.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdatePostComponent } from './pages/Posts/update-post/update-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SectionLatestComponent,
     SliderPostComponent,
     SidebarSocialLinksComponent,
+    UpdatePostComponent,
   ],
   imports: [
     BrowserModule,
