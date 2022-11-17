@@ -27,8 +27,34 @@
         class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
         [ngClass]="'coptions' + i"
       >
-        <a (click)="sendDetailstoUpdatePage(post)" class="block">Edit</a>
-        <a href="">Delete</a>
+        <a
+          (click)="sendDetailstoUpdatePage(post)"
+          class="block cursor-pointer hover:text-slate-700"
+          >Edit</a
+        >
+        <a href="" class="cursor-pointer hover:text-slate-700">Delete</a>
+      </div>
+      <div
+        class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 flex justify-center items-center"
+        [ngClass]="'delete' + i"
+      >
+        <div class="wrapper flex flex-col gap-3">
+          <span class="text-2xl font-[bold] text-white"
+            >Do you really want to delete?</span
+          >
+          <div class="actions w-full flex justify-center items-center gap-2">
+            <a
+              href="#"
+              class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md"
+              >No</a
+            >
+            <a
+              href="#"
+              class="cursor-pointer text-xl font-[medium] bg-red-700 py-2 px-4 rounded-md text-white custom-transition hover:bg-red-900 shadow-md"
+              >Yes</a
+            >
+          </div>
+        </div>
       </div>
       <div
         class="detailes absolute bottom-0 text-white flex flex-col gap-4 px-4 py-8 gradient w-full"

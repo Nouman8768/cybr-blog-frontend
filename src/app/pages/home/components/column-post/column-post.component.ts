@@ -35,10 +35,15 @@ export class ColumnPostComponent implements OnInit {
           .children.item(0)
           ?.childNodes.item(2) as HTMLElement;
 
+        const delteOPtions = cPosts
+          .item(0)
+          .children.item(0)
+          ?.childNodes.item(3) as HTMLElement;
+
         const c = cPosts.item(0).children.item(0) as HTMLElement;
 
         dots?.addEventListener('click', () => {
-          console.log(options.classList.toggle('hidden'));
+          options.classList.toggle('hidden');
         });
       }
     }, 800);
