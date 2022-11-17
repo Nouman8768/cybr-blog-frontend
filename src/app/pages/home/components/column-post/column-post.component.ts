@@ -23,11 +23,8 @@ export class ColumnPostComponent implements OnInit {
   //   }
   // }
 
-  ngOnInit() {
-    this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.columnPosts = data.slice(0, 2);
-    });
-
+  async ngOnInit() {
+    await this.getAllPosts();
     setTimeout(() => {
       const cPosts = document.querySelectorAll('.column-post');
 
@@ -61,8 +58,20 @@ export class ColumnPostComponent implements OnInit {
     }, 800);
   }
 
+  async getAllPosts() {
+    this.postService.getPosts().subscribe((data: PostSchema[]) => {
+      this.columnPosts = data.slice(0, 2);
+    });
+  }
   async sendDetailstoUpdatePage(details: PostSchema) {
     this.postService.setter(details);
     this.route.navigate(['update-post']);
+  }
+
+  async deletePost(id: string, filename: string) {
+    const deleted = await this.postService.deletePost(id);
+    const unlinked = await this.postService.unlinkServerImage(filename);
+    this.getAllPosts();
+    console.log(deleted);
   }
 }

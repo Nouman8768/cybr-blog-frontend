@@ -28,6 +28,19 @@ export class PostService {
     return this.http.get<PostSchema[]>(`${this.url}/blog-post`);
   }
 
+  public async deletePost(id: string): Promise<PostSchema> {
+    let res = this.http.delete<PostSchema>(`${this.url}/blog-post/${id}`);
+    let data = await lastValueFrom(res);
+    return data;
+  }
+  public async unlinkServerImage(filename: string): Promise<string> {
+    let res = this.http.delete<string>(
+      `${this.url}/blog-post/server/${filename}`
+    );
+    let data = await lastValueFrom(res);
+    return data;
+  }
+
   public async updatePost(id: string, post: PostSchema): Promise<PostSchema> {
     let res = this.http.patch<PostSchema>(`${this.url}/blog-post/${id}`, post, {
       headers: {

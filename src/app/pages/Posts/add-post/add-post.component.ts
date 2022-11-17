@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PostSchema } from '../post.schema';
 import { PostService } from '../post.service';
 
@@ -9,7 +10,10 @@ import { PostService } from '../post.service';
   styleUrls: ['./add-post.component.scss'],
 })
 export class AddPostComponent implements OnInit {
-  constructor(private postService: PostService) {}
+  constructor(
+    private postService: PostService,
+    private readonly route: Router
+  ) {}
 
   postForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -27,6 +31,7 @@ export class AddPostComponent implements OnInit {
   async submitPostForm() {
     await this.submitImage();
     await this.savePost();
+    await this.route.navigate(['/']);
   }
 
   async savePost() {
