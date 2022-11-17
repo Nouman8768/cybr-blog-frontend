@@ -17,12 +17,6 @@ export class ColumnPostComponent implements OnInit {
   confirmationState: boolean = true;
   columnPosts!: PostSchema[];
 
-  // checkConfirmation() {
-  //   if (this.confirmationState === false) {
-  //     this.confirmationState = true;
-  //   }
-  // }
-
   async ngOnInit() {
     await this.getAllPosts();
     setTimeout(() => {

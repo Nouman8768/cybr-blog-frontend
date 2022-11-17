@@ -46,6 +46,9 @@ export class UpdatePostComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
 
+      const unlinked = await this.postService.unlinkServerImage(
+        this.postForm.value.image
+      );
       const uploadImage = await this.postService.uploadImage(formData);
       this.postForm.value.image = uploadImage;
     }
