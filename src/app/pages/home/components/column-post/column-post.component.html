@@ -17,7 +17,6 @@
         id="cdots0"
         class="cdots absolute top-0 right-2 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3"
         [ngClass]="'cdots' + i"
-        (click)="options = !options"
       >
         <span>.</span>
         <span>.</span>
@@ -32,11 +31,13 @@
           class="block cursor-pointer hover:text-slate-700"
           >Edit</a
         >
-        <a href="" class="cursor-pointer hover:text-slate-700">Delete</a>
+        <a class="cursor-pointer hover:text-slate-700" [ngClass]="'delete' + i"
+          >Delete</a
+        >
       </div>
       <div
-        class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 flex justify-center items-center"
-        [ngClass]="'delete' + i"
+        class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 hidden justify-center items-center"
+        [ngClass]="'deleteOP' + i"
       >
         <div class="wrapper flex flex-col gap-3">
           <span class="text-2xl font-[bold] text-white"
@@ -44,12 +45,11 @@
           >
           <div class="actions w-full flex justify-center items-center gap-2">
             <a
-              href="#"
               class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md"
+              [ngClass]="'cNo' + i"
               >No</a
             >
             <a
-              href="#"
               class="cursor-pointer text-xl font-[medium] bg-red-700 py-2 px-4 rounded-md text-white custom-transition hover:bg-red-900 shadow-md"
               >Yes</a
             >

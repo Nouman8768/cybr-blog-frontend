@@ -14,8 +14,14 @@ export class ColumnPostComponent implements OnInit {
     private readonly route: Router
   ) {}
 
-  options: boolean = false;
+  confirmationState: boolean = true;
   columnPosts!: PostSchema[];
+
+  // checkConfirmation() {
+  //   if (this.confirmationState === false) {
+  //     this.confirmationState = true;
+  //   }
+  // }
 
   ngOnInit() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
@@ -26,24 +32,30 @@ export class ColumnPostComponent implements OnInit {
       const cPosts = document.querySelectorAll('.column-post');
 
       for (let i = 0; i < cPosts.length; i++) {
-        const dots = cPosts
-          .item(i)
-          .children.item(0)
-          ?.childNodes.item(1) as HTMLElement;
-        const options = cPosts
-          .item(i)
-          .children.item(0)
-          ?.childNodes.item(2) as HTMLElement;
+        const dots = document.querySelector(`.cdots${i}`) as HTMLElement;
 
-        const delteOPtions = cPosts
-          .item(0)
-          .children.item(0)
-          ?.childNodes.item(3) as HTMLElement;
+        const options = document.querySelector(`.coptions${i}`) as HTMLElement;
 
-        const c = cPosts.item(0).children.item(0) as HTMLElement;
+        const deleteOptions = document.querySelector(
+          `.delete${i}`
+        ) as HTMLElement;
+
+        const deleteConfirmation = document.querySelector(
+          `.deleteOP${i}`
+        ) as HTMLElement;
+
+        const No = document.querySelector(`.cNo${i}`) as HTMLElement;
 
         dots?.addEventListener('click', () => {
-          options.classList.toggle('hidden');
+          options!.classList.toggle('hidden');
+        });
+
+        deleteOptions.addEventListener('click', () => {
+          deleteConfirmation.style.display = 'flex';
+        });
+
+        No.addEventListener('click', () => {
+          deleteConfirmation.style.display = 'none';
         });
       }
     }, 800);

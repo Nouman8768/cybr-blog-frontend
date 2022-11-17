@@ -4,6 +4,9 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [],
+    "lib": [
+      "es5", "es6", "dom", "dom.iterable"
+  ]
 
   },
   "files": [
