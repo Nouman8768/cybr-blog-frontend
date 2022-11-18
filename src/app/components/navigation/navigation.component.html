@@ -8,21 +8,46 @@
         class="text-white text-base flex flex-col xsm:flex-row items-center justify-center gap-5 xsm:gap-10 mt-6"
       >
         <li>
-          <a [routerLink]="['']">Home</a>
+          <a
+            [routerLink]="['']"
+            [routerLinkActive]="'font-bold text-primary'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
         </li>
         <li>
-          <a [routerLink]="['add-post']">About</a>
+          <a
+            [routerLink]="['#']"
+            [routerLinkActive]="'font-bold text-primary'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >About</a
+          >
         </li>
         <li>
-          <a href="">Contact</a>
+          <a
+            [routerLink]="['#']"
+            [routerLinkActive]="'font-bold text-primary'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Contact</a
+          >
         </li>
         <li>
-          <a href="">Faqs</a>
+          <a
+            [routerLink]="['#']"
+            [routerLinkActive]="'font-bold text-primary'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Faqs</a
+          >
         </li>
         <li
-          class="self-start text-primary rounded-lg font-[bold] shadow-lg custom-transition"
+          class="self-start rounded-lg font-[bold] shadow-lg custom-transition"
         >
-          <a [routerLink]="['add-post']">Add Post</a>
+          <a
+            [routerLink]="['add-post']"
+            [routerLinkActive]="'font-bold text-primary'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Add Post</a
+          >
         </li>
       </ul>
     </div>
