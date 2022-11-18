@@ -13,11 +13,16 @@ import { SliderComponent } from './pages/home/components/slider/slider.component
 import { ColumnPostComponent } from './pages/home/components/column-post/column-post.component';
 import { SectionLatestComponent } from './pages/home/components/section-latest/section-latest.component';
 import { SwiperModule } from 'swiper/angular';
-import { SliderPostComponent } from './pages/home/components/slider/slider-post/slider-post.component';
+
 import { SidebarSocialLinksComponent } from './pages/home/components/sidebar-social-links/sidebar-social-links.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdatePostComponent } from './pages/Posts/update-post/update-post.component';
+import { SectionPopularComponent } from './pages/home/components/section-popular/section-popular.component';
+import { AdBannerComponent } from './pages/home/components/ad-banner/ad-banner.component';
+import { BigPostComponent } from './pages/home/components/section-popular/components/big-post/big-post.component';
+import { AllPostsComponent } from './pages/home/components/section-popular/components/all-posts/all-posts.component';
+import { AnonymousPostComponent } from './pages/home/components/section-popular/components/anonymous-post/anonymous-post.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +36,13 @@ import { UpdatePostComponent } from './pages/Posts/update-post/update-post.compo
     SliderComponent,
     ColumnPostComponent,
     SectionLatestComponent,
-    SliderPostComponent,
     SidebarSocialLinksComponent,
     UpdatePostComponent,
+    SectionPopularComponent,
+    AdBannerComponent,
+    BigPostComponent,
+    AllPostsComponent,
+    AnonymousPostComponent,
   ],
   imports: [
     BrowserModule,
