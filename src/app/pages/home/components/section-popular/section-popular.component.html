@@ -1,0 +1,29 @@
+<section class="popular py-8">
+  <div class="container mx-auto px-3 flex gap-16">
+    <div class="main w-full llg:w-2/3 border">
+      <app-big-post></app-big-post>
+      <app-all-posts></app-all-posts>
+    </div>
+    <aside class="sidebar w-1/3 llg:flex flex-col gap-16 hidden">
+      <div class="search flex border-border border items-center">
+        <div class="input" class="flex-1">
+          <input
+            type="text"
+            placeholder="Search"
+            class="w-full text-lg px-4 py-6"
+          />
+        </div>
+        <a href="">
+          <div class="icon px-4">
+            <img src="/assets/icons/search.svg" alt="" />
+          </div>
+        </a>
+      </div>
+      <div class="sidebar-posts flex flex-col gap-8 uppercase">
+        <h2 class="text-2xl font-[bold] text-center">most popular</h2>
+        <app-sidebar-post></app-sidebar-post>
+        <app-anonymous-post></app-anonymous-post>
+      </div>
+    </aside>
+  </div>
+</section>

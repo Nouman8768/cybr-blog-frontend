@@ -1,4 +1,104 @@
 <swiper [pagination]="pagination" class="mySwiper">
-  <ng-template swiperSlide><app-slider-post></app-slider-post></ng-template>
-  <ng-template swiperSlide><app-slider-post></app-slider-post></ng-template>
+  <ng-template swiperSlide *ngFor="let post of sliderPosts; index as i">
+    <div class="sliderPost flex justify-between flex-col sm:flex-row gap-8">
+      <div class="slider-post flex-1 ngf">
+        <div class="post-image w-[full] h-[492px] overflow-hidden relative">
+          <a href="#" class="flex items-center justify-center w-full h-full">
+            <img
+              src="http://localhost:3000/{{ post.image }}"
+              class="scale-[3]"
+              alt=""
+            />
+          </a>
+          <div
+            id="sdots0"
+            class="cdots absolute top-0 right-2 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3"
+            [ngClass]="'sdots' + i"
+          >
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </div>
+          <div
+            class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+            [ngClass]="'soptions' + i"
+          >
+            <a
+              (click)="sendDetailstoUpdatePage(post)"
+              class="block cursor-pointer hover:text-green-800"
+              >Edit</a
+            >
+            <a
+              class="cursor-pointer hover:text-red-700"
+              [ngClass]="'sdelete' + i"
+              >Delete</a
+            >
+          </div>
+          <div
+            class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 hidden justify-center items-center"
+            [ngClass]="'sdeleteOP' + i"
+          >
+            <div class="wrapper flex flex-col gap-3">
+              <span class="text-2xl font-[bold] text-white"
+                >Do you really want to delete?</span
+              >
+              <div
+                class="actions w-full flex justify-center items-center gap-2"
+              >
+                <a
+                  class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md"
+                  [ngClass]="'sNo' + i"
+                  >No</a
+                >
+                <a
+                  (click)="deletePost(post._id, post.image)"
+                  class="cursor-pointer text-xl font-[medium] bg-red-700 py-2 px-4 rounded-md text-white custom-transition hover:bg-red-900 shadow-md"
+                  >Yes</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="detailes absolute bottom-0 text-white flex flex-col gap-4 px-4 py-8 gradient w-full"
+          >
+            <div class="category">
+              <a
+                href=""
+                class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
+              >
+                <span>{{ post.category }}</span>
+              </a>
+            </div>
+            <div class="title">
+              <a href="#" class="text-xl font-[bold] leading-5">{{
+                post.title
+              }}</a>
+            </div>
+            <div class="author-date flex gap-8 xl:justify-between items-center">
+              <div class="author">
+                <a href="" class="flex items-center gap-2">
+                  <div
+                    class="icon flex items-center justify-center w-4 max-h-4 overflow-hidden"
+                  >
+                    <img src="/assets/icons/author.png" alt="" />
+                  </div>
+                  <div class="name"><span>mkzubairi</span></div>
+                </a>
+              </div>
+              <div class="date flex items-center gap-2">
+                <div
+                  class="icon flex items-center justify-center w-4 h-4 overflow-hidden"
+                >
+                  <img src="/assets/icons/date.svg" alt="" />
+                </div>
+                <div>
+                  <span>July 11, 2022</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </swiper>
