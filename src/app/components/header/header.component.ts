@@ -8,8 +8,11 @@ import { ActivatedRoute, Router, RouterState } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: ActivatedRoute) {}
+  constructor(private readonly route: Router, private location: Location) {}
 
-  route!: string;
   ngOnInit(): void {}
+
+  rootPath() {
+    return this.route.url === '/';
+  }
 }
