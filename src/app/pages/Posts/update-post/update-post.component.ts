@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PostSchema } from '../post.schema';
 import { PostService } from '../post.service';
 
 @Component({
@@ -31,12 +32,13 @@ export class UpdatePostComponent implements OnInit {
     await this.updatePost();
   }
 
-  async updatePost() {
+  async updatePost(): Promise<PostSchema> {
     console.log('Response Before', this.postForm.value);
     const response = await this.postService.updatePost(
       this.postForm.value._id,
       this.postForm.value
     );
+    return response;
   }
 
   async submitImage() {

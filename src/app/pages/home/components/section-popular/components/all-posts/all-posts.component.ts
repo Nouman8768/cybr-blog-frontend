@@ -15,9 +15,10 @@ export class AllPostsComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  allPosts!: PostSchema[];
+  allPosts: PostSchema[] = [];
+  page: number = 1;
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     await this.getAllPosts();
     setTimeout(() => {
       for (let i = 0; i < this.allPosts.length; i++) {
@@ -66,9 +67,8 @@ export class AllPostsComponent implements OnInit {
   }
 
   async deletePost(id: string, filename: string) {
-    const deleted = await this.postService.deletePost(id);
-    const unlinked = await this.postService.unlinkServerImage(filename);
+    await this.postService.deletePost(id);
+    await this.postService.unlinkServerImage(filename);
     this.getAllPosts();
-    console.log(deleted);
   }
 }

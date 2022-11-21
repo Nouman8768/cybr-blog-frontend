@@ -1,0 +1,74 @@
+::ng-deep {
+  .ngx-pagination {
+    font-size: 16px !important;
+  }
+
+  .ngx-pagination {
+    li {
+      display: inline-block !important;
+      margin-right: 0.2rem !important;
+    }
+  }
+
+  .ngx-pagination a,
+  .ngx-pagination button {
+    display: block !important;
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid black !important;
+    padding: 0.5rem 1rem !important;
+    cursor: pointer !important;
+  }
+
+  .ngx-pagination {
+    .current {
+      border: 1.1px solid black;
+      background: black !important;
+      color: #fefefe !important;
+      cursor: default !important;
+      padding: 0.5rem 1rem !important;
+    }
+  }
+
+  .ngx-pagination {
+    .disabled {
+      background-color: white;
+      color: rgb(221, 205, 205) !important;
+      cursor: default !important;
+    }
+  }
+
+  .ngx-pagination .pagination-previous a::before,
+  .ngx-pagination .pagination-previous.disabled::before {
+    display: none !important;
+  }
+
+  .ngx-pagination .pagination-next a::after,
+  .ngx-pagination .pagination-next.disabled::after {
+    display: none !important;
+  }
+  .ngx-pagination {
+    .pagination-previous {
+      a {
+        background-color: slategray !important;
+        border: none !important;
+        color: white !important;
+      }
+    }
+  }
+  .ngx-pagination {
+    .pagination-next {
+      a {
+        background-color: slategray !important;
+        border: none !important;
+        color: white !important;
+      }
+    }
+  }
+
+  .ngx-pagination {
+    .small-screen {
+      display: none !important;
+    }
+  }
+}

@@ -34,9 +34,10 @@ export class AddPostComponent implements OnInit {
     await this.route.navigate(['/']);
   }
 
-  async savePost() {
+  async savePost(): Promise<PostSchema> {
     this.result = await this.postService.addPost(this.postForm.value);
     console.log(this.result);
+    return this.result;
   }
 
   async submitImage() {

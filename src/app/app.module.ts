@@ -27,6 +27,8 @@ import { SectionHighlightedComponent } from './pages/home/components/section-hig
 import { HighlightedPostComponent } from './pages/home/components/section-highlighted/components/highlighted-post/highlighted-post.component';
 import { PopularSidebarPostsComponent } from './pages/home/components/section-popular/components/popular-sidebar-posts/popular-sidebar-posts.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,7 @@ import { FooterComponent } from './components/footer/footer.component';
     SwiperModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
