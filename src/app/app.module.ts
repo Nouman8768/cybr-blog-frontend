@@ -23,6 +23,9 @@ import { AdBannerComponent } from './pages/home/components/ad-banner/ad-banner.c
 import { BigPostComponent } from './pages/home/components/section-popular/components/big-post/big-post.component';
 import { AllPostsComponent } from './pages/home/components/section-popular/components/all-posts/all-posts.component';
 import { AnonymousPostComponent } from './pages/home/components/section-popular/components/anonymous-post/anonymous-post.component';
+import { SectionHighlightedComponent } from './pages/home/components/section-highlighted/section-highlighted.component';
+import { HighlightedPostComponent } from './pages/home/components/section-highlighted/components/highlighted-post/highlighted-post.component';
+import { PopularSidebarPostsComponent } from './pages/home/components/section-popular/components/popular-sidebar-posts/popular-sidebar-posts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +46,9 @@ import { AnonymousPostComponent } from './pages/home/components/section-popular/
     BigPostComponent,
     AllPostsComponent,
     AnonymousPostComponent,
+    SectionHighlightedComponent,
+    HighlightedPostComponent,
+    PopularSidebarPostsComponent,
   ],
   imports: [
     BrowserModule,

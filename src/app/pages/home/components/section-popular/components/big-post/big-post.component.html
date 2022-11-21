@@ -1,26 +1,32 @@
 <div class="bigPost">
-  <div class="big-post ngf">
+  <div class="big-post" *ngFor="let post of highlightedPosts">
     <div class="post-image w-full h-[500px] relative overflow-hidden">
       <a href="" class="w-full h-full">
-        <img src="/assets/images/post1.jpg" class="scale-[2]" alt="" />
-      </a>
-      <div
-        class="cdots absolute top-4 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3"
-      >
         <img
-          src="/assets/icons/dots.png"
-          class="rotate-90 scale-[1.5]"
+          src="http://localhost:3000/{{ post.image }}"
+          class="scale-[2]"
           alt=""
         />
-      </div>
+      </a>
       <div
-        class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+        class="b-dots absolute top-0 right-2 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3 text-yellow-300"
       >
-        <a class="block cursor-pointer hover:text-green-800">Edit</a>
-        <a class="cursor-pointer hover:text-red-700">Delete</a>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
       </div>
       <div
-        class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 hidden justify-center items-center"
+        class="b-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+      >
+        <a
+          (click)="sendDetailstoUpdatePage(post)"
+          class="block cursor-pointer hover:text-green-800"
+          >Edit</a
+        >
+        <a class="cursor-pointer hover:text-red-700 b-delete">Delete</a>
+      </div>
+      <div
+        class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 hidden justify-center items-center b-confirmation"
       >
         <div class="wrapper flex flex-col gap-3">
           <span class="text-2xl font-[bold] text-white"
@@ -28,10 +34,11 @@
           >
           <div class="actions w-full flex justify-center items-center gap-2">
             <a
-              class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md"
+              class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md b-No"
               >No</a
             >
             <a
+              (click)="deletePost(post._id, post.image)"
               class="cursor-pointer text-xl font-[medium] bg-red-700 py-2 px-4 rounded-md text-white custom-transition hover:bg-red-900 shadow-md"
               >Yes</a
             >
@@ -45,13 +52,13 @@
           href=""
           class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
         >
-          <span>Fashion</span>
+          <span>{{ post.category }}</span>
         </a>
       </div>
       <div class="title">
         <a href="">
           <h2 class="text-2xl font-[bold]">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            {{ post.title }}
           </h2>
         </a>
       </div>
@@ -78,14 +85,7 @@
         </div>
       </div>
       <div class="description">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ipsam
-          accusantium illum? Cupiditate assumenda provident optio quisquam quod
-          exercitationem error quasi ratione repellat modi sint deleniti
-          voluptatibus, omnis impedit, praesentium libero at nemo saepe labore
-          laudantium ipsam dolorum sed, quas voluptas! Quo sit perferendis
-          tenetur corporis possimus repellendus modi hic.
-        </p>
+        <p>{{ post.body }}</p>
       </div>
     </div>
   </div>

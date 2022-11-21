@@ -4,11 +4,11 @@ import { PostSchema } from 'src/app/pages/Posts/post.schema';
 import { PostService } from 'src/app/pages/Posts/post.service';
 
 @Component({
-  selector: 'app-sidebar-post',
-  templateUrl: './sidebar-post.component.html',
-  styleUrls: ['./sidebar-post.component.scss'],
+  selector: 'app-popular-sidebar-posts',
+  templateUrl: './popular-sidebar-posts.component.html',
+  styleUrls: ['./popular-sidebar-posts.component.scss'],
 })
-export class SidebarPostComponent implements OnInit {
+export class PopularSidebarPostsComponent implements OnInit {
   constructor(
     private postService: PostService,
     private readonly route: Router
@@ -20,24 +20,24 @@ export class SidebarPostComponent implements OnInit {
   async ngOnInit() {
     await this.getAllPosts();
     setTimeout(() => {
-      const cPosts = document.querySelectorAll('.sidebar-posts');
+      const cPosts = document.querySelectorAll('.popullar-sidebar-posts');
 
-      for (let i = 0; i <= cPosts.length; i++) {
-        const dots = document.querySelector(`.side-dots${i}`) as HTMLElement;
+      for (let i = 0; i < 5; i++) {
+        const dots = document.querySelector(`.p-side-dots${i}`) as HTMLElement;
 
         const options = document.querySelector(
-          `.side-options${i}`
+          `.p-side-options${i}`
         ) as HTMLElement;
 
         const deleteOptions = document.querySelector(
-          `.side-delete${i}`
+          `.p-side-delete${i}`
         ) as HTMLElement;
 
         const deleteConfirmation = document.querySelector(
-          `.side-deleteOP${i}`
+          `.p-side-deleteOP${i}`
         ) as HTMLElement;
 
-        const No = document.querySelector(`.side-No${i}`) as HTMLElement;
+        const No = document.querySelector(`.p-side-No${i}`) as HTMLElement;
 
         dots?.addEventListener('click', () => {
           options!.classList.toggle('hidden');
