@@ -26,6 +26,7 @@ import { AnonymousPostComponent } from './pages/home/components/section-popular/
 import { SectionHighlightedComponent } from './pages/home/components/section-highlighted/section-highlighted.component';
 import { HighlightedPostComponent } from './pages/home/components/section-highlighted/components/highlighted-post/highlighted-post.component';
 import { PopularSidebarPostsComponent } from './pages/home/components/section-popular/components/popular-sidebar-posts/popular-sidebar-posts.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { PopularSidebarPostsComponent } from './pages/home/components/section-po
     SectionHighlightedComponent,
     HighlightedPostComponent,
     PopularSidebarPostsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
