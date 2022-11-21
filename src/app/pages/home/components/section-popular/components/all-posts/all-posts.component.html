@@ -114,7 +114,11 @@
   </div>
   <div class="pagination mt-16">
     <div class="wrapper flex items-center gap-3 flex-wrap">
-      <pagination-controls id="paginate" (pageChange)="page = $event">
+      <pagination-controls
+        id="paginate"
+        [maxSize]="4"
+        (pageChange)="page = $event"
+      >
       </pagination-controls>
     </div>
   </div>
