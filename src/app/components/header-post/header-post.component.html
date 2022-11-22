@@ -74,7 +74,11 @@
           </a>
         </div>
         <div class="title">
-          <a href="#" class="text-xl font-[bold] leading-5">{{ post.title }}</a>
+          <a
+            (click)="populateSinglePostData(post)"
+            class="text-xl font-[bold] leading-5 cursor-pointer"
+            >{{ post.title }}
+          </a>
         </div>
         <div class="author-date flex gap-8 xl:justify-between items-center">
           <div class="author">

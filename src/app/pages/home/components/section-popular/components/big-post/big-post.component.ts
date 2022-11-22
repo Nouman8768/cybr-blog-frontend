@@ -57,6 +57,10 @@ export class BigPostComponent implements OnInit {
     this.postService.setter(details);
     this.route.navigate(['update-post']);
   }
+  async sendCategory(category: PostSchema) {
+    this.postService.setter(category);
+    this.route.navigate(['category-post']);
+  }
 
   async deletePost(id: string, filename: string) {
     const deleted = await this.postService.deletePost(id);

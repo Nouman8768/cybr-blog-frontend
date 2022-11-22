@@ -68,6 +68,10 @@ export class PopularSidebarPostsComponent implements OnInit {
     this.postService.setter(details);
     this.route.navigate(['update-post']);
   }
+  async populateSinglePostData(details: PostSchema) {
+    this.postService.setter(details);
+    this.route.navigate(['single-post']);
+  }
 
   async deletePost(id: string, filename: string) {
     const deleted = await this.postService.deletePost(id);

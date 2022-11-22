@@ -88,12 +88,20 @@ export class SliderComponent implements OnInit {
 
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.sliderPosts = data;
+      this.sliderPosts = data.slice(0, 6);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
     this.postService.setter(details);
     this.route.navigate(['update-post']);
+  }
+  async populateSinglePostData(details: PostSchema) {
+    this.postService.setter(details);
+    this.route.navigate(['single-post']);
+  }
+  async sendCategory(category: PostSchema) {
+    this.postService.setter(category);
+    this.route.navigate(['category-post']);
   }
 
   async deletePost(id: string, filename: string) {

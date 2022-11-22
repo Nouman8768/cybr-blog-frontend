@@ -5,7 +5,7 @@
         <div class="post-image w-full h-[500px] relative overflow-hidden">
           <a class="w-full h-full">
             <img
-              src="http://localhost:3000/{{ post!.image }}"
+              src="http://localhost:3000/{{ post.image }}"
               class="scale-[2]"
               alt=""
             />
@@ -14,15 +14,16 @@
         <div class="details flex flex-col gap-4 sm:mt-8">
           <div class="category uppercase">
             <a
-              class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
+              (click)="sendCategory(post)"
+              class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer"
             >
-              <span>{{ post!.category }}</span>
+              <span>{{ post.category }}</span>
             </a>
           </div>
           <div class="title">
             <a>
               <h2 class="text-2xl font-[bold]">
-                {{ post!.title }}
+                {{ post.title }}
               </h2>
             </a>
           </div>
@@ -50,7 +51,7 @@
           </div>
           <div class="description">
             <p>
-              {{ post!.body }}
+              {{ post.body }}
             </p>
           </div>
         </div>

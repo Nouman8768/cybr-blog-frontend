@@ -17,8 +17,8 @@
                 class="post-image w-[100px] h-[90px] overflow-hidden relative"
               >
                 <a
-                  href="#"
-                  class="flex items-center justify-center w-full h-full"
+                  (click)="populateSinglePostData(post)"
+                  class="flex items-center justify-center w-full h-full cursor-pointer"
                 >
                   <img
                     src="http://localhost:3000/{{ post.image }}"
@@ -29,7 +29,11 @@
               </div>
               <div class="detailes flex flex-col">
                 <div class="title">
-                  <a href="#" class="text-base font-[bold]">{{ post.title }}</a>
+                  <a
+                    (click)="populateSinglePostData(post)"
+                    class="text-base font-[bold] cursor-pointer"
+                    >{{ post.title }}</a
+                  >
                 </div>
                 <div
                   class="author-date flex justify-between flex-col sm:flex-row md:flex-col lg:flex-row llg:flex-col 2xl:flex-row 2xl:gap-8 2xl:items-center text-sm gap-2"

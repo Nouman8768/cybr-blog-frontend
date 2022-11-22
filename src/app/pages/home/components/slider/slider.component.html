@@ -3,7 +3,10 @@
     <div class="sliderPost flex justify-between flex-col sm:flex-row gap-8">
       <div class="slider-post flex-1 ngf">
         <div class="post-image w-[full] h-[492px] overflow-hidden relative">
-          <a href="#" class="flex items-center justify-center w-full h-full">
+          <a
+            (click)="populateSinglePostData(post)"
+            class="flex items-center justify-center w-full h-full cursor-pointer"
+          >
             <img
               src="http://localhost:3000/{{ post.image }}"
               class="scale-[3]"
@@ -63,16 +66,18 @@
           >
             <div class="category">
               <a
-                href=""
-                class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
+                (click)="sendCategory(post)"
+                class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer"
               >
                 <span>{{ post.category }}</span>
               </a>
             </div>
             <div class="title">
-              <a href="#" class="text-xl font-[bold] leading-5">{{
-                post.title
-              }}</a>
+              <a
+                (click)="populateSinglePostData(post)"
+                class="text-xl font-[bold] leading-5 cursor-pointer"
+                >{{ post.title }}</a
+              >
             </div>
             <div class="author-date flex gap-8 xl:justify-between items-center">
               <div class="author">
