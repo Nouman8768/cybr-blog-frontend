@@ -1,30 +1,41 @@
-<div class="highlighted-posts flex justify-center gap-6">
-  <div class="post">
+<div class="flex w-full justify-center gap-8 flex-wrap">
+  <div class="post" *ngFor="let post of highlightedPosts; index as i">
     <div class="wrapper flex flex-col gap-6 w-[300px]">
       <div class="relative">
         <div
           class="post-image w-[300px] h-[305px] relative overflow-hidden flex items-center justify-center"
         >
           <a href="" class="w-full h-full">
-            <img src="/assets/images/post1.jpg" class="scale-[2.7]" alt="" />
-          </a>
-          <div
-            class="cdots absolute top-4 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3"
-          >
             <img
-              src="/assets/icons/dots.png"
-              class="rotate-90 scale-[1.5]"
+              src="http://localhost:3000/{{ post.image }}"
+              class="scale-[2.7]"
               alt=""
             />
+          </a>
+          <div
+            class="cdots absolute top-2 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-2 text-yellow-300 bg-border py-2 bg-opacity-40 backdrop-blur-sm"
+            [ngClass]="'highlighted-dots' + i"
+          >
+            <img src="/assets/icons/dots.png" class="rotate-90" alt="" />
           </div>
           <div
             class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+            [ngClass]="'highlighted-options' + i"
           >
-            <a class="block cursor-pointer hover:text-green-800">Edit</a>
-            <a class="cursor-pointer hover:text-red-700">Delete</a>
+            <a
+              (click)="sendDetailstoUpdatePage(post)"
+              class="block cursor-pointer hover:text-green-800"
+              >Edit</a
+            >
+            <a
+              class="cursor-pointer hover:text-red-700"
+              [ngClass]="'highlighted-delete' + i"
+              >Delete</a
+            >
           </div>
           <div
-            class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 hidden justify-center items-center"
+            class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 hidden justify-center text-center items-center"
+            [ngClass]="'highlighted-confirmation' + i"
           >
             <div class="wrapper flex flex-col gap-3">
               <span class="text-2xl font-[bold] text-white"
@@ -35,9 +46,11 @@
               >
                 <a
                   class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md"
+                  [ngClass]="'highlighted-No' + i"
                   >No</a
                 >
                 <a
+                  (click)="deletePost(post._id, post.image)"
                   class="cursor-pointer text-xl font-[medium] bg-red-700 py-2 px-4 rounded-md text-white custom-transition hover:bg-red-900 shadow-md"
                   >Yes</a
                 >
@@ -52,7 +65,7 @@
             href=""
             class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
           >
-            <span>Fashion</span>
+            <span>{{ post.category }}</span>
           </a>
         </div>
       </div>
@@ -62,7 +75,7 @@
         <div class="title text-white">
           <a href="">
             <h2 class="text-2xl font-[bold]">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              {{ post.title }}
             </h2>
           </a>
         </div>

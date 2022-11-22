@@ -28,6 +28,9 @@ import { HighlightedPostComponent } from './pages/home/components/section-highli
 import { PopularSidebarPostsComponent } from './pages/home/components/section-popular/components/popular-sidebar-posts/popular-sidebar-posts.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LatestPostsComponent } from './components/footer/components/latest-posts/latest-posts.component';
+import { SinglePostComponent } from './pages/single-post/single-post.component';
+import { CategoricallyPostsComponent } from './pages/categorically-posts/categorically-posts.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HighlightedPostComponent,
     PopularSidebarPostsComponent,
     FooterComponent,
+    LatestPostsComponent,
+    SinglePostComponent,
+    CategoricallyPostsComponent,
   ],
   imports: [
     BrowserModule,

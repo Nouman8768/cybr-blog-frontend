@@ -1,0 +1,12 @@
+section.highlighted {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.9626400902157738) 30%,
+      rgba(51, 23, 49, 0.7105392498796393) 100%
+    ),
+    url("/assets/images/171852.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
