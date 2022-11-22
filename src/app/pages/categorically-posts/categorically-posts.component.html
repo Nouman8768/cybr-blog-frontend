@@ -5,7 +5,16 @@
         <div class="all-posts flex flex-col gap-16">
           <div
             class="all-post flex flex-col sm:flex-row gap-8 relative"
-            *ngFor="let post of result"
+            *ngFor="
+              let post of result
+                | paginate
+                  : {
+                      id: 'paginate',
+                      itemsPerPage: 2,
+                      currentPage: page,
+                      totalItems: result.length
+                    }
+            "
           >
             <div
               class="post-image w-full sm:w-1/3 h-[200px] xsm:h-[350px] sm:h-[178px] relative overflow-hidden flex items-center justify-center"
@@ -101,7 +110,13 @@
           </div>
         </div>
         <div class="pagination mt-16">
-          <div class="wrapper flex flex-wrap"></div>
+          <div class="wrapper flex flex-wrap">
+            <pagination-controls
+              id="paginate"
+              [maxSize]="5"
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
         </div>
       </div>
     </div>

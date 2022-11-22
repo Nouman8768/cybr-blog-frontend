@@ -11,7 +11,7 @@ export class CategoricallyPostsComponent implements OnInit {
   constructor(private readonly service: PostService) {}
 
   result: PostSchema[] = [];
-
+  page: number = 1;
   ngOnInit(): void {
     const res = this.service.getter();
     this.service
