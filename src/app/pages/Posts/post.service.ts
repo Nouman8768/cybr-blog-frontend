@@ -9,6 +9,7 @@ import { PostSchema } from './post.schema';
 export class PostService {
   constructor(private readonly http: HttpClient) {}
   post!: PostSchema;
+  category?: string;
   url: string = 'http://localhost:3000';
 
   public setter(post: PostSchema) {
@@ -25,7 +26,19 @@ export class PostService {
   }
 
   public getPosts(): Observable<PostSchema[]> {
-    return this.http.get<PostSchema[]>(`${this.url}/blog-post`);
+    return this.http.get<PostSchema[]>(`${this.url}/blog-post`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  public getCategoryPosts(category: string): Observable<PostSchema[]> {
+    return this.http.get<PostSchema[]>(`${this.url}/blog-post/${category}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   public async deletePost(id: string): Promise<PostSchema> {

@@ -3,30 +3,32 @@
     <div class="main w-full llg:w-2/3">
       <div class="post">
         <div class="post-image w-full h-[500px] relative overflow-hidden">
-          <a href="" class="w-full h-full">
-            <img src="/assets/images/post1.jpg" class="scale-[2]" alt="" />
+          <a class="w-full h-full">
+            <img
+              src="http://localhost:3000/{{ post!.image }}"
+              class="scale-[2]"
+              alt=""
+            />
           </a>
         </div>
         <div class="details flex flex-col gap-4 sm:mt-8">
           <div class="category uppercase">
             <a
-              href=""
               class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
             >
-              <span>sddsd</span>
+              <span>{{ post!.category }}</span>
             </a>
           </div>
           <div class="title">
-            <a href="">
+            <a>
               <h2 class="text-2xl font-[bold]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                eligendi ratione eum.
+                {{ post!.title }}
               </h2>
             </a>
           </div>
           <div class="author-date flex gap-16 items-center">
             <div class="author">
-              <a href="" class="flex items-center gap-2">
+              <a class="flex items-center gap-2">
                 <div
                   class="icon flex items-center justify-center w-4 max-h-4 overflow-hidden"
                 >
@@ -48,24 +50,7 @@
           </div>
           <div class="description">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-              rerum quis ab, culpa sunt quae nemo modi quo qui id voluptas ad
-              provident similique vitae adipisci quam blanditiis autem
-              repudiandae cumque. Officia, dolor reprehenderit. Vero veritatis
-              quam atque. Quos blanditiis iusto debitis ab veritatis. Illum
-              ratione quidem dolore suscipit totam enim? Earum, cumque sapiente
-              necessitatibus deleniti delectus fuga amet consequatur veritatis
-              recusandae saepe quaerat numquam ex. Quae eaque, explicabo saepe
-              reiciendis impedit soluta dolore ut quaerat. Est maiores sit
-              accusantium praesentium fuga quis recusandae dolor laborum.
-              Dignissimos nihil vitae atque esse nesciunt cupiditate culpa
-              asperiores corrupti in! Molestias vero blanditiis id error illo
-              autem. Eum, odio. Sit modi numquam architecto veritatis ipsa harum
-              eius dignissimos perspiciatis corporis, officia amet minima,
-              provident illo voluptatem illum? Voluptate veritatis assumenda,
-              nobis adipisci, expedita consectetur dolorum vitae, saepe eveniet
-              minus iure ullam aliquid soluta minima? Animi eveniet voluptas
-              quidem harum maxime? Necessitatibus, sint iusto.
+              {{ post!.body }}
             </p>
           </div>
         </div>
@@ -80,7 +65,7 @@
             class="w-full text-lg px-4 py-6"
           />
         </div>
-        <a href="">
+        <a>
           <div class="icon px-4">
             <img src="/assets/icons/search.svg" alt="" />
           </div>

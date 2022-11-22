@@ -8,7 +8,10 @@
     <div
       class="post-image w-[299px] h-[340px] md:w-[396px] md:h-[427px] overflow-hidden relative"
     >
-      <a href="#" class="flex items-center justify-center w-full h-full">
+      <a
+        (click)="populateSinglePostData(post)"
+        class="flex items-center justify-center w-full h-full cursor-pointer"
+      >
         <img
           src="http://localhost:3000/{{ post.image }}"
           class="scale-[3]"
@@ -62,9 +65,9 @@
       <div
         class="detailes absolute bottom-0 text-white flex flex-col gap-4 px-4 py-8 gradient w-full"
       >
-        <div class="category">
+        <div class="category" *ngIf="post.category">
           <a
-            href=""
+            (click)="sendCategory(post)"
             class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1"
           >
             <span>{{ post.category }}</span>
