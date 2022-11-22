@@ -36,11 +36,14 @@ export class PostService {
     return this.http.get<PostSchema>(`${this.url}/blog-post/${slug}`);
   }
   public getCategoryPosts(category: string): Observable<PostSchema[]> {
-    return this.http.get<PostSchema[]>(`${this.url}/blog-post/${category}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return this.http.get<PostSchema[]>(
+      `${this.url}/blog-post/categoryPosts/${category}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 
   public async deletePost(id: string): Promise<PostSchema> {

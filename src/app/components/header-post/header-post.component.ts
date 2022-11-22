@@ -64,12 +64,12 @@ export class HeaderPostComponent implements OnInit {
     this.route.navigate(['update-post']);
   }
   async populateSinglePostData(details: PostSchema) {
-    this.postService.setter(details);
+    // this.postService.setter(details);
     this.route.navigate([`single-post/${details.slug}`]);
   }
   async sendCategory(category: PostSchema) {
     this.postService.setter(category);
-    this.route.navigate(['category-post']);
+    this.route.navigate([`category-post/${category.category}`]);
   }
 
   async deletePost(id: string, filename: string) {

@@ -1,11 +1,11 @@
 <section class="popular py-24">
   <div class="container mx-auto px-3 flex gap-16">
     <div class="main w-full llg:w-2/3">
-      <div class="post" *ngIf="post$ | async as post">
+      <div class="post" *ngIf="blogpost$ | async as blogpost">
         <div class="post-image w-full h-[500px] relative overflow-hidden">
           <a class="w-full h-full">
             <img
-              src="http://localhost:3000/{{ post.image }}"
+              src="http://localhost:3000/{{ blogpost.image }}"
               class="scale-[2]"
               alt=""
             />
@@ -17,13 +17,13 @@
               (click)="sendCategory(post)"
               class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer"
             >
-              <span>{{ post.category }}</span>
+              <span>{{ blogpost.category }}</span>
             </a>
           </div>
           <div class="title">
             <a>
               <h2 class="text-2xl font-[bold]">
-                {{ post.title }}
+                {{ blogpost.title }}
               </h2>
             </a>
           </div>
@@ -51,7 +51,7 @@
           </div>
           <div class="description">
             <p>
-              {{ post.body }}
+              {{ blogpost.body }}
             </p>
           </div>
         </div>

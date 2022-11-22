@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'add-post', component: AddPostComponent },
   { path: 'update-post', component: UpdatePostComponent },
   { path: 'single-post/:slug', component: SinglePostComponent },
-  { path: 'category-post', component: CategoricallyPostsComponent },
+  { path: 'category-post/:category', component: CategoricallyPostsComponent },
 ];
 
 @NgModule({
