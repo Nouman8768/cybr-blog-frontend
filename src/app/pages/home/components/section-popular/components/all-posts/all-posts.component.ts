@@ -45,13 +45,17 @@ export class AllPostsComponent implements OnInit {
           console.log(dots);
         });
 
-        deleteOptions.addEventListener('click', () => {
-          deleteConfirmation.style.display = 'flex';
-        });
+        if (deleteOptions) {
+          deleteOptions.addEventListener('click', () => {
+            deleteConfirmation.style.display = 'flex';
+          });
+        }
 
-        No.addEventListener('click', () => {
-          deleteConfirmation.style.display = 'none';
-        });
+        if (No) {
+          No.addEventListener('click', () => {
+            deleteConfirmation.style.display = 'none';
+          });
+        }
       }
     }, 800);
   }

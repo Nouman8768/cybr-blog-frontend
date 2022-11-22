@@ -61,8 +61,6 @@ export class SliderComponent implements OnInit {
 
         const options = document.querySelector(`.soptions${i}`) as HTMLElement;
 
-        console.log('sdots: ', dots);
-
         const deleteOptions = document.querySelector(
           `.sdelete${i}`
         ) as HTMLElement;

@@ -16,7 +16,6 @@ export class FooterComponent implements OnInit {
 
   confirmationState: boolean = true;
   fpPosts!: PostSchema[];
-  flPosts!: PostSchema[];
 
   async ngOnInit() {
     await this.getAllPosts();
@@ -46,44 +45,17 @@ export class FooterComponent implements OnInit {
           console.log(dots);
         });
 
-        deleteOptions.addEventListener('click', () => {
-          deleteConfirmation.style.display = 'flex';
-        });
+        if (deleteOptions) {
+          deleteOptions.addEventListener('click', () => {
+            deleteConfirmation.style.display = 'flex';
+          });
+        }
 
-        No.addEventListener('click', () => {
-          deleteConfirmation.style.display = 'none';
-        });
-      }
-
-      for (let i = 0; i <= fllPosts.length; i++) {
-        const dots = document.querySelector(`.fl-dots${i}`) as HTMLElement;
-
-        const options = document.querySelector(
-          `.fl-options${i}`
-        ) as HTMLElement;
-
-        const deleteOptions = document.querySelector(
-          `.fl-delete${i}`
-        ) as HTMLElement;
-
-        const deleteConfirmation = document.querySelector(
-          `.fl-confirmation${i}`
-        ) as HTMLElement;
-
-        const No = document.querySelector(`.fl-No${i}`) as HTMLElement;
-
-        dots?.addEventListener('click', () => {
-          options!.classList.toggle('hidden');
-          console.log(dots);
-        });
-
-        deleteOptions.addEventListener('click', () => {
-          deleteConfirmation.style.display = 'flex';
-        });
-
-        No.addEventListener('click', () => {
-          deleteConfirmation.style.display = 'none';
-        });
+        if (No) {
+          No.addEventListener('click', () => {
+            deleteConfirmation.style.display = 'none';
+          });
+        }
       }
     }, 800);
   }
@@ -91,7 +63,6 @@ export class FooterComponent implements OnInit {
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
       this.fpPosts = data.slice(0, 4);
-      this.flPosts = data.slice(2, 6);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {

@@ -28,8 +28,6 @@ export class HeaderPostComponent implements OnInit {
 
         const options = document.querySelector(`.hoptions${i}`) as HTMLElement;
 
-        console.log('hdots: ', dots);
-
         const deleteOptions = document.querySelector(
           `.hdelete${i}`
         ) as HTMLElement;
