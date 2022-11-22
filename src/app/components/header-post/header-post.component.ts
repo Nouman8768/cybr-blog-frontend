@@ -1,5 +1,6 @@
+import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PostSchema } from 'src/app/pages/Posts/post.schema';
 import { PostService } from 'src/app/pages/Posts/post.service';
 

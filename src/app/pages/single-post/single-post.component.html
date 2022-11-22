@@ -1,7 +1,7 @@
 <section class="popular py-24">
   <div class="container mx-auto px-3 flex gap-16">
     <div class="main w-full llg:w-2/3">
-      <div class="post">
+      <div class="post" *ngIf="post$ | async as post">
         <div class="post-image w-full h-[500px] relative overflow-hidden">
           <a class="w-full h-full">
             <img

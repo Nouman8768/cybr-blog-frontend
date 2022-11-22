@@ -1,7 +1,8 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PostSchema } from '../Posts/post.schema';
 import { PostService } from '../Posts/post.service';
+import { Observable, switchMap, map } from 'rxjs';
 
 @Component({
   selector: 'app-single-post',
@@ -11,15 +12,19 @@ import { PostService } from '../Posts/post.service';
 export class SinglePostComponent implements OnInit {
   constructor(
     private readonly postService: PostService,
-    private readonly route: Router
+    private readonly route: Router,
+    private readonly activeroute: ActivatedRoute
   ) {}
 
-  post!: PostSchema;
-
-  ngOnInit(): void {
-    this.post = this.postService.getter();
-    console.log(this.post);
-  }
+  post$: Observable<PostSchema> = this.activeroute.params.pipe(
+    switchMap((param: Params) => {
+      const postSlug: string = param['slug'];
+      return this.postService
+        .populateSinglePost(postSlug)
+        .pipe(map((blogEntery: PostSchema) => blogEntery));
+    })
+  );
+  ngOnInit(): void {}
 
   async sendCategory(category: PostSchema) {
     this.postService.setter(category);

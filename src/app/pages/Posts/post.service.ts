@@ -32,7 +32,9 @@ export class PostService {
       },
     });
   }
-
+  public populateSinglePost(slug: string): Observable<PostSchema> {
+    return this.http.get<PostSchema>(`${this.url}/blog-post/${slug}`);
+  }
   public getCategoryPosts(category: string): Observable<PostSchema[]> {
     return this.http.get<PostSchema[]>(`${this.url}/blog-post/${category}`, {
       headers: {
