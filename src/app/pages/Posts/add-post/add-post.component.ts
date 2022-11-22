@@ -31,7 +31,7 @@ export class AddPostComponent implements OnInit {
   async submitPostForm() {
     await this.submitImage();
     await this.savePost();
-    await this.route.navigate(['/']);
+    // await this.route.navigate(['/']);
   }
 
   async savePost(): Promise<PostSchema> {
@@ -60,7 +60,6 @@ export class AddPostComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = () => {
         this.selectedImage = reader.result as string;
-        console.log('Image', this.selectedImage);
       };
       reader.readAsDataURL(this.file);
     }

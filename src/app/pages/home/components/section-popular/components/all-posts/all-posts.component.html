@@ -7,7 +7,7 @@
           | paginate
             : {
                 id: 'paginate',
-                itemsPerPage: 1,
+                itemsPerPage: 4,
                 currentPage: page,
                 totalItems: allPosts.length
               };
@@ -66,11 +66,11 @@
             </div>
           </div>
         </div>
-        <div class="description text-sm">
+        <!-- <div class="description text-sm">
           <p>
             {{ post.body }}
           </p>
-        </div>
+        </div> -->
       </div>
       <div
         class="dots absolute top-8 sm:top-0 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3 text-yellow-300"
@@ -121,7 +121,7 @@
     <div class="wrapper flex flex-wrap">
       <pagination-controls
         id="paginate"
-        [maxSize]="4"
+        [maxSize]="7"
         (pageChange)="page = $event"
       >
       </pagination-controls>

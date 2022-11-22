@@ -55,7 +55,7 @@ export class HeaderPostComponent implements OnInit {
 
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.columnPosts = data.slice(0, 3);
+      this.columnPosts = data.slice(8, 11);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
