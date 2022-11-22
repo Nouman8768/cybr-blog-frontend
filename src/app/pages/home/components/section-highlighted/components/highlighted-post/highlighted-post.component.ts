@@ -57,7 +57,7 @@ export class HighlightedPostComponent implements OnInit {
 
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.highlightedPosts = data.slice(0, 3);
+      this.highlightedPosts = data.slice(6, 10);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {

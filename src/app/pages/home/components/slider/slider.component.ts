@@ -88,7 +88,7 @@ export class SliderComponent implements OnInit {
 
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.sliderPosts = data.slice(0, 6);
+      this.sliderPosts = data.reverse();
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {

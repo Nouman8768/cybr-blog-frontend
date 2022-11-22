@@ -62,7 +62,7 @@ export class AllPostsComponent implements OnInit {
 
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.allPosts = data;
+      this.allPosts = data.reverse();
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
