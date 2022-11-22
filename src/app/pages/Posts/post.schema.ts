@@ -8,4 +8,6 @@ export class PostSchema {
   body!: string;
 
   image!: string;
+
+  slug!: string;
 }

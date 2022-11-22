@@ -71,7 +71,7 @@ export class FooterComponent implements OnInit {
   }
   async populateSinglePostData(details: PostSchema) {
     this.postService.setter(details);
-    this.route.navigate(['single-post']);
+    this.route.navigate([`single-post/${details.slug}`]);
   }
   async deletePost(id: string, filename: string) {
     const deleted = await this.postService.deletePost(id);

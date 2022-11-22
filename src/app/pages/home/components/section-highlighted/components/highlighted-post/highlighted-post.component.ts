@@ -66,7 +66,7 @@ export class HighlightedPostComponent implements OnInit {
   }
   async populateSinglePostData(details: PostSchema) {
     this.postService.setter(details);
-    this.route.navigate(['single-post']);
+    this.route.navigate([`single-post/${details.slug}`]);
   }
   async sendCategory(category: PostSchema) {
     this.postService.setter(category);

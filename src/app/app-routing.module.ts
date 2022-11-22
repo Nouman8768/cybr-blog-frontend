@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'add-post', component: AddPostComponent },
   { path: 'update-post', component: UpdatePostComponent },
-  { path: 'single-post', component: SinglePostComponent },
+  { path: 'single-post/:slug', component: SinglePostComponent },
   { path: 'category-post', component: CategoricallyPostsComponent },
 ];
 
