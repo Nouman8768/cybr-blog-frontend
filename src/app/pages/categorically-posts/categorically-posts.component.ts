@@ -16,35 +16,21 @@ export class CategoricallyPostsComponent implements OnInit {
     private readonly activeroute: ActivatedRoute
   ) {}
 
-  result: PostSchema[] = [];
-  // | paginate
-  //                 : {
-  //                     id: 'paginate',
-  //                     itemsPerPage: 4,
-  //                     currentPage: page,
-  //                     totalItems: result.length
-  //                   }
   page: number = 1;
+  blogposts$!: Observable<PostSchema[] | any>;
 
-  blogposts$: Observable<PostSchema[]> = this.activeroute.params.pipe(
-    switchMap((param: Params) => {
-      const postCategory: string = param['category'];
-      return this.postService
-        .getCategoryPosts(postCategory)
-        .pipe(map((blogEntery: PostSchema[]) => blogEntery));
-    })
-  );
   ngOnInit(): void {
-    // this.getAllPosts();
+    this.getAllPosts();
   }
   async getAllPosts() {
-    const res = this.postService.getter();
-    this.postService
-      .getCategoryPosts(res.category)
-      .subscribe((data: PostSchema[]) => {
-        this.result = data;
-        console.log(data);
-      });
+    this.blogposts$ = this.activeroute.params.pipe(
+      switchMap((param: Params) => {
+        const postCategory: string = param['category'];
+        return this.postService
+          .getCategoryPosts(postCategory)
+          .pipe(map((blogEntery: PostSchema[]) => blogEntery));
+      })
+    );
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
     this.postService.setter(details);
