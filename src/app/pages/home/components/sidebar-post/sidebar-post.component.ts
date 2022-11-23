@@ -57,7 +57,7 @@ export class SidebarPostComponent implements OnInit {
 
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.sidebarPosts = data.slice(0, 4);
+      this.sidebarPosts = data.slice(2, 6);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {

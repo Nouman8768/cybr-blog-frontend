@@ -58,7 +58,7 @@ export class SectionLatestComponent implements OnInit {
 
   async getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
-      this.sidePosts = data.reverse();
+      this.sidePosts = data.reverse().slice(1, 7);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {

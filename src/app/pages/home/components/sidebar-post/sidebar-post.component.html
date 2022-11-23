@@ -21,7 +21,7 @@
           (click)="populateSinglePostData(post)"
           class="text-base font-[bold] cursor-pointer"
         >
-          {{ post.title }}
+          {{ post.title.substring(0, 60) + "..." }}
         </a>
       </div>
       <div

@@ -43,7 +43,7 @@
               <div class="title">
                 <a (click)="populateSinglePostData(post)">
                   <h2 class="text-base font-[bold] cursor-pointer">
-                    {{ post.title }}
+                    {{ post.title.substring(0, 60) + "..." }}
                   </h2>
                 </a>
               </div>

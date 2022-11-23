@@ -40,7 +40,7 @@
         <div class="title">
           <a (click)="populateSinglePostData(post)">
             <h2 class="text-base font-[bold] cursor-pointer">
-              {{ post.title }}
+              {{ post.title.substring(0, 60) + "..." }}
             </h2>
           </a>
         </div>
@@ -66,11 +66,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="description text-sm">
-          <p>
-            {{ post.body }}
-          </p>
-        </div> -->
       </div>
       <div
         class="dots absolute top-8 sm:top-0 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3 text-yellow-300"
@@ -79,7 +74,7 @@
         <img src="/assets/icons/dots.png" class="rotate-90 px-3" alt="" />
       </div>
       <div
-        class="b-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+        class="b-options absolute top-8 right-6 hidden flex-col font-[bold] bg-slate-100 px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
         [ngClass]="'all-posts-options' + i"
       >
         <a

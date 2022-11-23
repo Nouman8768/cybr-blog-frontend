@@ -48,7 +48,7 @@
                 class="actions w-full flex justify-center items-center gap-2"
               >
                 <a
-                  class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md"
+                  class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-00 shadow-md"
                   [ngClass]="'highlighted-No' + i"
                   >No</a
                 >
@@ -78,7 +78,7 @@
         <div class="title text-white">
           <a (click)="populateSinglePostData(post)">
             <h2 class="text-2xl font-[bold] cursor-pointer">
-              {{ post.title }}
+              {{ post.title.substring(0, 60) + "..." }}
             </h2>
           </a>
         </div>

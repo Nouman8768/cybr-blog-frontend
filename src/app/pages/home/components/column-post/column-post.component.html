@@ -73,7 +73,7 @@
           <a
             (click)="populateSinglePostData(post)"
             class="text-xl font-[bold] leading-5 cursor-pointer"
-            >{{ post.title }}</a
+            >{{ post.title.substring(0, 60) + "..." }}</a
           >
         </div>
         <div
