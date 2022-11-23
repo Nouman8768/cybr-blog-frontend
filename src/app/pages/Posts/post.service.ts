@@ -9,7 +9,6 @@ import { PostSchema } from './post.schema';
 export class PostService {
   constructor(private readonly http: HttpClient) {}
   post!: PostSchema;
-  category?: string;
   url: string = 'http://localhost:3000';
 
   public setter(post: PostSchema) {

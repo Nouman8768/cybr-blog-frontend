@@ -57,7 +57,7 @@ export class AnonymousPostComponent implements OnInit {
   }
   async populateSinglePostData(details: PostSchema) {
     this.postService.setter(details);
-    this.route.navigate([`single-post/${details.slug}`]);
+    this.route.navigate([`single-post/${details._id}`]);
   }
 
   async deletePost(id: string, filename: string) {
