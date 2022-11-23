@@ -29,8 +29,9 @@ import { PopularSidebarPostsComponent } from './pages/home/components/section-po
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LatestPostsComponent } from './components/footer/components/latest-posts/latest-posts.component';
-import { SinglePostComponent } from './pages/single-post/single-post.component';
+SinglePostComponent;
 import { CategoricallyPostsComponent } from './pages/categorically-posts/categorically-posts.component';
+import { SinglePostComponent } from './pages/single-post/single-post.component';
 
 @NgModule({
   declarations: [

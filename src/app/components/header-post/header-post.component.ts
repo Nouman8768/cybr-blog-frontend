@@ -66,7 +66,7 @@ export class HeaderPostComponent implements OnInit {
   }
   async populateSinglePostData(details: PostSchema) {
     // this.postService.setter(details);
-    this.route.navigate([`single-post/${details.slug}`]);
+    this.route.navigate([`single-post/${details._id}`]);
   }
   async sendCategory(category: PostSchema) {
     this.postService.setter(category);

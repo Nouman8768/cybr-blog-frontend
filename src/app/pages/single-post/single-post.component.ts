@@ -18,19 +18,22 @@ export class SinglePostComponent implements OnInit {
 
   post!: PostSchema;
 
-  blogpost$: Observable<PostSchema> = this.activeroute.params.pipe(
-    switchMap((param: Params) => {
-      const postSlug: string = param['slug'];
-      return this.postService
-        .populateSinglePost(postSlug)
-        .pipe(map((blogEntery: PostSchema) => blogEntery));
-    })
-  );
+  blogpost$!: Observable<PostSchema | any>;
+
   ngOnInit(): void {
-    this.post = this.postService.getter();
-    console.log(this.post);
+    this.getAll();
   }
 
+  async getAll() {
+    this.blogpost$ = this.activeroute.params.pipe(
+      switchMap((param: Params) => {
+        const postSlug: string = param['id'];
+        return this.postService
+          .populateSinglePost(postSlug)
+          .pipe(map((blogEntery: PostSchema) => blogEntery));
+      })
+    );
+  }
   async sendCategory(category: PostSchema) {
     this.postService.setter(category);
     this.route.navigate(['category-post']);
