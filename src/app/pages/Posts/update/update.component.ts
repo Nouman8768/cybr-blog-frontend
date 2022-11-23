@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostSchema } from '../post.schema';
 import { PostService } from '../post.service';
 
 @Component({
-  selector: 'app-update-post',
-  templateUrl: './update-post.component.html',
-  styleUrls: ['./update-post.component.scss'],
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.scss'],
 })
-export class UpdatePostComponent implements OnInit {
+export class UpdateComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   postForm!: FormGroup;

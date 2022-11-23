@@ -1,74 +1,42 @@
+import { PopularSidebarPostModule } from './shared/module/popular-sidebar-post/popular-sidebar-post.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { AddPostComponent } from './pages/Posts/add-post/add-post.component';
 import { HomeComponent } from './pages/home/home.component';
-
-import { SidebarPostComponent } from './pages/home/components/sidebar-post/sidebar-post.component';
-import { SliderComponent } from './pages/home/components/slider/slider.component';
-import { ColumnPostComponent } from './pages/home/components/column-post/column-post.component';
-import { SectionLatestComponent } from './pages/home/components/section-latest/section-latest.component';
-import { SwiperModule } from 'swiper/angular';
-
-import { SidebarSocialLinksComponent } from './pages/home/components/sidebar-social-links/sidebar-social-links.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpdatePostComponent } from './pages/Posts/update-post/update-post.component';
-import { SectionPopularComponent } from './pages/home/components/section-popular/section-popular.component';
-import { AdBannerComponent } from './pages/home/components/ad-banner/ad-banner.component';
-import { BigPostComponent } from './pages/home/components/section-popular/components/big-post/big-post.component';
-import { AllPostsComponent } from './pages/home/components/section-popular/components/all-posts/all-posts.component';
-import { AnonymousPostComponent } from './pages/home/components/section-popular/components/anonymous-post/anonymous-post.component';
-import { SectionHighlightedComponent } from './pages/home/components/section-highlighted/section-highlighted.component';
-import { HighlightedPostComponent } from './pages/home/components/section-highlighted/components/highlighted-post/highlighted-post.component';
-import { PopularSidebarPostsComponent } from './pages/home/components/section-popular/components/popular-sidebar-posts/popular-sidebar-posts.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-// import { CategoricallyPostsComponent } from './pages/categorically-posts/categorically-posts.component';
-import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { SocialLinksComponent } from './shared/components/social-links/social-links.component';
 import { HeaderPostComponent } from './shared/components/header-post/header-post.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { LatestPostsComponent } from './shared/components/footer/components/latest-posts/latest-posts.component';
-import { CategoricallyPostsComponent } from './pages/categorically-posts/categorically-posts.component';
+
+import { HomeModule } from './pages/home/home.module';
+import { CategoricallyPostsModule } from './pages/categorically-posts/categorically-posts.module';
+import { FooterModule } from './shared/module/footer/footer.module';
+import { AnonymousPostModule } from './shared/module/anonymous-post/anonymous-post.module';
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HeaderComponent,
     SocialLinksComponent,
-    AddPostComponent,
+
     HomeComponent,
     HeaderPostComponent,
-    SidebarPostComponent,
-    SliderComponent,
-    ColumnPostComponent,
-    SectionLatestComponent,
-    SidebarSocialLinksComponent,
-    UpdatePostComponent,
-    SectionPopularComponent,
-    AdBannerComponent,
-    BigPostComponent,
-    AllPostsComponent,
-    AnonymousPostComponent,
-    SectionHighlightedComponent,
-    HighlightedPostComponent,
-    PopularSidebarPostsComponent,
-    FooterComponent,
-    LatestPostsComponent,
-    SinglePostComponent,
-    CategoricallyPostsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SwiperModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    HomeModule,
+    CategoricallyPostsModule,
+    FooterModule,
+    PopularSidebarPostModule,
+    AnonymousPostModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

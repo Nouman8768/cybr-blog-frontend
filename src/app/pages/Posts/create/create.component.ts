@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostSchema } from '../post.schema';
 import { PostService } from '../post.service';
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.scss'],
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss'],
 })
-export class AddPostComponent implements OnInit {
+export class CreateComponent implements OnInit {
   constructor(
     private postService: PostService,
     private readonly route: Router

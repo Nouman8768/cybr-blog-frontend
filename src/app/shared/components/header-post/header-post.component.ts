@@ -62,7 +62,7 @@ export class HeaderPostComponent implements OnInit {
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
     this.postService.setter(details);
-    this.route.navigate(['update-post']);
+    this.route.navigate(['update']);
   }
   async populateSinglePostData(details: PostSchema) {
     // this.postService.setter(details);

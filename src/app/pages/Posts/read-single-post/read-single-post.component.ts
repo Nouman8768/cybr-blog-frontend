@@ -1,15 +1,15 @@
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { PostSchema } from '../Posts/post.schema';
-import { PostService } from '../Posts/post.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
+import { PostSchema } from '../post.schema';
+import { PostService } from '../post.service';
 
 @Component({
-  selector: 'app-single-post',
-  templateUrl: './single-post.component.html',
-  styleUrls: ['./single-post.component.scss'],
+  selector: 'app-read-single-post',
+  templateUrl: './read-single-post.component.html',
+  styleUrls: ['./read-single-post.component.scss'],
 })
-export class SinglePostComponent implements OnInit {
+export class ReadSinglePostComponent implements OnInit {
   constructor(
     private readonly postService: PostService,
     private readonly route: Router,

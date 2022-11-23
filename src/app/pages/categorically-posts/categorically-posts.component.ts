@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
 import { PostSchema } from '../Posts/post.schema';
 import { PostService } from '../Posts/post.service';
