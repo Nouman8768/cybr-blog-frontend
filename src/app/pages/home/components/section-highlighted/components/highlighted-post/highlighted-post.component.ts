@@ -20,7 +20,7 @@ export class HighlightedPostComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.getAllPosts();
     setTimeout(() => {
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 4; i++) {
         const dots = document.querySelector(
           `.highlighted-dots${i}`
         ) as HTMLElement;

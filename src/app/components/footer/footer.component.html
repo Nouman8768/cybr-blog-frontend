@@ -13,12 +13,10 @@
               class="fp-post flex items-start gap-4 relative"
               *ngFor="let post of fpPosts; index as i"
             >
-              <div
-                class="post-image w-[100px] h-[90px] overflow-hidden relative"
-              >
+              <div class="post-image relative">
                 <a
                   (click)="populateSinglePostData(post)"
-                  class="flex items-center justify-center w-full h-full cursor-pointer"
+                  class="flex items-center justify-center w-[100px] h-[90px] overflow-hidden cursor-pointer"
                 >
                   <img
                     src="http://localhost:3000/{{ post.image }}"
@@ -28,7 +26,7 @@
                 </a>
               </div>
               <div class="detailes flex flex-col">
-                <div class="title">
+                <div class="title w-[90%]">
                   <a
                     (click)="populateSinglePostData(post)"
                     class="text-base font-[bold] cursor-pointer"

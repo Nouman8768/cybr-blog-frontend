@@ -77,7 +77,7 @@
           <a
             (click)="populateSinglePostData(post)"
             class="text-xl font-[bold] leading-5 cursor-pointer"
-            >{{ post.title }}
+            >{{ post.title.substring(0, 40) + "..." }}
           </a>
         </div>
         <div class="author-date flex gap-8 xl:justify-between items-center">

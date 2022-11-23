@@ -18,6 +18,7 @@ export class HeaderPostComponent implements OnInit {
   options: boolean = false;
   confirmationState: boolean = true;
   columnPosts!: PostSchema[];
+  title!: string;
 
   async ngOnInit() {
     await this.getAllPosts();

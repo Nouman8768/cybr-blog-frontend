@@ -3,10 +3,10 @@
     class="side-post flex items-start gap-4 relative"
     *ngFor="let post of sidebarPosts; index as i"
   >
-    <div class="post-image w-[100px] h-[90px] overflow-hidden relative">
+    <div class="post-image relative">
       <a
         (click)="populateSinglePostData(post)"
-        class="flex items-center justify-center w-full h-full cursor-pointer"
+        class="flex items-center justify-center cursor-pointer w-[100px] h-[90px] overflow-hidden"
       >
         <img
           src="http://localhost:3000/{{ post.image }}"
@@ -16,12 +16,13 @@
       </a>
     </div>
     <div class="detailes flex flex-col">
-      <div class="title">
+      <div class="title w-[90%]">
         <a
           (click)="populateSinglePostData(post)"
           class="text-base font-[bold] cursor-pointer"
-          >{{ post.title }}</a
         >
+          {{ post.title }}
+        </a>
       </div>
       <div
         class="author-date flex justify-between flex-col sm:flex-row md:flex-col lg:flex-row llg:flex-col 2xl:flex-row 2xl:gap-8 2xl:items-center text-sm"
