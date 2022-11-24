@@ -66,17 +66,14 @@ export class LatestPostsComponent implements OnInit {
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
-    this.postService.setter(details);
-    this.route.navigate(['update-post']);
+    this.route.navigate([`update/${details._id}`]);
   }
   async populateSinglePostData(details: PostSchema) {
-    this.postService.setter(details);
     this.route.navigate([`single-post/${details._id}`]);
   }
   async deletePost(id: string, filename: string) {
     const deleted = await this.postService.deletePost(id);
     const unlinked = await this.postService.unlinkServerImage(filename);
     this.getAllPosts();
-    console.log(deleted);
   }
 }

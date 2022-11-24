@@ -5,6 +5,7 @@
       <form
         (ngSubmit)="submitUpdateForm()"
         [formGroup]="postForm"
+        *ngIf="postForm"
         class="flex flex-col gap-4"
       >
         <div class="form-group flex flex-col gap-1">

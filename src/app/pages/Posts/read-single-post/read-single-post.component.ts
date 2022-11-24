@@ -16,8 +16,6 @@ export class ReadSinglePostComponent implements OnInit {
     private readonly activeroute: ActivatedRoute
   ) {}
 
-  post!: PostSchema;
-
   blogpost$!: Observable<PostSchema | any>;
 
   ngOnInit(): void {
@@ -28,14 +26,11 @@ export class ReadSinglePostComponent implements OnInit {
     this.blogpost$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
         const postSlug: string = param['id'];
-        return this.postService
-          .populateSinglePost(postSlug)
-          .pipe(map((blogEntery: PostSchema) => blogEntery));
+        return this.postService.populateSinglePost(postSlug);
       })
     );
   }
   async sendCategory(category: PostSchema) {
-    this.postService.setter(category);
-    this.route.navigate(['category-post']);
+    this.route.navigate([`category-post/${category.category}`]);
   }
 }

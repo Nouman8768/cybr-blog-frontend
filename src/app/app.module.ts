@@ -22,7 +22,6 @@ import { AnonymousPostModule } from './shared/module/anonymous-post/anonymous-po
     NavigationComponent,
     HeaderComponent,
     SocialLinksComponent,
-
     HomeComponent,
     HeaderPostComponent,
   ],

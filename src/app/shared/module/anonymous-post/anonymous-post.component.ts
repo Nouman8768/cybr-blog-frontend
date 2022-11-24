@@ -15,7 +15,7 @@ export class AnonymousPostComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  anonymousPosts!: PostSchema[];
+  anonymousPosts: PostSchema[] = [];
 
   async ngOnInit() {
     await this.getAllPosts();
@@ -46,17 +46,15 @@ export class AnonymousPostComponent implements OnInit {
     }, 800);
   }
 
-  async getAllPosts() {
+  getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
       this.anonymousPosts = data.slice(2, 3);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
-    this.postService.setter(details);
-    this.route.navigate(['update-post']);
+    this.route.navigate([`update/${details._id}`]);
   }
   async populateSinglePostData(details: PostSchema) {
-    this.postService.setter(details);
     this.route.navigate([`single-post/${details._id}`]);
   }
 
@@ -64,6 +62,5 @@ export class AnonymousPostComponent implements OnInit {
     const deleted = await this.postService.deletePost(id);
     const unlinked = await this.postService.unlinkServerImage(filename);
     this.getAllPosts();
-    console.log(deleted);
   }
 }

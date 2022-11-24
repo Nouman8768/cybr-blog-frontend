@@ -17,8 +17,7 @@ export class HeaderPostComponent implements OnInit {
 
   options: boolean = false;
   confirmationState: boolean = true;
-  columnPosts!: PostSchema[];
-  title!: string;
+  columnPosts: PostSchema[] = [];
 
   async ngOnInit() {
     await this.getAllPosts();
@@ -55,21 +54,18 @@ export class HeaderPostComponent implements OnInit {
     }, 800);
   }
 
-  async getAllPosts() {
+  getAllPosts() {
     this.postService.getPosts().subscribe((data: PostSchema[]) => {
       this.columnPosts = data.slice(8, 11);
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
-    this.postService.setter(details);
-    this.route.navigate(['update']);
+    this.route.navigate([`update/${details._id}`]);
   }
   async populateSinglePostData(details: PostSchema) {
-    // this.postService.setter(details);
     this.route.navigate([`single-post/${details._id}`]);
   }
   async sendCategory(category: PostSchema) {
-    this.postService.setter(category);
     this.route.navigate([`category-post/${category.category}`]);
   }
 
@@ -77,6 +73,5 @@ export class HeaderPostComponent implements OnInit {
     const deleted = await this.postService.deletePost(id);
     const unlinked = await this.postService.unlinkServerImage(filename);
     this.getAllPosts();
-    console.log(deleted);
   }
 }

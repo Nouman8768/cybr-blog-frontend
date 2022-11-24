@@ -31,7 +31,7 @@ export class CreateComponent implements OnInit {
   async submitPostForm() {
     await this.submitImage();
     await this.savePost();
-    // await this.route.navigate(['/']);
+    await this.route.navigate(['/']);
   }
 
   async savePost(): Promise<PostSchema> {

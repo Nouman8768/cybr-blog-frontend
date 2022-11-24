@@ -49,12 +49,7 @@ const routes: Routes = [
       import('./pages/Posts/create/create.module').then((m) => m.CreateModule),
   },
   {
-    path: 'create',
-    loadChildren: () =>
-      import('./pages/Posts/create/create.module').then((m) => m.CreateModule),
-  },
-  {
-    path: 'update',
+    path: 'update/:id',
     loadChildren: () =>
       import('./pages/Posts/update/update.module').then((m) => m.UpdateModule),
   },

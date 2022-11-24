@@ -15,7 +15,7 @@ export class SidebarPostComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  sidebarPosts!: PostSchema[];
+  sidebarPosts: PostSchema[] = [];
 
   async ngOnInit() {
     await this.getAllPosts();
@@ -61,22 +61,15 @@ export class SidebarPostComponent implements OnInit {
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
-    this.postService.setter(details);
     this.route.navigate(['update-post']);
   }
   async populateSinglePostData(details: PostSchema) {
-    this.postService.setter(details);
     this.route.navigate([`single-post/${details._id}`]);
-  }
-  async sendCategory(category: PostSchema) {
-    this.postService.setter(category);
-    this.route.navigate(['category-post']);
   }
 
   async deletePost(id: string, filename: string) {
     const deleted = await this.postService.deletePost(id);
     const unlinked = await this.postService.unlinkServerImage(filename);
     this.getAllPosts();
-    console.log(deleted);
   }
 }

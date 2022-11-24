@@ -1,7 +1,9 @@
+import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostSchema } from '../post.schema';
 import { PostService } from '../post.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-update',
@@ -9,23 +11,32 @@ import { PostService } from '../post.service';
   styleUrls: ['./update.component.scss'],
 })
 export class UpdateComponent implements OnInit {
-  constructor(private postService: PostService) {}
+  constructor(
+    private postService: PostService,
+    private readonly activeroute: ActivatedRoute
+  ) {}
 
   postForm!: FormGroup;
   file!: File;
   selectedImage!: string;
+  post!: PostSchema;
 
   ngOnInit(): void {
-    console.log(this.postService.getter());
-    const data = this.postService.getter();
+    this.getAll();
+  }
+  async getAll() {
+    let id = this.activeroute.snapshot.paramMap.get('id');
+    console.log(id);
+
+    this.post = await this.postService.populateSinglePost(id!);
+
     this.postForm = new FormGroup({
-      _id: new FormControl(data?._id),
-      title: new FormControl(data?.title, [Validators.required]),
-      category: new FormControl(data?.category, [Validators.required]),
-      body: new FormControl(data?.body, [Validators.required]),
-      image: new FormControl(data?.image, [Validators.required]),
+      _id: new FormControl(this.post._id),
+      title: new FormControl(this.post.title, [Validators.required]),
+      body: new FormControl(this.post.body, [Validators.required]),
+      category: new FormControl(this.post.category, [Validators.required]),
+      image: new FormControl(this.post.image, [Validators.required]),
     });
-    console.log(this.postForm.value);
   }
   async submitUpdateForm() {
     await this.submitImage();

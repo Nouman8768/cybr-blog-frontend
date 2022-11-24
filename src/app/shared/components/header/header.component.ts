@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute, Router, RouterState } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +7,7 @@ import { ActivatedRoute, Router, RouterState } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private readonly route: Router, private location: Location) {}
+  constructor(private readonly route: Router) {}
 
   ngOnInit(): void {}
 

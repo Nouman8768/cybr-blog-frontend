@@ -15,7 +15,7 @@ export class SectionLatestComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  sidePosts!: PostSchema[];
+  sidePosts: PostSchema[] = [];
 
   async ngOnInit() {
     await this.getAllPosts();
@@ -62,22 +62,18 @@ export class SectionLatestComponent implements OnInit {
     });
   }
   async sendDetailstoUpdatePage(details: PostSchema) {
-    this.postService.setter(details);
-    this.route.navigate(['update-post']);
+    this.route.navigate([`update/${details._id}`]);
   }
   async populateSinglePostData(details: PostSchema) {
-    this.postService.setter(details);
     this.route.navigate([`single-post/${details._id}`]);
   }
   async sendCategory(category: PostSchema) {
-    this.postService.setter(category);
-    this.route.navigate(['category-post']);
+    this.route.navigate([`category-post/${category.category}`]);
   }
 
   async deletePost(id: string, filename: string) {
     const deleted = await this.postService.deletePost(id);
     const unlinked = await this.postService.unlinkServerImage(filename);
     this.getAllPosts();
-    console.log(deleted);
   }
 }

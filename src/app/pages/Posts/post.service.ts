@@ -31,8 +31,10 @@ export class PostService {
       },
     });
   }
-  public populateSinglePost(id: string): Observable<PostSchema> {
-    return this.http.get<PostSchema>(`${this.url}/blog-posts/${id}`);
+  public async populateSinglePost(id: string): Promise<PostSchema> {
+    let res = this.http.get<PostSchema>(`${this.url}/blog-posts/${id}`);
+    let data = await lastValueFrom(res);
+    return data;
   }
   public getCategoryPosts(category: string): Observable<PostSchema[]> {
     return this.http.get<PostSchema[]>(
