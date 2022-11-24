@@ -1,5 +1,3 @@
-import { FooterModule } from '../../shared/module/footer/footer.module';
-import { PopularSidebarPostModule } from '../../shared/module/popular-sidebar-post/popular-sidebar-post.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

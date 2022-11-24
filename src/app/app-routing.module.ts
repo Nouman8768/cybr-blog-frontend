@@ -54,6 +54,7 @@ const routes: Routes = [
       import('./pages/Posts/update/update.module').then((m) => m.UpdateModule),
   },
   { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
+  { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
 ];
 
 @NgModule({

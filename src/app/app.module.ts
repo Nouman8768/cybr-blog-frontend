@@ -18,6 +18,7 @@ import { FooterModule } from './shared/module/footer/footer.module';
 import { AnonymousPostModule } from './shared/module/anonymous-post/anonymous-post.module';
 import { PopularSidebarPostModule } from './shared/module/popular-sidebar-post/popular-sidebar-post.module';
 import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   imports: [
@@ -27,8 +28,7 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     NgxPaginationModule,
 
-    HomeModule,
-    CategoricallyPostsModule,
+    PagesModule,
     SharedModule,
   ],
   declarations: [AppComponent],
