@@ -97,8 +97,10 @@ export class SliderComponent implements OnInit {
   async populateSinglePostData(details: Post) {
     this.route.navigate([`single-post/${details._id}`]);
   }
-  async sendCategory(category: Post) {
-    this.route.navigate([`category-post/${category.category}`]);
+  async sendCategory(category: string) {
+    this.route.navigate([`category-post/${category}`], {
+      queryParams: { category: category },
+    });
   }
 
   async deletePost(id: string, filename: string) {

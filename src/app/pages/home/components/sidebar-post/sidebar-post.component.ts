@@ -61,7 +61,7 @@ export class SidebarPostComponent implements OnInit {
     });
   }
   async sendDetailstoUpdatePage(details: Post) {
-    this.route.navigate(['update-post']);
+    this.route.navigate([`update/${details._id}`]);
   }
   async populateSinglePostData(details: Post) {
     this.route.navigate([`single-post/${details._id}`]);

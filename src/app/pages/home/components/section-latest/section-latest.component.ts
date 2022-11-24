@@ -67,9 +67,6 @@ export class SectionLatestComponent implements OnInit {
   async populateSinglePostData(details: Post) {
     this.route.navigate([`single-post/${details._id}`]);
   }
-  async sendCategory(category: Post) {
-    this.route.navigate([`category-post/${category.category}`]);
-  }
 
   async deletePost(id: string, filename: string) {
     const deleted = await this.service.deletePost(id);

@@ -1,5 +1,5 @@
 import { map, Observable, switchMap } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Post } from 'src/app/shared/post.schema';
 import { PostService } from '../../post.service';
@@ -65,8 +65,10 @@ export class HeaderPostComponent implements OnInit {
   async populateSinglePostData(details: Post) {
     this.route.navigate([`single-post/${details._id}`]);
   }
-  async sendCategory(category: Post) {
-    this.route.navigate([`category-post/${category.category}`]);
+  async sendCategory(category: string) {
+    this.route.navigate([`category-post/${category}`], {
+      queryParams: { category: category },
+    });
   }
 
   async deletePost(id: string, filename: string) {

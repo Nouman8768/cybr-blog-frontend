@@ -30,7 +30,9 @@ export class ReadSinglePostComponent implements OnInit {
       })
     );
   }
-  async sendCategory(category: Post) {
-    this.route.navigate([`category-post/${category.category}`]);
+  async sendCategory(category: string) {
+    this.route.navigate([`category-post/${category}`], {
+      queryParams: { category: category },
+    });
   }
 }

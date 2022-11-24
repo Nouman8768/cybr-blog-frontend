@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoricallyPostsModule } from './pages/categorically-posts/categorically-posts.module';
 
 import { HomeModule } from './pages/home/home.module';
+import { PagesModule } from './pages/pages.module';
+import { CreateModule } from './pages/posts/create/create.module';
+import { ReadSinglePostModule } from './pages/posts/read-single-post/read-single-post.module';
+import { UpdateModule } from './pages/posts/update/update.module';
+import { AnonymousPostModule } from './shared/module/anonymous-post/anonymous-post.module';
+import { FooterModule } from './shared/module/footer/footer.module';
+import { PopularSidebarPostModule } from './shared/module/popular-sidebar-post/popular-sidebar-post.module';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   {
@@ -10,51 +19,40 @@ const routes: Routes = [
   },
   {
     path: 'category-post/:category',
-    loadChildren: () =>
-      import('./pages/categorically-posts/categorically-posts.module').then(
-        (m) => m.CategoricallyPostsModule
-      ),
+    loadChildren: () => CategoricallyPostsModule,
   },
   {
     path: 'footer',
-    loadChildren: () =>
-      import('./shared/module/footer/footer.module').then(
-        (m) => m.FooterModule
-      ),
+    loadChildren: () => FooterModule,
   },
   {
     path: 'PopularSidebarPost',
-    loadChildren: () =>
-      import(
-        './shared/module/popular-sidebar-post/popular-sidebar-post.module'
-      ).then((m) => m.PopularSidebarPostModule),
+    loadChildren: () => PopularSidebarPostModule,
   },
   {
     path: 'anonymous-post',
-    loadChildren: () =>
-      import('./shared/module/anonymous-post/anonymous-post.module').then(
-        (m) => m.AnonymousPostModule
-      ),
+    loadChildren: () => AnonymousPostModule,
   },
   {
     path: 'single-post/:id',
-    loadChildren: () =>
-      import('./pages/Posts/read-single-post/read-single-post.module').then(
-        (m) => m.ReadSinglePostModule
-      ),
+    loadChildren: () => ReadSinglePostModule,
   },
   {
     path: 'create',
-    loadChildren: () =>
-      import('./pages/Posts/create/create.module').then((m) => m.CreateModule),
+    loadChildren: () => CreateModule,
   },
   {
     path: 'update/:id',
-    loadChildren: () =>
-      import('./pages/Posts/update/update.module').then((m) => m.UpdateModule),
+    loadChildren: () => UpdateModule,
   },
-  { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
-  { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
+  {
+    path: 'shared',
+    loadChildren: () => SharedModule,
+  },
+  {
+    path: 'pages',
+    loadChildren: () => PagesModule,
+  },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { Post } from './post.schema';
@@ -42,8 +42,10 @@ export class PostService {
   }
 
   public getCategoryPosts(category: string): Observable<Post[]> {
+    console.log(category);
+
     return this.http.get<Post[]>(
-      `${this.url}/blog-posts/categoryPosts/${category}`,
+      `${this.url}/blog-posts?category=${category}`,
       {
         headers: {
           'Content-Type': 'application/json',

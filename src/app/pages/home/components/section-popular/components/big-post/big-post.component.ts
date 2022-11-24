@@ -56,8 +56,10 @@ export class BigPostComponent implements OnInit {
   async sendDetailstoUpdatePage(details: Post) {
     this.route.navigate([`update/${details._id}`]);
   }
-  async sendCategory(category: Post) {
-    this.route.navigate([`category-post/${category.category}`]);
+  async sendCategory(category: string) {
+    this.route.navigate([`category-post/${category}`], {
+      queryParams: { category: category },
+    });
   }
 
   async deletePost(id: string, filename: string) {
