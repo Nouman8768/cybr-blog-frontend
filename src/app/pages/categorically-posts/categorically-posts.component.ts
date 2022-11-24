@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
-import { Post } from '../Posts/post.schema';
-import { PostService } from '../Posts/post.service';
+import { PostService } from 'src/app/shared/post.service';
+import { Post } from '../../shared/post.schema';
 
 @Component({
   selector: 'app-categorically-posts',
@@ -11,7 +11,7 @@ import { PostService } from '../Posts/post.service';
 })
 export class CategoricallyPostsComponent implements OnInit {
   constructor(
-    private readonly postService: PostService,
+    private readonly service: PostService,
     private readonly route: Router,
     private readonly activeroute: ActivatedRoute
   ) {}
@@ -26,7 +26,7 @@ export class CategoricallyPostsComponent implements OnInit {
     this.blogposts$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
         const postCategory: string = param['category'];
-        return this.postService
+        return this.service
           .getCategoryPosts(postCategory)
           .pipe(map((blogEntery: Post[]) => blogEntery));
       })
@@ -39,8 +39,8 @@ export class CategoricallyPostsComponent implements OnInit {
     this.route.navigate([`single-post/${details._id}`]);
   }
   async deletePost(id: string, filename: string) {
-    const deleted = await this.postService.deletePost(id);
-    const unlinked = await this.postService.unlinkServerImage(filename);
+    const deleted = await this.service.deletePost(id);
+    const unlinked = await this.service.unlinkServerImage(filename);
     this.getAllPosts();
   }
 }

@@ -2,24 +2,7 @@
   <div class="container mx-auto px-3 flex gap-16">
     <div class="main w-full llg:w-2/3">
       <div class="post" *ngIf="blogpost$ | async as blogpost">
-        <div class="post-image w-full h-[500px] relative overflow-hidden">
-          <a class="w-full h-full">
-            <img
-              src="http://localhost:3000/{{ blogpost.image }}"
-              class="scale-[2]"
-              alt=""
-            />
-          </a>
-        </div>
         <div class="details flex flex-col gap-4 sm:mt-8">
-          <div class="category uppercase">
-            <a
-              (click)="sendCategory(blogpost)"
-              class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer"
-            >
-              <span>{{ blogpost.category }}</span>
-            </a>
-          </div>
           <div class="title">
             <a>
               <h2 class="text-2xl font-[bold]">
@@ -48,6 +31,23 @@
                 <span>July 11, 2022</span>
               </div>
             </div>
+            <div class="category uppercase">
+              <a
+                (click)="sendCategory(blogpost)"
+                class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer"
+              >
+                <span>{{ blogpost.category }}</span>
+              </a>
+            </div>
+          </div>
+          <div class="post-image w-full h-[500px] relative overflow-hidden">
+            <a class="w-full h-full">
+              <img
+                src="http://localhost:3000/{{ blogpost.image }}"
+                class="scale-[2]"
+                alt=""
+              />
+            </a>
           </div>
           <div class="description">
             <p>
@@ -74,7 +74,7 @@
       </div>
       <div class="sidebar-posts flex flex-col gap-8 uppercase">
         <h2 class="text-2xl font-[bold] text-center">most popular</h2>
-        <app-popular-sidebar-posts></app-popular-sidebar-posts>
+        <app-popular-sidebar-post></app-popular-sidebar-post>
         <app-anonymous-post></app-anonymous-post>
       </div>
     </aside>

@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
@@ -10,7 +11,7 @@ export class PostService {
   constructor(private readonly http: HttpClient) {}
   post!: Post;
 
-  url: string = 'http://localhost:3000';
+  url: string = environment.serverUrl;
 
   public setter(post: Post) {
     this.post = post;

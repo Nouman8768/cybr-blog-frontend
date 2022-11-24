@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from 'src/app/pages/Posts/post.schema';
-import { PostService } from 'src/app/pages/Posts/post.service';
+import { Post } from 'src/app/shared/post.schema';
+import { PostService } from 'src/app/shared/post.service';
 
 @Component({
   selector: 'app-all-posts',
@@ -10,7 +10,7 @@ import { PostService } from 'src/app/pages/Posts/post.service';
 })
 export class AllPostsComponent implements OnInit {
   constructor(
-    private postService: PostService,
+    private readonly service: PostService,
     private readonly route: Router
   ) {}
 
@@ -61,7 +61,7 @@ export class AllPostsComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.postService.getPosts().subscribe((data: Post[]) => {
+    this.service.getPosts().subscribe((data: Post[]) => {
       this.allPosts = data.reverse();
     });
   }
@@ -76,8 +76,8 @@ export class AllPostsComponent implements OnInit {
   }
 
   async deletePost(id: string, filename: string) {
-    const deleted = await this.postService.deletePost(id);
-    const unlinked = await this.postService.unlinkServerImage(filename);
+    const deleted = await this.service.deletePost(id);
+    const unlinked = await this.service.unlinkServerImage(filename);
     this.getAllPosts();
   }
 }

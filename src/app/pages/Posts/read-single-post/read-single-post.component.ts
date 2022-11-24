@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
-import { Post } from '../post.schema';
-import { PostService } from '../post.service';
+import { PostService } from 'src/app/shared/post.service';
+import { Post } from '../../../shared/post.schema';
 
 @Component({
   selector: 'app-read-single-post',
@@ -11,7 +11,7 @@ import { PostService } from '../post.service';
 })
 export class ReadSinglePostComponent implements OnInit {
   constructor(
-    private readonly postService: PostService,
+    private readonly service: PostService,
     private readonly route: Router,
     private readonly activeroute: ActivatedRoute
   ) {}
@@ -26,7 +26,7 @@ export class ReadSinglePostComponent implements OnInit {
     this.blogpost$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
         const postSlug: string = param['id'];
-        return this.postService.populateSinglePost(postSlug);
+        return this.service.populateSinglePost(postSlug);
       })
     );
   }

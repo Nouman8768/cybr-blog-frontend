@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from 'src/app/pages/Posts/post.schema';
-import { PostService } from 'src/app/pages/Posts/post.service';
+import { Post } from 'src/app/shared/post.schema';
+import { PostService } from 'src/app/shared/post.service';
 import SwiperCore, { Pagination, Navigation, SwiperOptions } from 'swiper';
 
 SwiperCore.use([Pagination, Navigation]);
@@ -17,7 +17,7 @@ export class SliderComponent implements OnInit {
     clickable: true,
   };
   constructor(
-    private postService: PostService,
+    private readonly service: PostService,
     private readonly route: Router
   ) {}
 
@@ -87,7 +87,7 @@ export class SliderComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.postService.getPosts().subscribe((data: Post[]) => {
+    this.service.getPosts().subscribe((data: Post[]) => {
       this.sliderPosts = data.reverse();
     });
   }
@@ -102,8 +102,8 @@ export class SliderComponent implements OnInit {
   }
 
   async deletePost(id: string, filename: string) {
-    const deleted = await this.postService.deletePost(id);
-    const unlinked = await this.postService.unlinkServerImage(filename);
+    const deleted = await this.service.deletePost(id);
+    const unlinked = await this.service.unlinkServerImage(filename);
     this.getAllPosts();
   }
 }

@@ -9,9 +9,19 @@ import { AnonymousPostModule } from './module/anonymous-post/anonymous-post.modu
 import { PopularSidebarPostModule } from './module/popular-sidebar-post/popular-sidebar-post.module';
 import { AnonymousPostComponent } from './module/anonymous-post/anonymous-post.component';
 import { PopularSidebarPostComponent } from './module/popular-sidebar-post/popular-sidebar-post.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HeaderPostComponent } from './components/header-post/header-post.component';
+import { SocialLinksComponent } from './components/social-links/social-links.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
-  declarations: [SharedComponent],
+  declarations: [
+    SharedComponent,
+    HeaderComponent,
+    HeaderPostComponent,
+    NavigationComponent,
+    SocialLinksComponent,
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule,
@@ -23,6 +33,10 @@ import { PopularSidebarPostComponent } from './module/popular-sidebar-post/popul
     FooterComponent,
     AnonymousPostComponent,
     PopularSidebarPostComponent,
+    HeaderComponent,
+    HeaderPostComponent,
+    SocialLinksComponent,
+    NavigationComponent,
   ],
 })
 export class SharedModule {}

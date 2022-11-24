@@ -17,8 +17,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HighlightedPostComponent } from './components/section-highlighted/components/highlighted-post/highlighted-post.component';
 import { AnonymousPostModule } from 'src/app/shared/module/anonymous-post/anonymous-post.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { HomeComponent } from './home.component';
 @NgModule({
   declarations: [
+    HomeComponent,
     SidebarPostComponent,
     SliderComponent,
     ColumnPostComponent,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Post } from '../post.schema';
-import { PostService } from '../post.service';
+import { PostService } from 'src/app/shared/post.service';
+import { Post } from '../../../shared/post.schema';
 
 @Component({
   selector: 'app-create',
@@ -11,7 +11,7 @@ import { PostService } from '../post.service';
 })
 export class CreateComponent implements OnInit {
   constructor(
-    private postService: PostService,
+    private readonly service: PostService,
     private readonly route: Router
   ) {}
 
@@ -35,7 +35,7 @@ export class CreateComponent implements OnInit {
   }
 
   async savePost(): Promise<Post> {
-    this.result = await this.postService.addPost(this.postForm.value);
+    this.result = await this.service.addPost(this.postForm.value);
     console.log(this.result);
     return this.result;
   }
@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
 
-      const uploadImage = await this.postService.uploadImage(formData);
+      const uploadImage = await this.service.uploadImage(formData);
 
       console.log('uploaded response: ', uploadImage);
     }

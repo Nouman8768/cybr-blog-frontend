@@ -31,14 +31,7 @@ import { SharedModule } from './shared/shared.module';
     CategoricallyPostsModule,
     SharedModule,
   ],
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-    HeaderComponent,
-    SocialLinksComponent,
-    HomeComponent,
-    HeaderPostComponent,
-  ],
+  declarations: [AppComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,9 +1,10 @@
 import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Post } from '../post.schema';
-import { PostService } from '../post.service';
+import { Post } from '../../../shared/post.schema';
+
 import { ActivatedRoute, Params } from '@angular/router';
+import { PostService } from 'src/app/shared/post.service';
 
 @Component({
   selector: 'app-update',
@@ -12,7 +13,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class UpdateComponent implements OnInit {
   constructor(
-    private postService: PostService,
+    private readonly service: PostService,
     private readonly activeroute: ActivatedRoute
   ) {}
 
@@ -28,7 +29,7 @@ export class UpdateComponent implements OnInit {
     let id = this.activeroute.snapshot.paramMap.get('id');
     console.log(id);
 
-    this.post = await this.postService.populateSinglePost(id!);
+    this.post = await this.service.populateSinglePost(id!);
 
     this.postForm = new FormGroup({
       _id: new FormControl(this.post._id),
@@ -45,7 +46,7 @@ export class UpdateComponent implements OnInit {
 
   async updatePost(): Promise<Post> {
     console.log('Response Before', this.postForm.value);
-    const response = await this.postService.updatePost(
+    const response = await this.service.updatePost(
       this.postForm.value._id,
       this.postForm.value
     );
@@ -57,10 +58,10 @@ export class UpdateComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
 
-      const unlinked = await this.postService.unlinkServerImage(
+      const unlinked = await this.service.unlinkServerImage(
         this.postForm.value.image
       );
-      const uploadImage = await this.postService.uploadImage(formData);
+      const uploadImage = await this.service.uploadImage(formData);
       this.postForm.value.image = uploadImage;
     }
   }
