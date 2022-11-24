@@ -1,7 +1,10 @@
 <div class="bigPost">
   <div class="big-post" *ngFor="let post of highlightedPosts">
     <div class="post-image w-full h-[500px] relative overflow-hidden">
-      <a href="" class="w-full h-full">
+      <a
+        (click)="moveToSinglePostPage(post._id)"
+        class="w-full h-full cursor-pointer"
+      >
         <img
           src="http://localhost:3000/{{ post.image }}"
           class="scale-[2]"
@@ -19,7 +22,7 @@
         class="b-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
       >
         <a
-          (click)="sendDetailstoUpdatePage(post)"
+          (click)="moveToUpdatePage(post._id)"
           class="block cursor-pointer hover:text-green-800"
           >Edit</a
         >
@@ -49,7 +52,7 @@
     <div class="details flex flex-col gap-4 sm:mt-8">
       <div class="category uppercase">
         <a
-          (click)="sendCategory(post.category)"
+          (click)="moveToCategoryPostPage(post.category)"
           class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer"
         >
           <span>{{ post.category }}</span>

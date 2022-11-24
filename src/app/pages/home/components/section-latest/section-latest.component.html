@@ -14,7 +14,7 @@
         >
           <div class="post-image relative border">
             <a
-              (click)="populateSinglePostData(post)"
+              (click)="moveToSinglePostPage(post._id)"
               class="flex items-center justify-center w-[100px] h-[90px] overflow-hidden cursor-pointer"
             >
               <img
@@ -27,7 +27,7 @@
           <div class="detailes flex flex-col mt-[-0.3rem]">
             <div class="title w-[90%]">
               <a
-                (click)="populateSinglePostData(post)"
+                (click)="moveToSinglePostPage(post._id)"
                 class="text-base font-[bold] cursor-pointer"
                 >{{ post.title.substring(0, 60) + "..." }}</a
               >
@@ -68,7 +68,7 @@
             [ngClass]="'sioptions' + i"
           >
             <a
-              (click)="sendDetailstoUpdatePage(post)"
+              (click)="moveToUpdatePage(post._id)"
               class="block cursor-pointer hover:text-green-800"
               >Edit</a
             >

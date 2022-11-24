@@ -18,7 +18,7 @@
         class="post-image w-full sm:w-1/3 h-[200px] xsm:h-[350px] sm:h-[178px] relative overflow-hidden flex items-center justify-center"
       >
         <a
-          (click)="populateSinglePostData(post)"
+          (click)="moveToSinglePostPage(post._id)"
           class="w-full h-full cursor-pointer"
         >
           <img
@@ -31,14 +31,14 @@
       <div class="details flex flex-1 flex-col gap-3 xsm:mt-2">
         <div class="category uppercase">
           <a
-            (click)="sendCategory(post.category)"
+            (click)="moveToCategoryPostPage(post.category)"
             class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer"
           >
             <span>{{ post.category }}</span>
           </a>
         </div>
         <div class="title">
-          <a (click)="populateSinglePostData(post)">
+          <a (click)="moveToSinglePostPage(post._id)">
             <h2 class="text-base font-[bold] cursor-pointer">
               {{ post.title.substring(0, 60) + "..." }}
             </h2>
@@ -78,7 +78,7 @@
         [ngClass]="'all-posts-options' + i"
       >
         <a
-          (click)="sendDetailstoUpdatePage(post)"
+          (click)="moveToUpdatePage(post._id)"
           class="block cursor-pointer hover:text-green-800"
           >Edit</a
         >

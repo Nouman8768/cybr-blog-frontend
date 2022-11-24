@@ -21,13 +21,13 @@ export class PostService {
     return this.post;
   }
 
-  public async addPost(post: Post): Promise<Post> {
+  public async create(post: Post): Promise<Post> {
     let res = this.http.post<Post>(`${this.url}/blog-posts`, post);
     let data = await lastValueFrom(res);
     return data;
   }
 
-  public getPosts(): Observable<Post[]> {
+  public findAll(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.url}/blog-posts`, {
       headers: {
         'Content-Type': 'application/json',
@@ -35,13 +35,13 @@ export class PostService {
     });
   }
 
-  public async populateSinglePost(id: string): Promise<Post> {
-    let res = this.http.get<Post>(`${this.url}/blog-posts/${id}`);
+  public async findOne(id: string): Promise<Post> {
+    let res = this.http.get<Post>(`${this.url}/blog-posts?id=${id}`);
     let data = await lastValueFrom(res);
     return data;
   }
 
-  public getCategoryPosts(category: string): Observable<Post[]> {
+  public findByCategory(category: string): Observable<Post[]> {
     console.log(category);
 
     return this.http.get<Post[]>(
@@ -54,13 +54,13 @@ export class PostService {
     );
   }
 
-  public async deletePost(id: string): Promise<Post> {
+  public async delete(id: string): Promise<Post> {
     let res = this.http.delete<Post>(`${this.url}/blog-posts/${id}`);
     let data = await lastValueFrom(res);
     return data;
   }
 
-  public async unlinkServerImage(filename: string): Promise<string> {
+  public async unlinkImagefromServer(filename: string): Promise<string> {
     let res = this.http.delete<string>(
       `${this.url}/blog-posts/server/${filename}`
     );
@@ -68,7 +68,7 @@ export class PostService {
     return data;
   }
 
-  public async updatePost(id: string, post: Post): Promise<Post> {
+  public async update(id: string, post: Post): Promise<Post> {
     let res = this.http.patch<Post>(`${this.url}/blog-posts/${id}`, post, {
       headers: {
         'Content-Type': 'application/json',

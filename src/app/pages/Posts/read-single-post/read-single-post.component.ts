@@ -26,11 +26,11 @@ export class ReadSinglePostComponent implements OnInit {
     this.blogpost$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
         const postSlug: string = param['id'];
-        return this.service.populateSinglePost(postSlug);
+        return this.service.findOne(postSlug);
       })
     );
   }
-  async sendCategory(category: string) {
+  async moveToCategoryPostPage(category: string) {
     this.route.navigate([`category-post/${category}`], {
       queryParams: { category: category },
     });

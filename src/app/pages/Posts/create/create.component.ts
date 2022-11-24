@@ -35,7 +35,7 @@ export class CreateComponent implements OnInit {
   }
 
   async savePost(): Promise<Post> {
-    this.result = await this.service.addPost(this.postForm.value);
+    this.result = await this.service.create(this.postForm.value);
     console.log(this.result);
     return this.result;
   }

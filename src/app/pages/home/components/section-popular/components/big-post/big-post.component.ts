@@ -49,22 +49,29 @@ export class BigPostComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.service.getPosts().subscribe((data: Post[]) => {
+    this.service.findAll().subscribe((data: Post[]) => {
       this.highlightedPosts = data.slice(3, 4);
     });
   }
-  async sendDetailstoUpdatePage(details: Post) {
-    this.route.navigate([`update/${details._id}`]);
+  async moveToUpdatePage(id: string) {
+    this.route.navigate([`update/${id}`], {
+      queryParams: { id: id },
+    });
   }
-  async sendCategory(category: string) {
+  async moveToSinglePostPage(id: string) {
+    this.route.navigate([`single-post/${id}`], {
+      queryParams: { id: id },
+    });
+  }
+  async moveToCategoryPostPage(category: string) {
     this.route.navigate([`category-post/${category}`], {
       queryParams: { category: category },
     });
   }
 
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.deletePost(id);
-    const unlinked = await this.service.unlinkServerImage(filename);
+    const deleted = await this.service.delete(id);
+    const unlinked = await this.service.unlinkImagefromServer(filename);
     this.getAllPosts();
   }
 }

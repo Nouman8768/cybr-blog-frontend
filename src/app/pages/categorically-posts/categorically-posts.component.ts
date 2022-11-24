@@ -27,20 +27,24 @@ export class CategoricallyPostsComponent implements OnInit {
       switchMap((param: Params) => {
         const postCategory: string = param['category'];
         return this.service
-          .getCategoryPosts(postCategory)
+          .findByCategory(postCategory)
           .pipe(map((blogEntery: Post[]) => blogEntery));
       })
     );
   }
-  async sendDetailstoUpdatePage(details: Post) {
-    this.route.navigate([`update/${details._id}`]);
+  async moveToUpdatePage(id: string) {
+    this.route.navigate([`update/${id}`], {
+      queryParams: { id: id },
+    });
   }
-  async populateSinglePostData(details: Post) {
-    this.route.navigate([`single-post/${details._id}`]);
+  async moveToSinglePostPage(id: string) {
+    this.route.navigate([`single-post/${id}`], {
+      queryParams: { id: id },
+    });
   }
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.deletePost(id);
-    const unlinked = await this.service.unlinkServerImage(filename);
+    const deleted = await this.service.delete(id);
+    const unlinked = await this.service.unlinkImagefromServer(filename);
     this.getAllPosts();
   }
 }

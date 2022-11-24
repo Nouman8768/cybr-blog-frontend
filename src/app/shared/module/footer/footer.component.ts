@@ -61,7 +61,7 @@ export class FooterComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.service.getPosts().subscribe((data: Post[]) => {
+    this.service.findAll().subscribe((data: Post[]) => {
       this.fpPosts = data.slice(0, 4);
     });
   }
@@ -72,8 +72,8 @@ export class FooterComponent implements OnInit {
     this.route.navigate([`single-post/${details._id}`]);
   }
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.deletePost(id);
-    const unlinked = await this.service.unlinkServerImage(filename);
+    const deleted = await this.service.delete(id);
+    const unlinked = await this.service.unlinkImagefromServer(filename);
     this.getAllPosts();
   }
 }

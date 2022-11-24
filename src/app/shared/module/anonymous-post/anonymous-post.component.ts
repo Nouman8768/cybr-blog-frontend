@@ -47,7 +47,7 @@ export class AnonymousPostComponent implements OnInit {
   }
 
   getAllPosts() {
-    this.service.getPosts().subscribe((data: Post[]) => {
+    this.service.findAll().subscribe((data: Post[]) => {
       this.anonymousPosts = data.slice(2, 3);
     });
   }
@@ -59,8 +59,8 @@ export class AnonymousPostComponent implements OnInit {
   }
 
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.deletePost(id);
-    const unlinked = await this.service.unlinkServerImage(filename);
+    const deleted = await this.service.delete(id);
+    const unlinked = await this.service.unlinkImagefromServer(filename);
     this.getAllPosts();
   }
 }

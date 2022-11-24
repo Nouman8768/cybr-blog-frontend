@@ -9,7 +9,7 @@
       class="post-image w-[299px] h-[340px] md:w-[396px] md:h-[427px] overflow-hidden relative"
     >
       <a
-        (click)="populateSinglePostData(post)"
+        (click)="moveToSinglePostPage(post._id)"
         class="flex items-center justify-center w-full h-full cursor-pointer"
       >
         <img
@@ -32,7 +32,7 @@
         [ngClass]="'hoptions' + i"
       >
         <a
-          (click)="sendDetailstoUpdatePage(post)"
+          (click)="moveToUpdatePage(post._id)"
           class="block cursor-pointer hover:text-green-800"
           >Edit</a
         >
@@ -67,7 +67,7 @@
       >
         <div class="category">
           <a
-            (click)="sendCategory(post.category)"
+            (click)="moveToCategoryPostPage(post.category)"
             class="bg-primary border border-transparent text-black custom-transition hover:bg-black hover:bg-opacity-60 hover:backdrop-blur-md hover:text-primary hover:border-primary font-[bold] px-3 py-1 cursor-pointer uppercase"
           >
             <span>{{ post.category }}</span>
@@ -75,7 +75,7 @@
         </div>
         <div class="title">
           <a
-            (click)="populateSinglePostData(post)"
+            (click)="moveToSinglePostPage(post._id)"
             class="text-xl font-[bold] leading-5 cursor-pointer"
             >{{ post.title.substring(0, 60) + "..." }}
           </a>
