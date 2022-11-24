@@ -1,13 +1,13 @@
-export class PostSchema {
-  _id!: string;
+export interface Post {
+  _id: string;
 
-  title!: string;
+  title: string;
 
-  category!: string;
+  category: string;
 
-  body!: string;
+  body: string;
 
-  image!: string;
+  image: string;
 
-  slug!: string;
+  slug: string;
 }

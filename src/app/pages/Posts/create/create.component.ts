@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PostSchema } from '../post.schema';
+import { Post } from '../post.schema';
 import { PostService } from '../post.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
     image: new FormControl('', [Validators.required]),
   });
 
-  result!: PostSchema;
+  result!: Post;
   file!: File;
   selectedImage!: string;
 
@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
     await this.route.navigate(['/']);
   }
 
-  async savePost(): Promise<PostSchema> {
+  async savePost(): Promise<Post> {
     this.result = await this.postService.addPost(this.postForm.value);
     console.log(this.result);
     return this.result;

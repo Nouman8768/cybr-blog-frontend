@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
-import { PostSchema } from '../post.schema';
+import { Post } from '../post.schema';
 import { PostService } from '../post.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ReadSinglePostComponent implements OnInit {
     private readonly activeroute: ActivatedRoute
   ) {}
 
-  blogpost$!: Observable<PostSchema | any>;
+  blogpost$!: Observable<Post | any>;
 
   ngOnInit(): void {
     this.getAll();
@@ -30,7 +30,7 @@ export class ReadSinglePostComponent implements OnInit {
       })
     );
   }
-  async sendCategory(category: PostSchema) {
+  async sendCategory(category: Post) {
     this.route.navigate([`category-post/${category.category}`]);
   }
 }

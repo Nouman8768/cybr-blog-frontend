@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostSchema } from 'src/app/pages/Posts/post.schema';
+import { Post } from 'src/app/pages/Posts/post.schema';
 import { PostService } from 'src/app/pages/Posts/post.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class AllPostsComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  allPosts: PostSchema[] = [];
+  allPosts: Post[] = [];
   page: number = 1;
 
   async ngOnInit(): Promise<void> {
@@ -61,17 +61,17 @@ export class AllPostsComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.postService.getPosts().subscribe((data: PostSchema[]) => {
+    this.postService.getPosts().subscribe((data: Post[]) => {
       this.allPosts = data.reverse();
     });
   }
-  async sendDetailstoUpdatePage(details: PostSchema) {
+  async sendDetailstoUpdatePage(details: Post) {
     this.route.navigate([`update/${details._id}`]);
   }
-  async populateSinglePostData(details: PostSchema) {
+  async populateSinglePostData(details: Post) {
     this.route.navigate([`single-post/${details._id}`]);
   }
-  async sendCategory(category: PostSchema) {
+  async sendCategory(category: Post) {
     this.route.navigate([`category-post/${category.category}`]);
   }
 

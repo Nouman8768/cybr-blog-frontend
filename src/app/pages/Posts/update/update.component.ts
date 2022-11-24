@@ -1,7 +1,7 @@
 import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PostSchema } from '../post.schema';
+import { Post } from '../post.schema';
 import { PostService } from '../post.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -19,7 +19,7 @@ export class UpdateComponent implements OnInit {
   postForm!: FormGroup;
   file!: File;
   selectedImage!: string;
-  post!: PostSchema;
+  post!: Post;
 
   ngOnInit(): void {
     this.getAll();
@@ -43,7 +43,7 @@ export class UpdateComponent implements OnInit {
     await this.updatePost();
   }
 
-  async updatePost(): Promise<PostSchema> {
+  async updatePost(): Promise<Post> {
     console.log('Response Before', this.postForm.value);
     const response = await this.postService.updatePost(
       this.postForm.value._id,

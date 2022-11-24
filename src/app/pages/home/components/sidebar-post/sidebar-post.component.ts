@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostSchema } from 'src/app/pages/Posts/post.schema';
+import { Post } from 'src/app/pages/Posts/post.schema';
 import { PostService } from 'src/app/pages/Posts/post.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class SidebarPostComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  sidebarPosts: PostSchema[] = [];
+  sidebarPosts: Post[] = [];
 
   async ngOnInit() {
     await this.getAllPosts();
@@ -56,14 +56,14 @@ export class SidebarPostComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.postService.getPosts().subscribe((data: PostSchema[]) => {
+    this.postService.getPosts().subscribe((data: Post[]) => {
       this.sidebarPosts = data.slice(2, 6);
     });
   }
-  async sendDetailstoUpdatePage(details: PostSchema) {
+  async sendDetailstoUpdatePage(details: Post) {
     this.route.navigate(['update-post']);
   }
-  async populateSinglePostData(details: PostSchema) {
+  async populateSinglePostData(details: Post) {
     this.route.navigate([`single-post/${details._id}`]);
   }
 

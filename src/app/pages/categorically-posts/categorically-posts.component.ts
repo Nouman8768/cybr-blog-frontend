@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
-import { PostSchema } from '../Posts/post.schema';
+import { Post } from '../Posts/post.schema';
 import { PostService } from '../Posts/post.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class CategoricallyPostsComponent implements OnInit {
   ) {}
 
   page: number = 1;
-  blogposts$!: Observable<PostSchema[] | any>;
+  blogposts$!: Observable<Post[] | any>;
 
   ngOnInit(): void {
     this.getAllPosts();
@@ -28,14 +28,14 @@ export class CategoricallyPostsComponent implements OnInit {
         const postCategory: string = param['category'];
         return this.postService
           .getCategoryPosts(postCategory)
-          .pipe(map((blogEntery: PostSchema[]) => blogEntery));
+          .pipe(map((blogEntery: Post[]) => blogEntery));
       })
     );
   }
-  async sendDetailstoUpdatePage(details: PostSchema) {
+  async sendDetailstoUpdatePage(details: Post) {
     this.route.navigate([`update/${details._id}`]);
   }
-  async populateSinglePostData(details: PostSchema) {
+  async populateSinglePostData(details: Post) {
     this.route.navigate([`single-post/${details._id}`]);
   }
   async deletePost(id: string, filename: string) {

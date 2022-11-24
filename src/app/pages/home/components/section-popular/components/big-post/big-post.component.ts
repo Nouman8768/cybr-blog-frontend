@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostSchema } from 'src/app/pages/Posts/post.schema';
+import { Post } from 'src/app/pages/Posts/post.schema';
 import { PostService } from 'src/app/pages/Posts/post.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class BigPostComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  highlightedPosts: PostSchema[] = [];
+  highlightedPosts: Post[] = [];
 
   async ngOnInit() {
     await this.getAllPosts();
@@ -49,14 +49,14 @@ export class BigPostComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.postService.getPosts().subscribe((data: PostSchema[]) => {
+    this.postService.getPosts().subscribe((data: Post[]) => {
       this.highlightedPosts = data.slice(3, 4);
     });
   }
-  async sendDetailstoUpdatePage(details: PostSchema) {
+  async sendDetailstoUpdatePage(details: Post) {
     this.route.navigate([`update/${details._id}`]);
   }
-  async sendCategory(category: PostSchema) {
+  async sendCategory(category: Post) {
     this.route.navigate([`category-post/${category.category}`]);
   }
 
