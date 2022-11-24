@@ -17,6 +17,7 @@ import { CategoricallyPostsModule } from './pages/categorically-posts/categorica
 import { FooterModule } from './shared/module/footer/footer.module';
 import { AnonymousPostModule } from './shared/module/anonymous-post/anonymous-post.module';
 import { PopularSidebarPostModule } from './shared/module/popular-sidebar-post/popular-sidebar-post.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   imports: [
@@ -28,9 +29,7 @@ import { PopularSidebarPostModule } from './shared/module/popular-sidebar-post/p
 
     HomeModule,
     CategoricallyPostsModule,
-    FooterModule,
-    PopularSidebarPostModule,
-    AnonymousPostModule,
+    SharedModule,
   ],
   declarations: [
     AppComponent,

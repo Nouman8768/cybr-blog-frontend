@@ -8,6 +8,6 @@ import { PopularSidebarPostsComponent } from './components/popular-sidebar-posts
 @NgModule({
   declarations: [PopularSidebarPostComponent, PopularSidebarPostsComponent],
   imports: [CommonModule, PopularSidebarPostRoutingModule],
-  exports: [PopularSidebarPostsComponent],
+  exports: [PopularSidebarPostComponent],
 })
 export class PopularSidebarPostModule {}

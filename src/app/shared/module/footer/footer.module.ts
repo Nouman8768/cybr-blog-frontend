@@ -8,6 +8,6 @@ import { LatestPostsComponent } from './components/latest-posts/latest-posts.com
 @NgModule({
   declarations: [FooterComponent, LatestPostsComponent],
   imports: [CommonModule, FooterRoutingModule],
-  exports: [FooterComponent, LatestPostsComponent],
+  exports: [FooterComponent],
 })
 export class FooterModule {}

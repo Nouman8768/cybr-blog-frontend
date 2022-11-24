@@ -7,6 +7,7 @@ import { CategoricallyPostsRoutingModule } from './categorically-posts-routing.m
 import { CategoricallyPostsComponent } from './categorically-posts.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AnonymousPostModule } from '../../shared/module/anonymous-post/anonymous-post.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [CategoricallyPostsComponent],
@@ -14,9 +15,7 @@ import { AnonymousPostModule } from '../../shared/module/anonymous-post/anonymou
     CommonModule,
     CategoricallyPostsRoutingModule,
     NgxPaginationModule,
-    PopularSidebarPostModule,
-    FooterModule,
-    AnonymousPostModule,
+    SharedModule,
   ],
 })
 export class CategoricallyPostsModule {}

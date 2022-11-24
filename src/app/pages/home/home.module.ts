@@ -1,4 +1,3 @@
-import { FooterModule } from './../../shared/module/footer/footer.module';
 import { PopularSidebarPostModule } from './../../shared/module/popular-sidebar-post/popular-sidebar-post.module';
 import { SidebarPostComponent } from './components/sidebar-post/sidebar-post.component';
 import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
@@ -17,6 +16,7 @@ import { AllPostsComponent } from './components/section-popular/components/all-p
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HighlightedPostComponent } from './components/section-highlighted/components/highlighted-post/highlighted-post.component';
 import { AnonymousPostModule } from 'src/app/shared/module/anonymous-post/anonymous-post.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   declarations: [
     SidebarPostComponent,
@@ -39,6 +39,7 @@ import { AnonymousPostModule } from 'src/app/shared/module/anonymous-post/anonym
     NgxPaginationModule,
     PopularSidebarPostModule,
     AnonymousPostModule,
+    SharedModule,
   ],
   exports: [
     SectionHighlightedComponent,
