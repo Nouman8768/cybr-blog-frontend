@@ -20,6 +20,8 @@ export class SectionPopularComponent implements OnInit {
     this.service.search(this.search.value).subscribe((data) => {
       this.result = data;
       console.log(data);
+      console.log(this.result);
+
       this.search.reset();
     });
   }
