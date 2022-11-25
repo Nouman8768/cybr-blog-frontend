@@ -54,6 +54,10 @@ export class PostService {
     );
   }
 
+  public search(text: string): Observable<Post[] | Post> {
+    return this.http.get<Post[] | Post>(`${this.url}/blog-posts?text=${text}`);
+  }
+
   public async delete(id: string): Promise<Post> {
     let res = this.http.delete<Post>(`${this.url}/blog-posts/${id}`);
     let data = await lastValueFrom(res);

@@ -1,15 +1,26 @@
+import { PostService } from 'src/app/shared/post.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Post } from 'src/app/shared/post.schema';
 
 @Component({
   selector: 'app-section-popular',
   templateUrl: './section-popular.component.html',
-  styleUrls: ['./section-popular.component.scss']
+  styleUrls: ['./section-popular.component.scss'],
 })
 export class SectionPopularComponent implements OnInit {
+  constructor(private readonly service: PostService) {}
 
-  constructor() { }
+  result!: Post[] | Post;
+  search: FormControl = new FormControl('', [Validators.required]);
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  async submit() {
+    this.service.search(this.search.value).subscribe((data) => {
+      this.result = data;
+      console.log(data);
+      this.search.reset();
+    });
   }
-
 }

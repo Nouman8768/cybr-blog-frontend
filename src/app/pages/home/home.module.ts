@@ -18,6 +18,7 @@ import { HighlightedPostComponent } from './components/section-highlighted/compo
 import { AnonymousPostModule } from 'src/app/shared/module/anonymous-post/anonymous-post.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeComponent } from './home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -35,6 +36,7 @@ import { HomeComponent } from './home.component';
   ],
 
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     HomeRoutingModule,
     SwiperModule,
