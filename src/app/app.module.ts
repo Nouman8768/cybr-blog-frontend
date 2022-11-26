@@ -27,7 +27,6 @@ import { PagesModule } from './pages/pages.module';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-
     PagesModule,
     SharedModule,
   ],
