@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationModule } from './pages/authentication/authentication.module';
+import { LoginComponent } from './pages/authentication/login/login.component';
+import { SignupComponent } from './pages/authentication/signup/signup.component';
 import { CategoricallyPostsModule } from './pages/categorically-posts/categorically-posts.module';
 
 import { HomeModule } from './pages/home/home.module';
@@ -51,6 +53,14 @@ const routes: Routes = [
   {
     path: 'authentication',
     loadChildren: () => AuthenticationModule,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
   },
 ];
 
