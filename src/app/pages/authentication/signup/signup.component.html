@@ -1,9 +1,11 @@
 <section class="sign-up py-5 xxsm:h-screen flex items-center relative">
-  <div class="go-back absolute top-0 left-0 xsm:top-12 xsm:left-12">
+  <div
+    class="go-back sticky w-[50px] h-[50px] top-0 left-0 xsm:top-12 xsm:left-12 self-start"
+  >
     <a
-      href="/"
+      [routerLink]="['/']"
       title="Back to Home page"
-      class="bg-white block bg-opacity-50 backdrop-blur-sm p-3 rounded-[50%]"
+      class="bg-white block bg-opacity-50 custom-transition hover:bg-opacity-60 backdrop-blur-sm p-3 rounded-[50%]"
     >
       <img src="/assets/icons/back.png" alt="" />
     </a>

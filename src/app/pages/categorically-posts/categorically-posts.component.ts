@@ -18,9 +18,48 @@ export class CategoricallyPostsComponent implements OnInit {
 
   page: number = 1;
   blogposts$!: Observable<Post[] | any>;
+  category!: string;
 
   ngOnInit(): void {
     this.getAllPosts();
+    setTimeout(() => {
+      const cPosts = document.querySelectorAll('.specific-category-posts');
+
+      for (let i = 0; i < cPosts.length; i++) {
+        const dots = document.querySelector(`.cp-dots${i}`) as HTMLElement;
+
+        const options = document.querySelector(
+          `.cp-options${i}`
+        ) as HTMLElement;
+
+        const deleteOptions = document.querySelector(
+          `.cp-delete${i}`
+        ) as HTMLElement;
+
+        const deleteConfirmation = document.querySelector(
+          `.cp-confirmation${i}`
+        ) as HTMLElement;
+
+        const No = document.querySelector(`.cp-No${i}`) as HTMLElement;
+
+        dots?.addEventListener('click', () => {
+          options!.classList.toggle('hidden');
+          console.log(dots);
+        });
+
+        if (deleteOptions) {
+          deleteOptions.addEventListener('click', () => {
+            deleteConfirmation.style.display = 'flex';
+          });
+        }
+
+        if (No) {
+          No.addEventListener('click', () => {
+            deleteConfirmation.style.display = 'none';
+          });
+        }
+      }
+    }, 800);
   }
   async getAllPosts() {
     this.blogposts$ = this.activeroute.params.pipe(

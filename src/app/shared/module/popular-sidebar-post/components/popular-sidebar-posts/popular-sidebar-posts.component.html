@@ -15,7 +15,7 @@
         />
       </a>
     </div>
-    <div class="detailes flex flex-col">
+    <div class="detailes flex flex-col w-full">
       <div class="title capitalize w-[90%]">
         <a
           (click)="populateSinglePostData(post)"
@@ -49,10 +49,10 @@
       </div>
     </div>
     <div
-      class="cdots absolute top-[-0.5rem] right-0 text-4xl flex flex-col justify-center items-center cursor-pointer bg-border py-1 bg-opacity-30 backdrop-blur-md normal-case"
+      class="cdots absolute top-[-0.5rem] right-0 text-4xl flex flex-col justify-center items-center cursor-pointer overflow-hidden dots-bg rounded-[50%] w-[40px] h-[40px]"
       [ngClass]="'p-side-dots' + i"
     >
-      <img src="/assets/icons/dots.png" class="rotate-90" alt="" />
+      <img src="/assets/icons/dots.png" class="rotate-90 px-2" alt="" />
     </div>
     <div
       class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2 normal-case"

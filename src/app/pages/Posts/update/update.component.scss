@@ -1,4 +1,13 @@
 section.update-post {
+  background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.8298669809720763) 0%,
+      rgba(51, 23, 49, 0.9475140397956058) 100%
+    ),
+    url("/assets/images/update.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   h1 {
     position: relative;
     display: flex;
@@ -18,10 +27,13 @@ section.update-post {
     select {
       font-size: 1.2rem;
       border: 2px solid #a69d9d;
-      background-color: #ebe4e4;
+
       font-weight: 100;
       padding: 1rem 1.5rem;
       border-radius: 12px;
+      option {
+        color: black;
+      }
     }
     input[type="file"] {
       background-color: transparent;
