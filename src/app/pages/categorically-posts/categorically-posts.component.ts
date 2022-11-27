@@ -18,6 +18,7 @@ export class CategoricallyPostsComponent implements OnInit {
 
   page: number = 1;
   blogposts$!: Observable<Post[] | any>;
+  posts!: Post[];
   category!: string;
 
   ngOnInit(): void {
@@ -65,9 +66,12 @@ export class CategoricallyPostsComponent implements OnInit {
     this.blogposts$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
         const postCategory: string = param['category'];
-        return this.service
-          .findByCategory(postCategory)
-          .pipe(map((blogEntery: Post[]) => blogEntery));
+        return this.service.findByCategory(postCategory).pipe(
+          map((blogEntery: Post[]) => {
+            this.posts = blogEntery;
+            this.category = blogEntery[0].category;
+          })
+        );
       })
     );
   }
