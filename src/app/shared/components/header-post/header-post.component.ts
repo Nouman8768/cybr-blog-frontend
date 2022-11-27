@@ -56,7 +56,7 @@ export class HeaderPostComponent implements OnInit {
 
   getAllPosts() {
     this.service.findAll().subscribe((data: Post[]) => {
-      this.columnPosts = data.slice(0, 4);
+      this.columnPosts = data.slice(0, 3);
       console.log(data);
     });
   }
