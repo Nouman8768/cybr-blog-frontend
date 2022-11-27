@@ -92,7 +92,7 @@ export class SliderComponent implements OnInit {
     });
   }
   async moveToUpdatePage(id: string) {
-    this.route.navigate([`update/${id}`], {
+    this.route.navigate([`posts/update/${id}`], {
       queryParams: { id: id },
     });
   }

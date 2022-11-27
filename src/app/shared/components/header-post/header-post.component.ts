@@ -56,11 +56,12 @@ export class HeaderPostComponent implements OnInit {
 
   getAllPosts() {
     this.service.findAll().subscribe((data: Post[]) => {
-      this.columnPosts = data.slice(8, 11);
+      this.columnPosts = data.slice(0, 4);
+      console.log(data);
     });
   }
   async moveToUpdatePage(id: string) {
-    this.route.navigate([`update/${id}`], {
+    this.route.navigate([`posts/update/${id}`], {
       queryParams: { id: id },
     });
   }

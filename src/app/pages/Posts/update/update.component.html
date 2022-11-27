@@ -1,7 +1,20 @@
-<section class="update-post my-16">
+<section class="update-post py-16 relative">
+  <div
+    class="go-back sticky w-[50px] h-[50px] top-0 left-0 xsm:top-12 xsm:left-12"
+  >
+    <a
+      [routerLink]="['/']"
+      title="Back to Home page"
+      class="bg-white block bg-opacity-50 custom-transition hover:bg-opacity-60 backdrop-blur-sm p-3 rounded-[50%]"
+    >
+      <img src="/assets/icons/back.png" alt="" />
+    </a>
+  </div>
   <div class="container mx-auto px-3">
     <div class="wrapper md:w-2/3 mx-auto">
-      <h1 class="text-4xl font-[medium] text-center mb-11">Modify Post</h1>
+      <h1 class="text-4xl text-white font-[medium] text-center mb-11">
+        Modify Post
+      </h1>
       <form
         (ngSubmit)="submitUpdateForm()"
         [formGroup]="postForm"
@@ -9,16 +22,17 @@
         class="flex flex-col gap-4"
       >
         <div class="form-group flex flex-col gap-1">
-          <label for="title"> Title </label>
+          <label for="title" class="text-primary"> Title </label>
           <input
             type="text"
             formControlName="title"
             name="title"
             placeholder="Add a nice title"
+            class="bg-slate-600 bg-opacity-10 focus:bg-opacity-50 backdrop-blur text-white custom transition"
           />
         </div>
         <div class="form-group flex flex-col gap-1">
-          <label for="desc"> Description </label>
+          <label for="desc" class="text-primary"> Description </label>
           <textarea
             name="desc"
             id=""
@@ -26,32 +40,52 @@
             rows="10"
             placeholder="Add Description"
             formControlName="body"
+            class="bg-slate-600 bg-opacity-10 focus:bg-opacity-50 backdrop-blur text-white custom transition"
           ></textarea>
         </div>
         <div class="form-group flex flex-col gap-1">
-          <label for="category"> Choose a Caetgory </label>
-          <select name="category" id="" formControlName="category">
+          <label for="category" class="text-primary"> Choose a Caetgory </label>
+          <select
+            name="category"
+            id=""
+            formControlName="category"
+            class="bg-slate-600 bg-opacity-10 focus:bg-opacity-50 backdrop-blur text-white custom transition"
+          >
             <option value="" selected disabled>Choose a category</option>
             <option value="others">Other</option>
             <option value="fashion">Fashion</option>
             <option value="technology">Technology</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="image"> Image </label>
-          <input type="file" name="image" (change)="attachFile($event)" />
+        <div class="form-group my-5">
+          <label
+            for="image"
+            class="text-primary bg-slate-600 bg-opacity-40 custom-transition hover:bg-opacity-50 py-2 px-4 cursor-pointer rounded-lg"
+          >
+            Choose an image
+          </label>
+          <input
+            type="file"
+            class="hidden"
+            id="image"
+            name="image"
+            (change)="attachFile($event)"
+            class="bg-slate-600 bg-opacity-10 focus:bg-opacity-50 backdrop-blur text-white custom transition"
+          />
         </div>
-        <div class="choosen-old flex gap-4 bg-primary bg-opacity-30 p-4">
+        <div class="choosen-old flex gap-4">
           <div
             class="image w-[450px] h-[350px] overflow-hidden"
             *ngIf="selectedImage"
           >
-            <span class="font-[bold]">You Choosed</span>
+            <span class="font-[bold] text-primary">You Choosed</span>
             <img [src]="selectedImage" alt="" class="p-[0.5rem] w-full" />
           </div>
         </div>
-        <div class="old w-[450px] h-[350px] overflow-hidden">
-          <span class="font-[bold]">Existing Image</span>
+        <div
+          class="old xsm:w-[450px] xsm:h-[350px] flex flex-col gap-2 overflow-hidden"
+        >
+          <span class="font-[bold] text-primary">Existing Image</span>
           <img
             src="http://localhost:3000/{{ postForm.value.image }}"
             class="w-full"

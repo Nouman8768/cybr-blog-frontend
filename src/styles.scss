@@ -49,10 +49,31 @@ body {
   font-family: "regular";
   font-size: 1.125rem;
   color: #000000;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgb(55, 85, 117);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(33, 50, 70);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(21, 32, 44);
+  }
 }
 
 .custom-transition {
   transition: all 400ms ease;
+}
+
+.dots-bg {
+  background: radial-gradient(
+    circle,
+    rgba(35, 255, 234, 0.9923319669664741) 0%,
+    rgba(138, 87, 134, 0.2) 100%
+  );
 }
 
 input,

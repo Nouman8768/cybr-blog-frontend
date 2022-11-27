@@ -20,15 +20,13 @@
       </a>
       <div
         id="hdots0"
-        class="cdots absolute top-0 right-2 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3 text-yellow-300"
+        class="cdots absolute top-4 right-4 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-3 overflow-hidden dots-bg rounded-[50%] w-[50px] h-[50px]"
         [ngClass]="'hdots' + i"
       >
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
+        <img src="/assets/icons/dots.png" class="rotate-90 w-full" alt="" />
       </div>
       <div
-        class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
+        class="post-options absolute top-8 right-12 hidden flex-col font-[bold] bg-white px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
         [ngClass]="'hoptions' + i"
       >
         <a
