@@ -1,16 +1,16 @@
-<section class="add-post py-5 xxsm:h-screen flex items-center relative">
-  <div
-    class="go-back sticky w-[50px] h-[50px] top-0 left-0 xsm:top-12 xsm:left-12 self-start"
-  >
-    <a
-      [routerLink]="['/']"
-      title="Back to Home page"
-      class="bg-white block bg-opacity-50 custom-transition hover:bg-opacity-60 backdrop-blur-sm p-3 rounded-[50%]"
+<section class="add-post min-h-screen py-12 flex items-center relative">
+  <div class="container mx-auto px-3 relative">
+    <div
+      class="go-back sticky self-start w-[50px] h-[50px] top-0 left-0 xsm:top-12 xsm:left-12"
     >
-      <img src="/assets/icons/back.png" alt="" />
-    </a>
-  </div>
-  <div class="container mx-auto px-3">
+      <a
+        [routerLink]="['/']"
+        title="Back to Home page"
+        class="bg-white block bg-opacity-50 custom-transition hover:bg-opacity-60 backdrop-blur-sm p-3 rounded-[50%]"
+      >
+        <img src="/assets/icons/back.png" alt="" />
+      </a>
+    </div>
     <div class="wrapper w-full md:w-2/3 mx-auto">
       <h1 class="text-4xl font-[medium] text-white text-center mb-11">
         Write Something
@@ -70,7 +70,7 @@
             (change)="attachFile($event)"
           />
           <div
-            class="image w-full xsm:w-[450px] xsm:h-[350px] overflow-hidden"
+            class="image w-full xsm:w-[450px] overflow-hidden mt-3"
             *ngIf="selectedImage"
           >
             <img

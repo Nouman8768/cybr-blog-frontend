@@ -19,7 +19,7 @@
             >
               <img
                 src="http://localhost:3000/{{ post.image }}"
-                class="scale-150 w-full"
+                class="scale-[1.7] w-full"
                 alt=""
               />
             </a>
@@ -58,10 +58,10 @@
             </div>
           </div>
           <div
-            class="cdots absolute top-[-0.5rem] right-0 text-4xl flex flex-col justify-center items-center cursor-pointer bg-border py-1 bg-opacity-30 backdrop-blur-md"
+            class="cdots absolute top-[-0.5rem] right-0 text-4xl flex flex-col justify-center items-center cursor-pointer overflow-hidden dots-bg rounded-[50%] w-[30px] h-[30px]"
             [ngClass]="'sidots' + i"
           >
-            <img src="/assets/icons/dots.png" class="rotate-90" alt="" />
+            <img src="/assets/icons/dots.png" class="rotate-90 px-1" alt="" />
           </div>
           <div
             class="post-options absolute top-8 right-6 hidden flex-col font-[bold] bg-slate-500 px-3 rounded-md bg-opacity-5 backdrop-blur-md gap-2"

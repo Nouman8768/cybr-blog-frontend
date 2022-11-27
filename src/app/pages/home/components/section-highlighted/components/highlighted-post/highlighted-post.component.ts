@@ -61,7 +61,7 @@ export class HighlightedPostComponent implements OnInit {
 
   async getAllPosts() {
     this.service.findAll().subscribe((data: Post[]) => {
-      this.highlightedPosts = data.slice(6, 10);
+      this.highlightedPosts = data.slice(2, 5);
     });
   }
   async moveToUpdatePage(id: string) {
