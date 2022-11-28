@@ -64,14 +64,6 @@ export class PostService {
     return data;
   }
 
-  public async unlinkImagefromServer(filename: string): Promise<string> {
-    let res = this.http.delete<string>(
-      `${this.url}/blog-posts/server/${filename}`
-    );
-    let data = await lastValueFrom(res);
-    return data;
-  }
-
   public async update(id: string, post: Post): Promise<Post> {
     let res = this.http.patch<Post>(`${this.url}/blog-posts/${id}`, post, {
       headers: {
@@ -83,8 +75,16 @@ export class PostService {
   }
 
   public async uploadImage(imageBody: FormData): Promise<FormData> {
-    let res = this.http.post<any>(`${this.url}/images`, imageBody);
+    let res = this.http.post<any>(`${this.url}/posts`, imageBody);
     let data = await lastValueFrom(res);
     return data['url'];
+  }
+
+  public async unlinkImagefromServer(filename: string): Promise<string> {
+    let res = this.http.delete<string>(
+      `${this.url}/blog-posts/server/${filename}`
+    );
+    let data = await lastValueFrom(res);
+    return data;
   }
 }
