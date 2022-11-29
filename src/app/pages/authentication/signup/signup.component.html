@@ -15,13 +15,23 @@
       register
     </h1>
     <div class="wrapper w-full sm:w-2/3">
-      <form action="" class="grid grid-cols-2 gap-6">
+      <form
+        class="grid grid-cols-2 gap-6"
+        *ngIf="signUpForm"
+        [formGroup]="signUpForm"
+        (ngSubmit)="submitAuthForm()"
+      >
         <div class="form-group md:col-span-1 col-span-2">
           <label for="fname" class="text-white font-[bold]">First Name</label>
           <div
             class="bg-slate-400 bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
           >
-            <input type="text" name="fname" placeholder="Enter First Name" />
+            <input
+              type="text"
+              name="fname"
+              placeholder="Enter First Name"
+              formControlName="firstname"
+            />
           </div>
         </div>
 
@@ -30,7 +40,12 @@
           <div
             class="bg-slate-400 bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
           >
-            <input type="text" name="lname" placeholder="Enter Last Name" />
+            <input
+              type="text"
+              name="lname"
+              placeholder="Enter Last Name"
+              formControlName="lastname"
+            />
           </div>
         </div>
 
@@ -39,7 +54,12 @@
           <div
             class="bg-slate-400 bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
           >
-            <input type="text" name="username" placeholder="Enter username" />
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter username"
+              formControlName="username"
+            />
           </div>
         </div>
         <div class="form-group col-span-2">
@@ -53,6 +73,7 @@
               placeholder="Enter Password"
               class="flex-1"
               id="pass-input"
+              formControlName="password"
             />
             <div class="show-icon cursor-pointer flex items-center">
               <div
@@ -87,11 +108,18 @@
               placeholder="Confirm Password"
               class="flex-1"
               id="con-pass-input"
+              formControlName="confirmpassword"
             />
           </div>
         </div>
         <div class="form-group role">
-          <input type="number" value="0" name="role" hidden />
+          <input
+            type="number"
+            value="0"
+            name="role"
+            hidden
+            formControlName="role"
+          />
         </div>
         <div class="form-group col-span-2 mt-3">
           <label
@@ -100,13 +128,24 @@
           >
             Choose an image
           </label>
-          <input type="file" class="hidden" id="image" />
+          <input
+            type="file"
+            class="hidden"
+            id="image"
+            (change)="attachFile($event)"
+          />
           <div class="image w-full xsm:w-[450px] overflow-hidden mt-3">
-            <img alt="" class="p-[0.5rem] w-full scale-2" />
+            <img
+              alt=""
+              class="p-[0.5rem] w-full scale-2"
+              *ngIf="selectedImage"
+              src="{{ selectedImage }}"
+            />
           </div>
         </div>
         <div>
           <button
+            [disabled]="signUpForm.invalid"
             type="submit"
             class="cursor-pointer bg-primary font-[bold] px-6 py-3 rounded-md custom-transition hover:ml-3"
           >
