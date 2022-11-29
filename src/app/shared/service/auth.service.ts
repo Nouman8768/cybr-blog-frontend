@@ -25,6 +25,20 @@ export class AuthService {
     return data;
   }
 
+  public async login(credentials: User): Promise<any> {
+    let res = this.http.post<any>(
+      `${this.url}/authentication/login`,
+      credentials,
+      {
+        headers: {
+          'Content-Type': 'Application/json',
+        },
+      }
+    );
+    let data = await lastValueFrom(res);
+    return data;
+  }
+
   public async uploadProfileImage(image: FormData): Promise<FormData> {
     let res = this.http.post<FormData | any>(`${this.url}/profile`, image);
     let data = await lastValueFrom(res);

@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
   async submitAuthForm() {
     await this.submitImage();
     await this.signUpUser();
-    // await this.route.navigate(['/']);
+    await this.route.navigate(['login']);
   }
 
   async signUpUser(): Promise<User> {

@@ -1,4 +1,7 @@
+import { User } from 'src/app/shared/dto/user.dto';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  show = false;
+  constructor(private readonly service: AuthService) {}
 
-  constructor() {}
+  show: boolean = false;
+
+  credentialForm: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
 
   ngOnInit(): void {
     const show_icon = document.querySelector('.show-icon');
@@ -20,5 +28,11 @@ export class LoginComponent implements OnInit {
         : pass_input.setAttribute('type', 'password');
       this.show = !this.show;
     });
+  }
+
+  async submitCredentialForm() {
+    const result = await this.service.login(this.credentialForm.value);
+
+    console.log('Logged User', result);
   }
 }

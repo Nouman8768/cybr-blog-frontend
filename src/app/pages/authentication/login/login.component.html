@@ -15,13 +15,22 @@
       Login
     </h1>
     <div class="wrapper w-full sm:w-2/3">
-      <form action="" class="flex flex-col gap-6">
+      <form
+        class="flex flex-col gap-6"
+        [formGroup]="credentialForm"
+        (ngSubmit)="submitCredentialForm()"
+      >
         <div class="form-group">
           <label for="username" class="text-white font-[bold]">Username</label>
           <div
             class="bg-slate-400 bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
           >
-            <input type="text" name="username" placeholder="Enter username" />
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter username"
+              formControlName="username"
+            />
           </div>
         </div>
         <div class="form-group">
@@ -35,6 +44,7 @@
               placeholder="Enter password"
               class="flex-1"
               id="pass-input"
+              formControlName="password"
             />
             <div class="show-icon cursor-pointer flex items-center">
               <div
@@ -58,6 +68,7 @@
         </div>
         <div>
           <button
+            [disabled]="credentialForm.invalid"
             type="submit"
             class="cursor-pointer bg-slate-800 text-white font-[bold] px-6 py-3 rounded-md custom-transition hover:ml-3"
           >
