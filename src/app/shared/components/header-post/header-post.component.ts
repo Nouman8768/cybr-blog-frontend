@@ -1,8 +1,8 @@
 import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Post } from 'src/app/shared/post.schema';
-import { PostService } from '../../post.service';
+import { Post } from 'src/app/shared/dto/post.dto';
+import { PostService } from '../../service/post.service';
 
 @Component({
   selector: 'app-header-post',

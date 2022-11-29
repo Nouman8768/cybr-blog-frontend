@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from 'src/app/shared/post.schema';
-import { PostService } from 'src/app/shared/post.service';
+import { Post } from 'src/app/shared/dto/post.dto';
+import { PostService } from 'src/app/shared/service/post.service';
 
 @Component({
   selector: 'app-latest-posts',
@@ -66,10 +66,10 @@ export class LatestPostsComponent implements OnInit {
     });
   }
   async sendDetailstoUpdatePage(details: Post) {
-    this.route.navigate([`update/${details._id}`]);
+    this.route.navigate([`posts/update/${details._id}`]);
   }
   async populateSinglePostData(details: Post) {
-    this.route.navigate([`single-post/${details._id}`]);
+    this.route.navigate([`posts/single-post/${details._id}`]);
   }
   async deletePost(id: string, filename: string) {
     const deleted = await this.service.delete(id);

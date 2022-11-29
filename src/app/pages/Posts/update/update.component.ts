@@ -1,10 +1,10 @@
 import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Post } from '../../../shared/post.schema';
+import { Post } from '../../../shared/dto/post.dto';
 
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PostService } from 'src/app/shared/post.service';
+import { PostService } from 'src/app/shared/service/post.service';
 
 @Component({
   selector: 'app-update',

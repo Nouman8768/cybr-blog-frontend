@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from 'src/app/shared/post.schema';
-import { PostService } from 'src/app/shared/post.service';
+import { Post } from 'src/app/shared/dto/post.dto';
+import { PostService } from 'src/app/shared/service/post.service';
 
 @Component({
   selector: 'app-column-post',
@@ -58,12 +58,12 @@ export class ColumnPostComponent implements OnInit {
     });
   }
   async moveToUpdatePage(id: string) {
-    this.route.navigate([`update/${id}`], {
+    this.route.navigate([`posts/update/${id}`], {
       queryParams: { id: id },
     });
   }
   async moveToSinglePostPage(id: string) {
-    this.route.navigate([`single-post/${id}`], {
+    this.route.navigate([`posts/single-post/${id}`], {
       queryParams: { id: id },
     });
   }

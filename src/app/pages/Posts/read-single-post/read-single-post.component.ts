@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
-import { PostService } from 'src/app/shared/post.service';
-import { Post } from '../../../shared/post.schema';
+import { PostService } from 'src/app/shared/service/post.service';
+import { Post } from '../../../shared/dto/post.dto';
 
 @Component({
   selector: 'app-read-single-post',

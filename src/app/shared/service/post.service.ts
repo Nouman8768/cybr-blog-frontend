@@ -1,8 +1,8 @@
-import { environment } from './../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
-import { Post } from './post.schema';
+import { Post } from '../dto/post.dto';
 
 @Injectable({
   providedIn: 'root',

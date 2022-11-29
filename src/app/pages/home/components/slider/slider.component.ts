@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from 'src/app/shared/post.schema';
-import { PostService } from 'src/app/shared/post.service';
+import { Post } from 'src/app/shared/dto/post.dto';
+import { PostService } from 'src/app/shared/service/post.service';
 import SwiperCore, { Pagination, Navigation, SwiperOptions } from 'swiper';
 
 SwiperCore.use([Pagination, Navigation]);
@@ -97,7 +97,7 @@ export class SliderComponent implements OnInit {
     });
   }
   async moveToSinglePostPage(id: string) {
-    this.route.navigate([`single-post/${id}`], {
+    this.route.navigate([`posts/single-post/${id}`], {
       queryParams: { id: id },
     });
   }
