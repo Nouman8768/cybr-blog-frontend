@@ -1,7 +1,7 @@
 import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Post } from '../../../shared/dto/post.dto';
+import { Post } from '../../../shared/dto/post.schema';
 
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PostService } from 'src/app/shared/service/post.service';

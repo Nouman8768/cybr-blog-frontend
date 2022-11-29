@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
 import { PostService } from 'src/app/shared/service/post.service';
-import { Post } from '../../shared/dto/post.dto';
+import { Post } from '../../shared/dto/post.schema';
 
 @Component({
   selector: 'app-categorically-posts',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/shared/service/post.service';
-import { Post } from '../../../shared/dto/post.dto';
+import { Post } from '../../../shared/dto/post.schema';
 
 @Component({
   selector: 'app-create',

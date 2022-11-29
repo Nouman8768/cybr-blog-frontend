@@ -1,7 +1,7 @@
 import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Post } from 'src/app/shared/dto/post.dto';
+import { Post } from 'src/app/shared/dto/post.schema';
 import { PostService } from '../../service/post.service';
 
 @Component({

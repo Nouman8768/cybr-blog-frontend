@@ -1,7 +1,7 @@
 import { PostService } from 'src/app/shared/service/post.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Post } from 'src/app/shared/dto/post.dto';
+import { Post } from 'src/app/shared/dto/post.schema';
 
 @Component({
   selector: 'app-section-popular',

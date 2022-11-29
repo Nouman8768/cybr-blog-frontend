@@ -2,7 +2,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
-import { Post } from '../dto/post.dto';
+import { Post } from '../dto/post.schema';
 
 @Injectable({
   providedIn: 'root',
