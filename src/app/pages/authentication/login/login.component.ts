@@ -2,6 +2,7 @@ import { User } from 'src/app/shared/dto/user.dto';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private readonly service: AuthService) {}
+  constructor(
+    private readonly service: AuthService,
+    private readonly route: Router
+  ) {}
 
   show: boolean = false;
 
@@ -34,5 +38,10 @@ export class LoginComponent implements OnInit {
     const result = await this.service.login(this.credentialForm.value);
 
     console.log('Logged User', result);
+    if (result) {
+      this.route.navigate(['/']);
+    } else {
+      throw new Error('User Access Denied');
+    }
   }
 }
