@@ -8,6 +8,7 @@ import { CategoricallyPostsModule } from './pages/categorically-posts/categorica
 import { HomeModule } from './pages/home/home.module';
 import { PagesModule } from './pages/pages.module';
 import { PostsModule } from './pages/posts/posts.module';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 import { AnonymousPostModule } from './shared/module/anonymous-post/anonymous-post.module';
 import { FooterModule } from './shared/module/footer/footer.module';
@@ -52,14 +53,14 @@ const routes: Routes = [
     path: 'authentication',
     loadChildren: () => AuthenticationModule,
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-  },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  // },
+  // {
+  //   path: 'signup',
+  //   component: SignupComponent,
+  // },
 ];
 
 @NgModule({

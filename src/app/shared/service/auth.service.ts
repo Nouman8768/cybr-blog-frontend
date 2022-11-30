@@ -3,12 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../dto/user.dto';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly route: Router
+  ) {}
   url: string = environment.serverUrl;
 
   public async signUp(body: User): Promise<User> {
@@ -43,5 +47,25 @@ export class AuthService {
     let res = this.http.post<FormData | any>(`${this.url}/profile`, image);
     let data = await lastValueFrom(res);
     return data['url'];
+  }
+
+  public isLoggedIn() {
+    return localStorage.getItem('accesstoken') != null;
+  }
+
+  public getAccessToken() {
+    return localStorage.getItem('accesstoken') || '';
+  }
+
+  public async logout() {
+    localStorage.clear();
+    let res = this.http.get(`${this.url}/authentication/logout`);
+    let data = await lastValueFrom(res);
+
+    if (data) {
+      this.route.navigate(['auhtentication/login']);
+      alert('Token Expired');
+    }
+    return data;
   }
 }
