@@ -1,0 +1,193 @@
+<section class="profile py-12 pb-20 min-h-screen flex items-center relative">
+  <div class="container mx-auto px-4 flex flex-col items-center relative">
+    <div
+      class="go-back sticky self-start w-[50px] h-[50px] top-0 left-0 xsm:top-12 xsm:left-12"
+    >
+      <a
+        [routerLink]="['/']"
+        title="Back to Home page"
+        class="bg-white block bg-opacity-50 custom-transition hover:bg-opacity-60 backdrop-blur-sm p-3 rounded-[50%]"
+      >
+        <img src="/assets/icons/back.png" alt="" />
+      </a>
+    </div>
+    <h1 class="text-4xl font-[bold] text-primary text-center mb-12 uppercase">
+      Profile
+    </h1>
+    <div class="wrapper w-full sm:w-2/3">
+      <form
+        action=""
+        class="relative bg-slate-900 bg-opacity-20 shadow-lg backdrop-blur-sm p-12 rounded-[20px] flex flex-col gap-14"
+      >
+        <div class="edit_profile absolute top-6 right-6">
+          <button
+            type="button"
+            class="edit-profile text-white bg-primary bg-opacity-30 custom-transition hover:bg-opacity-50 shadow-md backdrop-blur-[2px] py-2 px-3 rounded-md"
+            (click)="visibleFields = true"
+          >
+            Edit Profile
+          </button>
+        </div>
+        <div class="form-group flex justify-center flex-col items-center">
+          <div
+            class="profile-img w-[200px] h-[200px] flex items-center justify-center rounded-[50%] overflow-hidden border relative"
+          >
+            <img
+              src="/assets/images/login.jpg"
+              class="h-full w-full object-cover relative"
+              alt=""
+            />
+            <div
+              class="actions absolute bg-black bg-opacity-60 backdrop-blur-[2px] bottom-0 z-50 w-full flex justify-center flex-col items-center py-4"
+              *ngIf="visibleFields"
+            >
+              <button
+                type="button"
+                class="text-white font-[medium] w-full h-full"
+                (click)="editPic = !editPic"
+              >
+                <span *ngIf="!editPic">Edit</span>
+                <span *ngIf="editPic">Close (X)</span>
+              </button>
+            </div>
+          </div>
+          <label
+            for="profile-pic"
+            class="bg-slate-700 bg-opacity-20 backdrop-blur-[2px] py-1 px-3 rounded-md text-primary font-[bold] cursor-pointer"
+            [ngClass]="editPic ? '' : 'hidden'"
+            >Choose Picture</label
+          >
+          <input type="file" name="profile" class="hidden" id="profile-pic" />
+
+          <div
+            class="choosed-pic w-[250px] overflow-hidden mt-4 flex flex-col gap-2"
+          >
+            <span class="text-white font-[medium]">You choosed</span>
+            <img
+              src="/assets/images/signup.jpg"
+              class="w-full object-cover"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="details grid grid-cols-2 gap-8">
+          <div class="form-group md:col-span-1 col-span-2">
+            <label for="fname" class="text-white font-[bold]">First Name</label>
+            <div
+              class="bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
+            >
+              <input
+                type="text"
+                name="fname"
+                value="Khubaib"
+                formControlName="firstname"
+                class="input-field"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="form-group md:col-span-1 col-span-2">
+            <label for="lname" class="text-white font-[bold]">Last Name</label>
+            <div
+              class="bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
+            >
+              <input
+                type="text"
+                name="lname"
+                value="Zubairi"
+                class="input-field"
+                formControlName="lastname"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="username" class="text-white font-[bold]"
+              >Username</label
+            >
+            <div
+              class="bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
+            >
+              <input
+                type="text"
+                name="username"
+                value="mkzuairi"
+                class="input-field"
+                formControlName="username"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group col-span-2">
+            <label for="password" class="text-white font-[bold]"
+              >Password</label
+            >
+            <div
+              class="pass flex backdrop-blur-sm rounded-lg overflow-hidden mt-1"
+            >
+              <input
+                type="password"
+                name="password"
+                value="mkzubairi123"
+                class="flex-1 pass-input input-field"
+                id="pass-input"
+                formControlName="password"
+                disabled
+              />
+              <div
+                class="show-icon cursor-pointer flex items-center"
+                (click)="show = !show"
+              >
+                <div
+                  class="image flex items-center justify-center overflow-hidden px-4"
+                >
+                  <img
+                    src="/assets/icons/eye-black.png"
+                    class="w-[30px] h-[30px]"
+                    alt=""
+                    *ngIf="!show"
+                  />
+                  <img
+                    src="/assets/icons/eye-white.png"
+                    class="w-[30px] h-[30px]"
+                    alt=""
+                    *ngIf="show"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-span-2">
+            <label for="password" class="text-white font-[bold]"
+              >Confirm Password</label
+            >
+            <div
+              class="con-pass flex bg-opacity-20 backdrop-blur-sm rounded-lg overflow-hidden mt-1"
+            >
+              <input
+                type="password"
+                name="password"
+                value="mkzubairi123"
+                class="flex-1 input-field"
+                id="con-pass-input"
+                formControlName="confirmpassword"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group text-center col-span-2 mt-3">
+            <button
+              type="submit"
+              class="cursor-pointer bg-primary font-[bold] px-6 py-3 rounded-md custom-transition hover:ml-3 shadow-lg"
+              *ngIf="visibleFields"
+            >
+              Update Profile
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

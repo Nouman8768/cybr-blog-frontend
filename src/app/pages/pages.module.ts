@@ -5,6 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { CategoricallyPostsModule } from './categorically-posts/categorically-posts.module';
 import { HomeModule } from './home/home.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [PagesComponent],
@@ -13,6 +14,7 @@ import { HomeModule } from './home/home.module';
     PagesRoutingModule,
     CategoricallyPostsModule,
     HomeModule,
+    UserModule,
   ],
 })
 export class PagesModule {}
