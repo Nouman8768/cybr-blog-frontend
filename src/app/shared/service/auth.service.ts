@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../dto/user.dto';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(
     private readonly http: HttpClient,
-    private readonly route: Router
+    private readonly route: Router,
+    private readonly jwtHelper: JwtHelperService
   ) {}
   url: string = environment.serverUrl;
 
@@ -49,8 +51,9 @@ export class AuthService {
     return data['url'];
   }
 
-  public isLoggedIn() {
-    return localStorage.getItem('accesstoken') != null;
+  public isLoggedIn(): boolean {
+    const token = localStorage.getItem('accesstoken');
+    return !this.jwtHelper.isTokenExpired(token!);
   }
 
   public getAccessToken() {
@@ -58,14 +61,16 @@ export class AuthService {
   }
 
   public async logout() {
-    localStorage.clear();
-    let res = this.http.get(`${this.url}/authentication/logout`);
+    // localStorage.clear();
+    let res = this.http.get(`${this.url}/authentication/logout`, {
+      withCredentials: true,
+    });
     let data = await lastValueFrom(res);
 
-    if (data) {
-      this.route.navigate(['auhtentication/login']);
-      alert('Token Expired');
-    }
+    // if (data) {
+    //   this.route.navigate(['auhtentication/login']);
+    //   alert('Token Expired');
+    // }
     return data;
   }
 }

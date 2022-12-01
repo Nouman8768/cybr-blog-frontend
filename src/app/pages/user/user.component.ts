@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly service: AuthService) {}
 
   editPic: boolean = false;
   show: boolean = false;
@@ -35,5 +36,10 @@ export class UserComponent implements OnInit {
         inputs[i].removeAttribute('disabled');
       }
     });
+  }
+
+  async loggedOut() {
+    const out = await this.service.logout();
+    console.log(out);
   }
 }

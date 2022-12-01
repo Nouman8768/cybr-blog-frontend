@@ -1,3 +1,4 @@
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,11 +25,17 @@ import { UserModule } from './pages/user/user.module';
   ],
   declarations: [AppComponent],
   providers: [
+    JwtHelperService,
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS,
     },
+
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: TokenInterceptorService,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })

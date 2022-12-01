@@ -10,14 +10,13 @@ export class AuthGuard implements CanActivate {
     private readonly service: AuthService,
     private readonly route: Router
   ) {}
-  canActivate() {
-    if (this.service.isLoggedIn()) {
-      return true;
-    } else {
-      this.route.navigate(['login']);
-      alert('User Logged In Failed');
+  canActivate(): boolean {
+    if (!this.service.isLoggedIn()) {
+      this.route.navigate(['authentication/login']);
+      alert('Access Denied');
       return false;
+    } else {
+      return true;
     }
-    return true;
   }
 }

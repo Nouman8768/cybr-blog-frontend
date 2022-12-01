@@ -26,25 +26,6 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // console.log(this.result);
-    // setTimeout(() => {
-    //   console.log(this.result);
-    //   console.log(this.result.accessToken);
-    //   console.log(this.result.refreshToken);
-    // }, 40000);
-    // setTimeout(() => {
-    //   if (this.result === null) {
-    //     // console.log(this.result.accessToken);
-    //     // console.log(this.result.refreshToken);
-
-    //     alert('Session Expired');
-    //   } else {
-    //     alert('Session Did Not Expired');
-    //     console.log(this.result);
-    //     console.log(this.result.accessToken);
-    //     console.log(this.result.refreshToken);
-    //   }
-    // }, 70000);
     const show_icon = document.querySelector('.show-icon');
     var pass_input = document.querySelector('#pass-input') as HTMLElement;
 
@@ -62,7 +43,7 @@ export class LoginComponent implements OnInit {
     console.log('Logged User', this.result);
     if (this.result != null) {
       localStorage.setItem('accesstoken', this.result.Tokens.accessToken);
-      // this.route.navigate(['/']);
+      this.route.navigate(['user']);
     } else {
       throw new Error('User Access Denied');
     }
