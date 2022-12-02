@@ -75,8 +75,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-  async loggedOut() {
-    const out = await this.service.logout();
-    console.log(out);
+  loggedOut() {
+    this.service.logout();
   }
 }

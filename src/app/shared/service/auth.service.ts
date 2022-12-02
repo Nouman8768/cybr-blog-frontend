@@ -76,19 +76,11 @@ export class AuthService {
   }
 
   public logout() {
+    localStorage.clear();
     const token = localStorage.getItem('accesstoken');
-    // return !this.jwtHelper.isTokenExpired(token!);
-    // // localStorage.clear();
-    // let res = this.http.get(`${this.url}/authentication/logout`, {
-    //   withCredentials: true,
-    // });
-    // let data = await lastValueFrom(res);
-
-    // // if (data) {
-    // //   this.route.navigate(['auhtentication/login']);
-    // //   alert('Token Expired');
-    // // }
-    // return data;
+    if (token === null) {
+      this.route.navigate(['authentication/login']);
+    }
   }
 
   public refreshToken() {
