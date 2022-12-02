@@ -1,5 +1,7 @@
 import { AuthService } from './../../shared/service/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LooggedUser } from 'src/app/shared/dto/user.dto';
 
 @Component({
   selector: 'app-user',
@@ -13,7 +15,42 @@ export class UserComponent implements OnInit {
   show: boolean = false;
   visibleFields: boolean = false;
 
-  ngOnInit(): void {
+  profile!: LooggedUser;
+  userForm!: FormGroup;
+
+  ngOnInit() {
+    this.profile = this.service.getUserProfile();
+    console.log(this.profile);
+
+    console.log(this.profile.user.username);
+
+    this.userForm = new FormGroup({
+      firstname: new FormControl(this.profile.user.firstname, [
+        Validators.required,
+      ]),
+
+      lastname: new FormControl(this.profile.user.lastname, [
+        Validators.required,
+      ]),
+
+      username: new FormControl(this.profile.user.username, [
+        Validators.required,
+      ]),
+
+      password: new FormControl(this.profile.user.password, [
+        Validators.required,
+      ]),
+
+      confirmpassword: new FormControl(this.profile.user.confirmpassword, [
+        Validators.required,
+      ]),
+
+      image: new FormControl(this.profile.user.image),
+
+      role: new FormControl(0, [Validators.required]),
+    });
+    console.log(this.userForm.value.firstname);
+
     const pass = document.querySelector('.pass-input') as HTMLInputElement;
     const con_pass = document.querySelector('#con-pass-input') as HTMLElement;
     const showIcon = document.querySelector('.show-icon') as HTMLElement;

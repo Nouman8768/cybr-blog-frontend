@@ -1,9 +1,9 @@
-import { User } from 'src/app/shared/dto/user.dto';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Token } from 'src/app/shared/dto/token.dto';
+import { TokenInterceptorService } from 'src/app/shared/service/token-interceptor.service';
 
 @Component({
   selector: 'app-login',
@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
     console.log('Logged User', this.result);
     if (this.result != null) {
       localStorage.setItem('accesstoken', this.result.Tokens.accessToken);
+      // localStorage.setItem('refToken', this.result.Tokens.refreshToken);
+      // TokenInterceptorService.token = this.result.Tokens.accessToken;
       this.route.navigate(['user']);
     } else {
       throw new Error('User Access Denied');

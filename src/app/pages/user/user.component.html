@@ -16,7 +16,7 @@
     </h1>
     <div class="wrapper w-full sm:w-2/3">
       <form
-        action=""
+        [formGroup]="userForm"
         class="relative bg-slate-900 bg-opacity-20 shadow-lg backdrop-blur-sm p-12 rounded-[20px] flex flex-col gap-14"
       >
         <div class="edit_profile absolute top-6 right-6">
@@ -89,7 +89,6 @@
                 value="Khubaib"
                 formControlName="firstname"
                 class="input-field"
-                disabled
               />
             </div>
           </div>
@@ -105,7 +104,6 @@
                 value="Zubairi"
                 class="input-field"
                 formControlName="lastname"
-                disabled
               />
             </div>
           </div>
@@ -123,7 +121,6 @@
                 value="mkzuairi"
                 class="input-field"
                 formControlName="username"
-                disabled
               />
             </div>
           </div>
@@ -141,7 +138,6 @@
                 class="flex-1 pass-input input-field"
                 id="pass-input"
                 formControlName="password"
-                disabled
               />
               <div
                 class="show-icon cursor-pointer flex items-center"
@@ -180,7 +176,6 @@
                 class="flex-1 input-field"
                 id="con-pass-input"
                 formControlName="confirmpassword"
-                disabled
               />
             </div>
           </div>

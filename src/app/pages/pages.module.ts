@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { CategoricallyPostsModule } from './categorically-posts/categorically-posts.module';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PagesComponent],

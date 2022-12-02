@@ -30,7 +30,6 @@ import { UserModule } from './pages/user/user.module';
       provide: JWT_OPTIONS,
       useValue: JWT_OPTIONS,
     },
-
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: TokenInterceptorService,

@@ -1,7 +1,7 @@
 export interface Token {
   Tokens: tokens;
 }
-interface tokens {
+export interface tokens {
   accessToken: string;
   refreshToken: string;
 }

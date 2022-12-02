@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/dto/user.dto';
+import { UserDto } from 'src/app/shared/dto/user.dto';
 import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   show: boolean = false;
-  result!: User;
+  result!: UserDto;
   file!: File;
   selectedImage!: string;
 
@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
     await this.route.navigate(['login']);
   }
 
-  async signUpUser(): Promise<User> {
+  async signUpUser(): Promise<UserDto> {
     if (
       this.signUpForm.value.password === this.signUpForm.value.confirmpassword
     ) {
