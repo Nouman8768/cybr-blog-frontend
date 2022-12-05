@@ -12,12 +12,12 @@ import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { TokenInterceptorService } from './shared/service/token-interceptor.service';
 import { UserModule } from './pages/user/user.module';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     PagesModule,
@@ -30,11 +30,11 @@ import { UserModule } from './pages/user/user.module';
       provide: JWT_OPTIONS,
       useValue: JWT_OPTIONS,
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptorService,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

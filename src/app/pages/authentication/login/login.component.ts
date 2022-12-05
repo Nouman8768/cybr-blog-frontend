@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit {
     console.log('Logged User', this.result);
     if (this.result != null) {
       localStorage.setItem('accesstoken', this.result.Tokens.accessToken);
-      // localStorage.setItem('refToken', this.result.Tokens.refreshToken);
-      // TokenInterceptorService.token = this.result.Tokens.accessToken;
+
+      localStorage.setItem('refreshtoken', this.result.Tokens.refreshToken);
+
       this.route.navigate(['user']);
     } else {
       throw new Error('User Access Denied');

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { UserDto } from '../dto/user.dto';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Token } from '../dto/token.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -54,9 +55,9 @@ export class AuthService {
   // isLoggedIn() {
   //   return localStorage.getItem('accesstoken') != null;
   // }
-  public isLoggedIn(): boolean {
-    const token = localStorage.getItem('accesstoken');
-    return !this.jwtHelper.isTokenExpired(token!);
+  public isLoggedOut(): boolean {
+    const token = localStorage.getItem('refreshtoken');
+    return this.jwtHelper.isTokenExpired(token!);
   }
 
   public getUserProfile() {
@@ -71,8 +72,13 @@ export class AuthService {
     return {};
   }
 
+  public accessTokenExpired(): boolean {
+    const token = localStorage.getItem('accesstoken');
+    return this.jwtHelper.isTokenExpired(token!);
+  }
+
   public getAccessToken() {
-    return localStorage.getItem('accesstoken') || '';
+    return localStorage.getItem('accesstoken');
   }
 
   public logout() {
@@ -83,10 +89,15 @@ export class AuthService {
     }
   }
 
-  public refreshToken() {
-    return this.http.get(`${this.url}/authentication/refresh`);
-    // let res = this.http.get(`${this.url}/authentication/refresh`);
-    // let data = await lastValueFrom(res);
-    // return data;
+  public async refreshToken(): Promise<any> {
+    const toke = localStorage.getItem('refToken');
+    // return this.http.get(`${this.url}/authentication/refresh`);
+    let res = this.http.get(`${this.url}/authentication/refresh`, {
+      // headers: {
+      //   Authorization: this.token!.toString(),
+      // },
+    });
+    let data = await lastValueFrom(res);
+    return data;
   }
 }

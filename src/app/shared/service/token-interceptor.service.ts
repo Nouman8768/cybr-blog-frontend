@@ -7,8 +7,8 @@ import {
 } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { catchError, Observable, throwError, switchMap } from 'rxjs';
+import { Token } from '../dto/token.dto';
 
 import { AuthService } from './auth.service';
 
@@ -18,42 +18,56 @@ import { AuthService } from './auth.service';
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(
     private readonly inject: Injector,
-    private readonly route: Router,
-    private readonly jwtHelper: JwtHelperService
+    private readonly route: Router
   ) {}
-  static token = '';
-
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let service = this.inject.get(AuthService);
+    // alert('InterCeptor Working');
+    // if (!service.isLoggedOut) {
+    //   return alert('Not Logged Out')
+    // }
+    // return
+
+    // req = req.clone({
+    //   headers: req.headers.set('Content-Type', 'application/json'),
+    // });
+    // let token = localStorage.getItem('refToken');
+    // if (token) {
+    //   req = req.clone({
+    //     headers: req.headers.set('Authorization', 'Bearer' + token),
+    //   });
+    // }
+    // return next.handle(req);
+
     let authRequest = req;
-    authRequest = this.addTokenHeader(req, service.getAccessToken());
+    // authRequest = this.addTokenHeader(req, service.getAccessToken());
+
     return next.handle(authRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // service.logout();
-          // this.route.navigate(['authentication/login']);
-          // alert('Session Expired');
+        if (service.accessTokenExpired() || error.status === 401) {
           this.handleRefToken(req, next);
         } else {
-          console.log('Nothing Happend');
+          this.route.navigate(['authentication/login']);
         }
         return throwError(error);
       })
     );
   }
-  handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
+  async handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
     let service = this.inject.get(AuthService);
-    return service.refreshToken().pipe(
-      switchMap((data: any) => {
-        localStorage.setItem('accessToken', data.accessToken),
-          localStorage.setItem('refToken', data.refreshToken);
+    const tokens: Token = await service.refreshToken();
+    if (tokens != null) {
+      localStorage.setItem('accesstoken', tokens.Tokens.accessToken);
 
-        return next.handle(this.addTokenHeader(req, data.accessToken));
-      })
-    );
+      localStorage.setItem('refreshtoken', tokens.Tokens.refreshToken);
+
+      return next.handle(this.addTokenHeader(req, tokens));
+    } else {
+      return console.log('Error');
+    }
   }
 
   addTokenHeader(request: HttpRequest<any>, token: any) {

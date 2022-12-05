@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HeaderPostComponent } from './components/header-post/header-post.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FooterModule,
     AnonymousPostModule,
     PopularSidebarPostModule,
+    HttpClientModule,
   ],
   exports: [
     FooterComponent,
