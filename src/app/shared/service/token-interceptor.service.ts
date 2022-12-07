@@ -11,6 +11,7 @@ import { catchError, Observable, throwError, switchMap, tap } from 'rxjs';
 import { Token } from '../dto/token.dto';
 
 import { AuthService } from './auth.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ import { AuthService } from './auth.service';
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(
     private readonly inject: Injector,
-    private readonly route: Router
+    private readonly route: Router,
+    private readonly userService: UserService
   ) {}
 
   intercept(
@@ -27,39 +29,31 @@ export class TokenInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let service = this.inject.get(AuthService);
 
-    let authRequest = req;
-    if (service.getAccessToken()) {
-      authRequest = this.addTokenHeader(req, service.getAccessToken());
-    }
+    // let authRequest = req;
+    const token = localStorage.getItem('accesstoken');
 
-    return next
-      .handle(authRequest)
-      .pipe(
-        tap(async (x) => {
-          console.log('TAP -------------------------');
-          console.log(x);
+    if (token) {
+      console.log('Before', token);
 
-          if (service.accessTokenExpired()) {
-            console.log('Refresh');
-
-            let status = await this.route.navigate(['authentication/login']);
-
-            console.log(status);
-
-            // this.handleRefToken(req, next);
-          } else {
-            //  this.route.navigate(['authentication/login']);
-          }
-        })
-      )
-      .pipe(
+      // const cloned = req.clone({
+      //   setHeaders: {
+      //     Authorization: token,
+      //   },
+      // });
+      const authRequest = this.addTokenHeader(req, token);
+      console.log('After', authRequest);
+      return next.handle(authRequest).pipe(
         catchError((error: HttpErrorResponse) => {
-          console.log('ERROR -------------------------');
-          console.log(error);
-
+          if (error.status === 401) {
+            alert('401 Unathurized');
+            this.route.navigate(['authentication/login']);
+          }
           return throwError(error);
         })
       );
+    } else {
+      return next.handle(req);
+    }
   }
 
   async handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
@@ -86,7 +80,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   addTokenHeader(request: HttpRequest<any>, token: string | null) {
     return request.clone({
-      headers: request.headers.set('Authorization', token!),
+      headers: request.headers.set('Authorization', 'Bearer ' + token!),
     });
   }
 }

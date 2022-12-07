@@ -54,6 +54,7 @@ export class UserComponent implements OnInit {
   async loadProfile() {
     this.tokenInfo = this.authService.getUserProfile();
     console.log(this.tokenInfo.user);
+
     this.profile = await this.userService.getUser(this.tokenInfo.user);
     console.log('User', this.profile);
 
