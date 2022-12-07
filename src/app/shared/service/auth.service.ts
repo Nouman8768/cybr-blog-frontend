@@ -63,12 +63,14 @@ export class AuthService {
   public getUserProfile() {
     const token = localStorage.getItem('accesstoken');
     let payload;
+
     if (token) {
       // JWT is made of three parts divided by "." The center part contains the user details. So you get that with split and decode that part with window.atob
       payload = token.split('.')[1];
       payload = window.atob(payload);
       return JSON.parse(payload);
     }
+
     return {};
   }
 

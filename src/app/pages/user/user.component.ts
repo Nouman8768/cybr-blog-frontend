@@ -10,7 +10,7 @@ import { Token } from 'src/app/shared/dto/token.dto';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  constructor(private readonly service: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   editPic: boolean = false;
   show: boolean = false;
@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfile();
-    // this.refreshToken();
+
     const pass = document.querySelector('.pass-input') as HTMLInputElement;
     const con_pass = document.querySelector('#con-pass-input') as HTMLElement;
     const showIcon = document.querySelector('.show-icon') as HTMLElement;
@@ -38,6 +38,7 @@ export class UserComponent implements OnInit {
         ? con_pass.setAttribute('type', 'text')
         : con_pass.setAttribute('type', 'password');
     });
+
     edit.addEventListener('click', () => {
       edit.style.display = 'none';
       for (let i = 0; i < inputs.length; i++) {
@@ -47,10 +48,7 @@ export class UserComponent implements OnInit {
   }
 
   loadProfile() {
-    this.profile = this.service.getUserProfile();
-    console.log(this.profile);
-
-    console.log(this.profile.user.username);
+    this.profile = this.authService.getUserProfile();
 
     this.userForm = new FormGroup({
       firstname: new FormControl(this.profile.user.firstname, [
@@ -77,21 +75,9 @@ export class UserComponent implements OnInit {
 
       role: new FormControl(0, [Validators.required]),
     });
-    console.log(this.userForm.value.firstname);
   }
 
-  // async refreshToken() {
-  //   if (!this.service.isLoggedIn()) {
-  //     this.result = await this.service.refreshToken();
-  //     console.log(this.result);
-
-  //     if (this.result != null) {
-  //       localStorage.setItem('accessToken', this.result.Tokens.accessToken);
-  //     }
-  //   }
-  // }
-
   loggedOut() {
-    this.service.logout();
+    this.authService.logout();
   }
 }

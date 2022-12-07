@@ -20,64 +20,51 @@ export class TokenInterceptorService implements HttpInterceptor {
     private readonly inject: Injector,
     private readonly route: Router
   ) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let service = this.inject.get(AuthService);
-    // alert('InterCeptor Working');
-    // if (!service.isLoggedOut) {
-    //   return alert('Not Logged Out')
-    // }
-    // return
-
-    // req = req.clone({
-    //   headers: req.headers.set('Content-Type', 'application/json'),
-    // });
-    // let token = localStorage.getItem('refToken');
-    // if (token) {
-    //   req = req.clone({
-    //     headers: req.headers.set('Authorization', 'Bearer' + token),
-    //   });
-    // }
-    // return next.handle(req);
 
     let authRequest = req;
     if (service.getAccessToken()) {
       authRequest = this.addTokenHeader(req, service.getAccessToken());
     }
 
-    return next.handle(authRequest).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (service.accessTokenExpired() || error.status === 401) {
-          console.log('Refresh');
-          this.route.navigate(['authentication/login']);
+    return next
+      .handle(authRequest)
+      .pipe(
+        tap(async (x) => {
+          console.log('TAP -------------------------');
+          console.log(x);
 
-          // this.handleRefToken(req, next);
-        } else {
-          this.route.navigate(['authentication/login']);
-        }
-        return throwError(error);
-      })
-    );
-    // return next.handle(authRequest).pipe(
-    //   tap(
-    //     () => {},
-    //     (error: any) => {
-    //       if (error instanceof HttpErrorResponse) {
-    //         if (error.status !== 401) {
-    //           console.log('Not 401');
-    //           return;
-    //         }
-    //         this.route.navigate(['authentication/login']);
-    //       }
-    //     }
-    //   )
-    // );
+          if (service.accessTokenExpired()) {
+            console.log('Refresh');
+
+            let status = await this.route.navigate(['authentication/login']);
+
+            console.log(status);
+
+            // this.handleRefToken(req, next);
+          } else {
+            //  this.route.navigate(['authentication/login']);
+          }
+        })
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.log('ERROR -------------------------');
+          console.log(error);
+
+          return throwError(error);
+        })
+      );
   }
 
   async handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
     let token = localStorage.getItem('refreshtoken');
+
     if (token) {
       const res = req.clone({
         headers: req.headers.set('Authorization', token),
