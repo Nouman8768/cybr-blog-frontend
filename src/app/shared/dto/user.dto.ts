@@ -1,4 +1,6 @@
 export class UserDto {
+  _id!: string;
+
   firstname!: string;
 
   lastname!: string;
@@ -16,23 +18,10 @@ export class UserDto {
   refreshToken!: string;
 }
 export interface LooggedUser {
-  user: JwtTokenUser;
+  user: string;
 }
 
-interface JwtTokenUser {
-  firstname: string;
+// interface JwtTokenUser {
+//   _id: string;
 
-  lastname: string;
-
-  username: string;
-
-  password: string;
-
-  confirmpassword: string;
-
-  image: string;
-
-  role: number;
-
-  refreshToken: string;
-}
+// }

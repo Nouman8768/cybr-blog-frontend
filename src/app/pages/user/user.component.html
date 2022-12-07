@@ -16,6 +16,7 @@
     </h1>
     <div class="wrapper w-full sm:w-2/3">
       <form
+        *ngIf="userForm"
         [formGroup]="userForm"
         class="relative bg-slate-900 bg-opacity-20 shadow-lg backdrop-blur-sm p-12 rounded-[20px] flex flex-col gap-14"
       >
@@ -87,8 +88,8 @@
                 type="text"
                 name="fname"
                 value="Khubaib"
-                formControlName="firstname"
                 class="input-field"
+                formControlName="firstname"
               />
             </div>
           </div>
