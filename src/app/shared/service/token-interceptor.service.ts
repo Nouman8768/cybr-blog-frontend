@@ -27,26 +27,17 @@ export class TokenInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let service = this.inject.get(AuthService);
-
-    // let authRequest = req;
     const token = localStorage.getItem('accesstoken');
 
     if (token) {
       console.log('Before', token);
 
-      // const cloned = req.clone({
-      //   setHeaders: {
-      //     Authorization: token,
-      //   },
-      // });
       const authRequest = this.addTokenHeader(req, token);
       console.log('After', authRequest);
       return next.handle(authRequest).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            alert('401 Unathurized');
-            this.route.navigate(['authentication/login']);
+            this.handleRefToken(req, next);
           }
           return throwError(error);
         })
@@ -61,7 +52,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
     if (token) {
       const res = req.clone({
-        headers: req.headers.set('Authorization', token),
+        headers: req.headers.set('Authorization', 'Bearer ' + token),
       });
     }
 

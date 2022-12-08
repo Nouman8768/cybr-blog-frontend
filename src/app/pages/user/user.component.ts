@@ -27,28 +27,35 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.loadProfile();
     const pass = document.querySelector('.pass-input') as HTMLInputElement;
+
     const con_pass = document.querySelector('#con-pass-input') as HTMLElement;
+
     const showIcon = document.querySelector('.show-icon') as HTMLElement;
+
     const edit = document.querySelector('.edit-profile') as HTMLButtonElement;
 
     let inputs = document.querySelectorAll('.input-field');
 
-    showIcon.addEventListener('click', () => {
-      pass!.getAttribute('type') === 'password'
-        ? pass!.setAttribute('type', 'text')
-        : pass!.setAttribute('type', 'password');
+    if (showIcon) {
+      showIcon.addEventListener('click', () => {
+        pass!.getAttribute('type') === 'password'
+          ? pass!.setAttribute('type', 'text')
+          : pass!.setAttribute('type', 'password');
 
-      con_pass.getAttribute('type') === 'password'
-        ? con_pass.setAttribute('type', 'text')
-        : con_pass.setAttribute('type', 'password');
-    });
+        con_pass.getAttribute('type') === 'password'
+          ? con_pass.setAttribute('type', 'text')
+          : con_pass.setAttribute('type', 'password');
+      });
+    }
 
-    edit.addEventListener('click', () => {
-      edit.style.display = 'none';
-      for (let i = 0; i < inputs.length; i++) {
-        inputs[i].removeAttribute('disabled');
-      }
-    });
+    if (edit) {
+      edit.addEventListener('click', () => {
+        edit.style.display = 'none';
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].removeAttribute('disabled');
+        }
+      });
+    }
   }
 
   async loadProfile() {

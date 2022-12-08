@@ -1,4 +1,4 @@
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -92,13 +92,8 @@ export class AuthService {
   }
 
   public async refreshToken(): Promise<any> {
-    const toke = localStorage.getItem('refToken');
-    // return this.http.get(`${this.url}/authentication/refresh`);
     let res = this.http.get(`${this.url}/authentication/refresh`);
     let data = await lastValueFrom(res);
     return data;
-  }
-  private refToken() {
-    return localStorage.getItem('refreshtoken');
   }
 }
