@@ -1,5 +1,5 @@
 import { lastValueFrom, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserDto } from '../dto/user.dto';
@@ -100,6 +100,8 @@ export class AuthService {
     let res = this.http.get<Token>(`${this.url}/authentication/refresh`, {
       headers: header,
     });
+
+    // return res;
     let data = await lastValueFrom(res);
 
     localStorage.setItem('accesstoken', data.Tokens.accessToken),
@@ -108,3 +110,6 @@ export class AuthService {
     return data;
   }
 }
+export let token: string | null = localStorage.getItem('refreshtoken');
+
+// export let abc = token;

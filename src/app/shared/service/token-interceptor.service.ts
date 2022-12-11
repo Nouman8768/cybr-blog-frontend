@@ -8,7 +8,16 @@ import {
 } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, throwError, switchMap, tap } from 'rxjs';
+import {
+  catchError,
+  Observable,
+  throwError,
+  switchMap,
+  tap,
+  BehaviorSubject,
+  filter,
+  take,
+} from 'rxjs';
 import { Token } from '../dto/token.dto';
 
 import { AuthService } from './auth.service';
@@ -25,32 +34,39 @@ export class TokenInterceptorService implements HttpInterceptor {
     private readonly authService: AuthService
   ) {}
 
+  newTokens!: Token;
+  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
+    null
+  );
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const accesstoken = this.authService.getAccessToken();
     const accessTokenExpired = this.authService.accessTokenExpired();
+    let authRequest = req;
 
     if (accesstoken && !accessTokenExpired) {
-      const authRequest = this.addTokenHeader(req, accesstoken);
+      authRequest = this.addTokenHeader(req, accesstoken);
       console.log('AccessAfter', authRequest);
-
-      return next.handle(authRequest).pipe(
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 401) {
-            this.route.navigate(['authentication/login']);
-            // this.handleRefToken(req, next);
-          }
-          return throwError(error);
-        })
-      );
-    } else if (accessTokenExpired && this.userUrl()) {
-      // let token = localStorage.getItem('refreshtoken');
-
-      this.handleRefToken(req, next);
     }
-    return next.handle(req);
+
+    return next.handle(authRequest).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          // this.route.navigate(['authentication/login']);
+          this.handleRefToken(req, next);
+        }
+        return throwError(error);
+      })
+    );
+    //  else if (accessTokenExpired && this.userUrl()) {
+    //   // let token = localStorage.getItem('refreshtoken');
+
+    //   return this.handleRefToken(req, next);
+    // }
+    // return next.handle(req);
   }
 
   async handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
@@ -58,14 +74,45 @@ export class TokenInterceptorService implements HttpInterceptor {
     const accesstoken = this.authService.getAccessToken();
     let refreshtoken = localStorage.getItem('refreshtoken');
 
-    const tokens: Token = await this.authService.refreshToken();
-    console.log(tokens);
+    if (refreshtoken) {
+      this.newTokens = await this.authService.refreshToken();
+      console.log(this.newTokens);
 
-    const authRequest = this.addTokenHeader(req, tokens.Tokens.accessToken);
+      localStorage.setItem('accesstoken', this.newTokens.Tokens.accessToken);
+      localStorage.setItem('refreshtoken', this.newTokens.Tokens.refreshToken);
 
-    console.log('RefAccessAfter', authRequest);
+      // this.refreshTokenSubject.next(this.newTokens.Tokens.accessToken);
+      const authRequest = req.clone({
+        headers: req.headers.set(
+          'Authorization',
+          'Bearer ' + this.newTokens.Tokens.accessToken!
+        ),
+      });
 
-    return next.handle(authRequest);
+      console.log('RefAccessAfter', authRequest);
+
+      return next.handle(authRequest);
+      // .pipe(
+      //   switchMap((tokens: Token) => {
+      //     localStorage.setItem('accesstoken', tokens.Tokens.accessToken),
+      //       localStorage.setItem('refreshtoken', tokens.Tokens.refreshToken);
+      //     console.log(this.newTokens);
+      //     this.refreshTokenSubject.next(tokens.Tokens.accessToken);
+      //     const authRequest = this.addTokenHeader(
+      //       req,
+      //       this.newTokens.Tokens.accessToken
+      //     );
+
+      //     console.log('RefAccessAfter', authRequest);
+
+      //     return next.handle(authRequest);
+      //   }),
+      //   catchError((error) => {
+      //     return throwError('Error', error);
+      //   })
+      // );
+    }
+    return throwError('BAC');
   }
 
   addTokenHeader(request: HttpRequest<any>, token: string | null) {
