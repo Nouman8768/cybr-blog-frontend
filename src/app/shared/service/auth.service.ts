@@ -1,5 +1,5 @@
 import { lastValueFrom, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserDto } from '../dto/user.dto';
@@ -90,10 +90,21 @@ export class AuthService {
       this.route.navigate(['authentication/login']);
     }
   }
+  token: string | null = localStorage.getItem('refreshtoken');
 
-  public async refreshToken(): Promise<any> {
-    let res = this.http.get(`${this.url}/authentication/refresh`);
+  public async refreshToken(): Promise<Token> {
+    const header = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token!
+    );
+    let res = this.http.get<Token>(`${this.url}/authentication/refresh`, {
+      headers: header,
+    });
     let data = await lastValueFrom(res);
+
+    localStorage.setItem('accesstoken', data.Tokens.accessToken),
+      localStorage.setItem('refreshtoken', data.Tokens.refreshToken);
+
     return data;
   }
 }

@@ -2,6 +2,7 @@ import {
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
+  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
@@ -20,58 +21,60 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(
     private readonly inject: Injector,
     private readonly route: Router,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly authService: AuthService
   ) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('accesstoken');
+    const accesstoken = this.authService.getAccessToken();
+    const accessTokenExpired = this.authService.accessTokenExpired();
 
-    if (token) {
-      console.log('Before', token);
+    if (accesstoken && !accessTokenExpired) {
+      const authRequest = this.addTokenHeader(req, accesstoken);
+      console.log('AccessAfter', authRequest);
 
-      const authRequest = this.addTokenHeader(req, token);
-      console.log('After', authRequest);
       return next.handle(authRequest).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            this.handleRefToken(req, next);
+            this.route.navigate(['authentication/login']);
+            // this.handleRefToken(req, next);
           }
           return throwError(error);
         })
       );
-    } else {
-      return next.handle(req);
+    } else if (accessTokenExpired && this.userUrl()) {
+      // let token = localStorage.getItem('refreshtoken');
+
+      this.handleRefToken(req, next);
     }
+    return next.handle(req);
   }
 
   async handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
-    let token = localStorage.getItem('refreshtoken');
+    const accessTokenExpired = this.authService.accessTokenExpired();
+    const accesstoken = this.authService.getAccessToken();
+    let refreshtoken = localStorage.getItem('refreshtoken');
 
-    if (token) {
-      const res = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer ' + token),
-      });
-    }
+    const tokens: Token = await this.authService.refreshToken();
+    console.log(tokens);
 
-    let service = this.inject.get(AuthService);
-    const tokens: Token = await service.refreshToken();
-    if (tokens != null) {
-      localStorage.setItem('accesstoken', tokens.Tokens.accessToken);
+    const authRequest = this.addTokenHeader(req, tokens.Tokens.accessToken);
 
-      localStorage.setItem('refreshtoken', tokens.Tokens.refreshToken);
+    console.log('RefAccessAfter', authRequest);
 
-      return next.handle(this.addTokenHeader(req, tokens.Tokens.accessToken));
-    } else {
-      return console.log('Error');
-    }
+    return next.handle(authRequest);
   }
 
   addTokenHeader(request: HttpRequest<any>, token: string | null) {
     return request.clone({
       headers: request.headers.set('Authorization', 'Bearer ' + token!),
     });
+  }
+
+  userUrl() {
+    return this.route.url === '/user';
   }
 }
