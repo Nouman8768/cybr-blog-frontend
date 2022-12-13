@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PostsModule } from './pages/Posts/posts.module';
 import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { LoginComponent } from './pages/authentication/login/login.component';
 import { SignupComponent } from './pages/authentication/signup/signup.component';
@@ -16,6 +15,7 @@ import { FooterModule } from './shared/module/footer/footer.module';
 import { PopularSidebarPostModule } from './shared/module/popular-sidebar-post/popular-sidebar-post.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './pages/user/user.module';
+import { PostsModule } from './pages/posts/posts.module';
 
 const routes: Routes = [
   {

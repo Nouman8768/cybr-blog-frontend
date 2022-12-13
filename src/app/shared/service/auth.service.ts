@@ -104,12 +104,6 @@ export class AuthService {
     // return res;
     let data = await lastValueFrom(res);
 
-    localStorage.setItem('accesstoken', data.Tokens.accessToken),
-      localStorage.setItem('refreshtoken', data.Tokens.refreshToken);
-
     return data;
   }
 }
-export let token: string | null = localStorage.getItem('refreshtoken');
-
-// export let abc = token;

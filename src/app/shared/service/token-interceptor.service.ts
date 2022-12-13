@@ -35,9 +35,6 @@ export class TokenInterceptorService implements HttpInterceptor {
   ) {}
 
   newTokens!: Token;
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
-    null
-  );
 
   intercept(
     req: HttpRequest<any>,
@@ -55,18 +52,11 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(authRequest).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          // this.route.navigate(['authentication/login']);
           this.handleRefToken(req, next);
         }
         return throwError(error);
       })
     );
-    //  else if (accessTokenExpired && this.userUrl()) {
-    //   // let token = localStorage.getItem('refreshtoken');
-
-    //   return this.handleRefToken(req, next);
-    // }
-    // return next.handle(req);
   }
 
   async handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
@@ -81,36 +71,14 @@ export class TokenInterceptorService implements HttpInterceptor {
       localStorage.setItem('accesstoken', this.newTokens.Tokens.accessToken);
       localStorage.setItem('refreshtoken', this.newTokens.Tokens.refreshToken);
 
-      // this.refreshTokenSubject.next(this.newTokens.Tokens.accessToken);
-      const authRequest = req.clone({
-        headers: req.headers.set(
-          'Authorization',
-          'Bearer ' + this.newTokens.Tokens.accessToken!
-        ),
-      });
+      const authRequest = this.addTokenHeader(
+        req,
+        this.newTokens.Tokens.accessToken
+      );
 
       console.log('RefAccessAfter', authRequest);
 
       return next.handle(authRequest);
-      // .pipe(
-      //   switchMap((tokens: Token) => {
-      //     localStorage.setItem('accesstoken', tokens.Tokens.accessToken),
-      //       localStorage.setItem('refreshtoken', tokens.Tokens.refreshToken);
-      //     console.log(this.newTokens);
-      //     this.refreshTokenSubject.next(tokens.Tokens.accessToken);
-      //     const authRequest = this.addTokenHeader(
-      //       req,
-      //       this.newTokens.Tokens.accessToken
-      //     );
-
-      //     console.log('RefAccessAfter', authRequest);
-
-      //     return next.handle(authRequest);
-      //   }),
-      //   catchError((error) => {
-      //     return throwError('Error', error);
-      //   })
-      // );
     }
     return throwError('BAC');
   }
