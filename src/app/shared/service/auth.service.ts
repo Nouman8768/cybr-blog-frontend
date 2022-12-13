@@ -52,9 +52,6 @@ export class AuthService {
     return data['url'];
   }
 
-  // isLoggedIn() {
-  //   return localStorage.getItem('accesstoken') != null;
-  // }
   public isLoggedOut(): boolean {
     const token = localStorage.getItem('refreshtoken');
     return this.jwtHelper.isTokenExpired(token!);
@@ -92,7 +89,7 @@ export class AuthService {
   }
   token: string | null = localStorage.getItem('refreshtoken');
 
-  public async refreshToken(): Promise<Token> {
+  public refreshToken(): Observable<Token> {
     const header = new HttpHeaders().set(
       'Authorization',
       'Bearer ' + this.token!
@@ -101,9 +98,6 @@ export class AuthService {
       headers: header,
     });
 
-    // return res;
-    let data = await lastValueFrom(res);
-
-    return data;
+    return res;
   }
 }

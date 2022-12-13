@@ -14,11 +14,6 @@ export class UserService {
   token: string | null = localStorage.getItem('accesstoken');
 
   public async getUser(id: string): Promise<UserDto> {
-    let type = 'Bearer';
-    const header = new HttpHeaders().set(
-      'Authorization',
-      'Bearer ' + this.token!
-    );
     let res = this.http.get<UserDto>(`${this.url}/users/byId/${id}`);
     let data = await lastValueFrom(res);
     return data;

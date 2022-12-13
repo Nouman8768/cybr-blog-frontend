@@ -52,33 +52,37 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(authRequest).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          this.handleRefToken(req, next);
+          return this.handleRefToken(req, next);
         }
         return throwError(error);
       })
     );
   }
 
-  async handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
+  handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
     const accessTokenExpired = this.authService.accessTokenExpired();
     const accesstoken = this.authService.getAccessToken();
     let refreshtoken = localStorage.getItem('refreshtoken');
 
     if (refreshtoken) {
-      this.newTokens = await this.authService.refreshToken();
-      console.log(this.newTokens);
+      return this.authService.refreshToken().pipe(
+        switchMap((tokens: Token) => {
+          localStorage.setItem('accesstoken', tokens.Tokens.accessToken),
+            localStorage.setItem('refreshtoken', tokens.Tokens.refreshToken);
+          console.log(this.newTokens);
+          const authRequest = this.addTokenHeader(
+            req,
+            tokens.Tokens.accessToken
+          );
 
-      localStorage.setItem('accesstoken', this.newTokens.Tokens.accessToken);
-      localStorage.setItem('refreshtoken', this.newTokens.Tokens.refreshToken);
+          console.log('RefAccessAfter', authRequest);
 
-      const authRequest = this.addTokenHeader(
-        req,
-        this.newTokens.Tokens.accessToken
+          return next.handle(authRequest);
+        }),
+        catchError((error) => {
+          return throwError('Error', error);
+        })
       );
-
-      console.log('RefAccessAfter', authRequest);
-
-      return next.handle(authRequest);
     }
     return throwError('BAC');
   }
