@@ -66,7 +66,7 @@ export class HeaderPostComponent implements OnInit {
     });
   }
   async moveToSinglePostPage(id: string) {
-    this.route.navigate([`posts/single-post/${id}`], {
+    this.route.navigate([`single-post/${id}`], {
       queryParams: { id: id },
     });
   }

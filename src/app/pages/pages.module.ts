@@ -7,6 +7,8 @@ import { CategoricallyPostsModule } from './categorically-posts/categorically-po
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { PostsModule } from './posts/posts.module';
 
 @NgModule({
   declarations: [PagesComponent],
@@ -16,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CategoricallyPostsModule,
     HomeModule,
     UserModule,
+    PostsModule,
+    AuthenticationModule,
   ],
 })
 export class PagesModule {}

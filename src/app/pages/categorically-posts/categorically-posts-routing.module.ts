@@ -6,6 +6,6 @@ const routes: Routes = [{ path: '', component: CategoricallyPostsComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CategoricallyPostsRoutingModule { }
+export class CategoricallyPostsRoutingModule {}

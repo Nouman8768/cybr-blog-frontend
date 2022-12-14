@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LooggedUser, UserDto } from 'src/app/shared/dto/user.dto';
 import { Token } from 'src/app/shared/dto/token.dto';
 import { UserService } from 'src/app/shared/service/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -23,6 +24,7 @@ export class UserComponent implements OnInit {
   tokenInfo!: LooggedUser;
   profile!: UserDto;
   userForm!: FormGroup;
+  url: string = environment.serverUrl;
 
   ngOnInit() {
     this.loadProfile();
@@ -78,7 +80,7 @@ export class UserComponent implements OnInit {
         Validators.required,
       ]),
 
-      image: new FormControl(this.profile.image),
+      image: new FormControl(),
 
       role: new FormControl(0, [Validators.required]),
     });

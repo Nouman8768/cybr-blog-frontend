@@ -55,19 +55,10 @@ const routes: Routes = [
     path: 'authentication',
     loadChildren: () => AuthenticationModule,
   },
-  {
-    path: 'user',
-    loadChildren: () => UserModule,
-    canActivate: [AuthGuard],
-  },
-
   // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  // },
-  // {
-  //   path: 'signup',
-  //   component: SignupComponent,
+  //   path: 'user',
+  //   loadChildren: () => UserModule,
+  //   canActivate: [AuthGuard],
   // },
 ];
 
