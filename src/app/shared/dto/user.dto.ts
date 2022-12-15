@@ -13,15 +13,14 @@ export class UserDto {
 
   image!: string;
 
-  role!: number;
+  role!: Role[];
 
   refreshToken!: string;
 }
 export interface LooggedUser {
   user: string;
 }
-
-// interface JwtTokenUser {
-//   _id: string;
-
-// }
+export enum Role {
+  USER = 0,
+  ADMIN = 1,
+}

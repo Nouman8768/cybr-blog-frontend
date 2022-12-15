@@ -4,6 +4,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Token } from 'src/app/shared/dto/token.dto';
 import { TokenInterceptorService } from 'src/app/shared/service/token-interceptor.service';
+import { LooggedUser, UserDto } from 'src/app/shared/dto/user.dto';
+import { UserService } from 'src/app/shared/service/user.service';
+
+export enum role {
+  USER = 0,
+  ADMIN = 1,
+}
 
 @Component({
   selector: 'app-login',
@@ -12,13 +19,16 @@ import { TokenInterceptorService } from 'src/app/shared/service/token-intercepto
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private readonly service: AuthService,
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
     private readonly route: Router
   ) {}
 
   result!: Token;
   response: any;
   show: boolean = false;
+  tokenInfo!: LooggedUser;
+  profile!: UserDto;
 
   credentialForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -38,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   async submitCredentialForm() {
-    this.result = await this.service.login(this.credentialForm.value);
+    this.result = await this.authService.login(this.credentialForm.value);
 
     console.log('Logged User', this.result);
     if (this.result != null) {
@@ -46,7 +56,14 @@ export class LoginComponent implements OnInit {
 
       localStorage.setItem('refreshtoken', this.result.Tokens.refreshToken);
 
-      this.route.navigate(['user']);
+      this.tokenInfo = this.authService.getUserProfile();
+      this.profile = await this.userService.getUser(this.tokenInfo.user);
+      console.log('ROLE', this.profile.role);
+      if (this.profile.role[0] === 0) {
+        this.route.navigate(['user']);
+      } else if (this.profile.role[0] === 1) {
+        alert('ROLE IS ADMIN & We will Move to Admin Page Later');
+      }
     } else {
       throw new Error('User Access Denied');
     }

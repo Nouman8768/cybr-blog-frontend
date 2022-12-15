@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../shared/guard/auth.guard';
+import { CategoricallyPostsModule } from './categorically-posts/categorically-posts.module';
 import { PagesComponent } from './pages.component';
+import { PostsModule } from './posts/posts.module';
 import { UserModule } from './user/user.module';
 
 const routes: Routes = [
@@ -10,6 +12,14 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () => UserModule,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'category-post/:category',
+    loadChildren: () => CategoricallyPostsModule,
+  },
+  {
+    path: 'posts',
+    loadChildren: () => PostsModule,
   },
 ];
 

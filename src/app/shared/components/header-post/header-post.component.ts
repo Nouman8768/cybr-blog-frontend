@@ -61,7 +61,7 @@ export class HeaderPostComponent implements OnInit {
     });
   }
   async moveToUpdatePage(id: string) {
-    this.route.navigate([`posts/update/${id}`], {
+    this.route.navigate([`update/${id}`], {
       queryParams: { id: id },
     });
   }

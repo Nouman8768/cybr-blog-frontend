@@ -16,11 +16,10 @@ export class AuthGuard implements CanActivate {
   async canActivate() {
     if (this.service.isLoggedOut()) {
       localStorage.clear();
-      this.route.navigate(['authentication/login']);
-      alert('Access Denied');
+      this.route.navigate(['/login']);
+      alert('Access Denied Token Not Found');
       return false;
     } else {
-      // this.route.navigate(['authentication/login']);
       return true;
     }
   }

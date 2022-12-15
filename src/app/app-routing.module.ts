@@ -22,10 +22,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => HomeModule,
   },
-  {
-    path: 'category-post/:category',
-    loadChildren: () => CategoricallyPostsModule,
-  },
+  // {
+  //   path: 'category-post/:category',
+  //   loadChildren: () => CategoricallyPostsModule,
+  // },
   {
     path: 'footer',
     loadChildren: () => FooterModule,
@@ -48,18 +48,9 @@ const routes: Routes = [
     loadChildren: () => PagesModule,
   },
   {
-    path: 'posts',
-    loadChildren: () => PostsModule,
-  },
-  {
     path: 'authentication',
     loadChildren: () => AuthenticationModule,
   },
-  // {
-  //   path: 'user',
-  //   loadChildren: () => UserModule,
-  //   canActivate: [AuthGuard],
-  // },
 ];
 
 @NgModule({
