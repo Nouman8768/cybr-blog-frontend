@@ -63,6 +63,10 @@ export class LoginComponent implements OnInit {
         this.route.navigate(['user']);
       } else if (this.profile.role[0] === 1) {
         alert('ROLE IS ADMIN & We will Move to Admin Page Later');
+      } else if (this.profile.role[0] === 2) {
+        alert('Your Account is Ban Till a specific Time');
+      } else {
+        throw new Error('Users with this Role does not have access');
       }
     } else {
       throw new Error('User Access Denied');
