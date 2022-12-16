@@ -23,4 +23,5 @@ export interface LooggedUser {
 export enum Role {
   USER = 0,
   ADMIN = 1,
+  BAN = 2,
 }

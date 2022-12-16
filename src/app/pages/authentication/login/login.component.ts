@@ -7,10 +7,10 @@ import { TokenInterceptorService } from 'src/app/shared/service/token-intercepto
 import { LooggedUser, UserDto } from 'src/app/shared/dto/user.dto';
 import { UserService } from 'src/app/shared/service/user.service';
 
-export enum role {
-  USER = 0,
-  ADMIN = 1,
-}
+// export enum role {
+//   USER = 0,
+//   ADMIN = 1,
+// }
 
 @Component({
   selector: 'app-login',
