@@ -1,0 +1,15 @@
+a.active {
+  img {
+    filter: invert(0);
+  }
+}
+.active {
+  color: white;
+}
+
+a > .submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0 0 2.5rem;
+}

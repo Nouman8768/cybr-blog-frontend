@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  ngOnInit(): void {}
+  constructor(private readonly route: Router) {}
   title = 'cybr-blog';
+
+  isLoginPage: boolean = true;
+  authState: boolean = false;
+  mobileNavState: boolean = false;
+  recieveState(state: boolean) {
+    this.mobileNavState = false;
+  }
+
+  ngOnInit(): void {}
+
+  abcroute() {
+    return this.route.url.includes('admin');
+  }
 }

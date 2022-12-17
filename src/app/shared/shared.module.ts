@@ -14,6 +14,8 @@ import { HeaderPostComponent } from './components/header-post/header-post.compon
 import { SocialLinksComponent } from './components/social-links/social-links.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminSideNavigationComponent } from './components/admin-side-navigation/admin-side-navigation.component';
+import { AdminMobileNavigationComponent } from './components/admin-mobile-navigation/admin-mobile-navigation.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderPostComponent,
     NavigationComponent,
     SocialLinksComponent,
+    AdminSideNavigationComponent,
+    AdminMobileNavigationComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderPostComponent,
     SocialLinksComponent,
     NavigationComponent,
+    AdminSideNavigationComponent,
+    AdminMobileNavigationComponent,
   ],
 })
 export class SharedModule {}

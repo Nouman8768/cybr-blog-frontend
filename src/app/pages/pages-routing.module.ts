@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../shared/guard/auth.guard';
@@ -13,6 +14,7 @@ const routes: Routes = [
     loadChildren: () => UserModule,
     canActivate: [AuthGuard],
   },
+
   {
     path: 'category-post/:category',
     loadChildren: () => CategoricallyPostsModule,
@@ -20,6 +22,11 @@ const routes: Routes = [
   {
     path: 'posts',
     loadChildren: () => PostsModule,
+  },
+  {
+    path: 'admin',
+    loadChildren: () => AdminModule,
+    canActivate: [AuthGuard],
   },
 ];
 

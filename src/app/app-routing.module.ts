@@ -22,10 +22,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => HomeModule,
   },
-  // {
-  //   path: 'category-post/:category',
-  //   loadChildren: () => CategoricallyPostsModule,
-  // },
+
   {
     path: 'footer',
     loadChildren: () => FooterModule,

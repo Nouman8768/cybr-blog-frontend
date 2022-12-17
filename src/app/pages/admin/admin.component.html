@@ -1,0 +1,29 @@
+<!-- <div class="div flex">
+  <div
+    class="mobile-nav fixed z-0 bg-primary text-white w-full h-full"
+    *ngIf="!isLoginPage"
+  >
+    <app-admin-mobile-navigation
+      (mnState)="recieveState($event)"
+    ></app-admin-mobile-navigation>
+  </div>
+  <div
+    class="dahboard flex bg-white relative z-10 custom-transition"
+    [ngClass]="
+      mobileNavState ? 'left-48 scale-[0.9] rounded-2xl shadow-xl' : 'left-0'
+    "
+  >
+    <div
+      class="toggler w-5 h-5 p-1 rounded-[50%] bg-primary bg-opacity-40 backdrop-blur-sm overflow-hidden cursor-pointer absolute top-2 left-2 block sm:hidden"
+      *ngIf="!isLoginPage"
+      (click)="mobileNavState = !mobileNavState"
+    >
+      <img src="/assets/icons/hamburger.png" class="invert-[0]" alt="" />
+    </div>
+    <div class="navigation min-h-screen" *ngIf="!isLoginPage">
+      <app-admin-side-navigation></app-admin-side-navigation>
+    </div>
+  </div>
+  <app-dashboard *ngIf="!dashRoute()"></app-dashboard>
+  <app-all-users *ngIf="!allUserRoute()"></app-all-users>
+</div> -->

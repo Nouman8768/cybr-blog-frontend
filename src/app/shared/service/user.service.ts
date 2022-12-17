@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserDto } from '../dto/user.dto';
 
@@ -17,5 +17,9 @@ export class UserService {
     let res = this.http.get<UserDto>(`${this.url}/users/byId/${id}`);
     let data = await lastValueFrom(res);
     return data;
+  }
+
+  public findAll(): Observable<UserDto[]> {
+    return this.http.get<UserDto[]>(`${this.url}/users`);
   }
 }

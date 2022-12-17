@@ -1,0 +1,117 @@
+<nav class="w-[225px] flex flex-col min-h-full px-6 py-12">
+  <div class="logo self-center">
+    <img src="../../.././../assets/images/header-bg.png" alt="" />
+  </div>
+  <ul class="text-[#CDCDCD] flex flex-col gap-4 mt-7">
+    <li>
+      <a
+        [routerLink]="['admin']"
+        routerLinkActive="active"
+        class="text-base font-[medium] flex items-center gap-4 w-full"
+        (click)="mobileState = !mobileState"
+        (click)="sendState(mobileState)"
+      >
+        <div class="icon">
+          <img src="/assets/icons/dashboard.svg" class="invert-[18%]" alt="" />
+        </div>
+        <span class="title capitalize flex hover:text-white">dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['admin/users']"
+        routerLinkActive="active"
+        class="text-base font-[medium] flex flex-col"
+        (click)="showUserSubmenu = !showUserSubmenu"
+      >
+        <div class="flex justify-between items-center">
+          <div class="icon-title flex items-center gap-4">
+            <div class="icon">
+              <img src="/assets/icons/user.svg" class="invert-[18%]" alt="" />
+            </div>
+            <span class="title capitalize flex hover:text-white">Users</span>
+          </div>
+          <div class="darrow">
+            <img src="/assets/icons/darrow.svg" alt="" />
+          </div>
+        </div>
+        <ul class="submenu" *ngIf="showUserSubmenu">
+          <li>
+            <a
+              class="capitalize"
+              (click)="mobileState = !mobileState"
+              (click)="sendState(mobileState)"
+              >Business</a
+            >
+          </li>
+          <li>
+            <a
+              class="capitalize"
+              (click)="mobileState = !mobileState"
+              (click)="sendState(mobileState)"
+              >subscription</a
+            >
+          </li>
+        </ul>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLinkActive="active"
+        class="text-base font-[medium] flex flex-col"
+        (click)="showDriverSubmenu = !showDriverSubmenu"
+      >
+        <div class="flex justify-between items-center">
+          <div class="icon-title flex items-center gap-4">
+            <div class="icon">
+              <img src="/assets/icons/driver.svg" class="invert-[18%]" alt="" />
+            </div>
+            <span class="title capitalize flex hover:text-white">Drivers</span>
+          </div>
+          <div class="darrow">
+            <img src="/assets/icons/darrow.svg" alt="" />
+          </div>
+        </div>
+        <ul class="submenu" *ngIf="showDriverSubmenu">
+          <li>
+            <a
+              class="capitalize"
+              (click)="mobileState = !mobileState"
+              (click)="sendState(mobileState)"
+              >approval requests</a
+            >
+          </li>
+        </ul>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLinkActive="active"
+        (click)="mobileState = !mobileState"
+        (click)="sendState(mobileState)"
+        class="text-base font-[medium] flex items-center gap-4 w-full"
+      >
+        <div class="icon">
+          <img src="/assets/icons/complaints.svg" class="invert-[18%]" alt="" />
+        </div>
+        <span class="title capitalize flex hover:text-white">complaints</span>
+      </a>
+    </li>
+    <li>
+      <a
+        href="/"
+        class="text-base cursor-pointer font-[medium] flex items-center gap-4 w-full"
+        (click)="logout()"
+      >
+        <div class="icon">
+          <img
+            src="/assets/icons/signout.png"
+            class="invert-[18%] w-4"
+            alt=""
+          />
+        </div>
+        <span class="title capitalize flex hover:text-white">Signout</span>
+      </a>
+    </li>
+  </ul>
+</nav>

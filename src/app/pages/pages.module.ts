@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { PostsModule } from './posts/posts.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [PagesComponent],
@@ -20,6 +21,7 @@ import { PostsModule } from './posts/posts.module';
     UserModule,
     PostsModule,
     AuthenticationModule,
+    AdminModule,
   ],
 })
 export class PagesModule {}

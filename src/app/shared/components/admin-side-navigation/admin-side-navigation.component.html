@@ -1,0 +1,127 @@
+<nav
+  class="lg:w-[250px] bg-slate-500 text-[#CDCDCD] min-h-full relative custom-transition"
+  [ngClass]="openMenu ? 'w-[250px]' : 'w-24'"
+>
+  <div
+    class="hamburger absolute top-2 right-2 cursor-pointer lg:hidden"
+    (click)="openMenu = !openMenu"
+  >
+    <img
+      src="/assets/icons/hamburger.png"
+      *ngIf="openMenu == false"
+      class="w-5"
+      alt=""
+    />
+    <img
+      src="/assets/icons/close.png"
+      class="w-5"
+      alt=""
+      *ngIf="openMenu == true"
+    />
+  </div>
+  <div class="logo flex justify-center pt-20">
+    <a [routerLink]="['/dashboard']">
+      <img src="../../../../assets/images/create.jpg" alt="" />
+    </a>
+  </div>
+
+  <div class="menu mt-14">
+    <ul class="menu-list flex flex-col gap-9 lg:gap-7">
+      <li
+        class="menu-link"
+        [ngClass]="openMenu ? 'block' : 'flex justify-center'"
+      >
+        <a
+          [routerLink]="['admin/dashboard']"
+          routerLinkActive="active"
+          class="flex items-center text-base px-9 relative"
+          [ngClass]="openMenu ? 'before:block' : 'before:hidden'"
+          (click)="isCloseMenu()"
+        >
+          <div
+            class="tooltip capitalize bg-secondary text-white text-sm py-1 px-2 rounded absolute left-16"
+            *ngIf="!openMenu"
+          >
+            <span>dashboard</span>
+          </div>
+          <div class="icon">
+            <img
+              src="/assets/icons/dashboard.svg"
+              class="invert-[18%]"
+              [ngClass]="openMenu ? 'scale-100 mr-3' : 'scale-150'"
+              alt=""
+            />
+          </div>
+          <span class="title capitalize flex hover:text-white" *ngIf="openMenu"
+            >dashboard</span
+          >
+        </a>
+      </li>
+      <li
+        class="menu-link flex flex-col gap-4 custom-transition relative"
+        [ngClass]="openMenu ? 'items-start' : ' items-center '"
+      >
+        <a
+          [routerLink]="['/admin/allusers']"
+          routerLinkActive="active"
+          class="text-base px-9 flex items-center justify-center relative w-full"
+          (click)="showUserSubmenu = !showUserSubmenu"
+          (click)="isCloseMenu()"
+          [ngClass]="openMenu ? 'before:block  ' : 'before:hidden '"
+        >
+          <div
+            class="tooltip capitalize bg-secondary text-white text-sm py-1 px-2 rounded absolute left-16"
+            *ngIf="!openMenu"
+          >
+            <span>Users</span>
+          </div>
+          <div
+            class="flex items-center w-full"
+            [ngClass]="openMenu ? 'justify-between' : 'justify-center'"
+          >
+            <div class="link flex items-center gap-3">
+              <div class="icon">
+                <img
+                  src="/assets/icons/user.svg"
+                  class="invert-[18%]"
+                  [ngClass]="openMenu ? 'scale-100' : 'scale-150'"
+                  alt=""
+                />
+              </div>
+              <span
+                class="title capitalize hover:text-white"
+                [ngClass]="openMenu ? 'flex' : 'hidden'"
+                >Users</span
+              >
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <li
+        class="menu-link"
+        [ngClass]="openMenu ? 'block' : 'flex justify-center'"
+      >
+        <a
+          (click)="logout()"
+          class="flex items-center text-base px-9 relative cursor-pointer"
+          [ngClass]="openMenu ? 'before:block' : 'before:hidden'"
+        >
+          <div class="icon flex items-center">
+            <img
+              src="/assets/icons/signout.png"
+              class="invert-[18%] w-4 hover:rotate-[-90deg] custom-transition"
+              [ngClass]="openMenu ? 'scale-100 mr-3' : 'scale-150'"
+              alt=""
+            />
+          </div>
+          <span
+            class="title capitalize flex hover:text-white font-[bold]"
+            *ngIf="openMenu"
+            >signout</span
+          >
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

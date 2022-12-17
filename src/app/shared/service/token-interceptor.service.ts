@@ -17,6 +17,7 @@ import {
   BehaviorSubject,
   filter,
   take,
+  NEVER,
 } from 'rxjs';
 import { Token } from '../dto/token.dto';
 

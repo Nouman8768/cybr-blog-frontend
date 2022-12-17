@@ -1,0 +1,64 @@
+<section class="dashboard">
+  <div
+    class="heading text-black text-[32px] font-[semibold] capitalize leading-9 mb-10"
+  >
+    <h1>Dashboard</h1>
+  </div>
+  <div
+    class="cards-wrapper grid col-span-1 md:grid-cols-4 llg:grid-cols-3 gap-9"
+  >
+    <div class="card col-span-1 md:col-span-2 llg:col-span-1">
+      <app-card
+        [icon]="'/assets/icons/business.svg'"
+        [title]="'business'"
+        [number]="'120'"
+        label="'Total number of businesses'"
+      ></app-card>
+    </div>
+
+    <div class="col-span-1 md:col-span-2 llg:col-span-1">
+      <app-card
+        [icon]="'/assets/icons/delivery.svg'"
+        [title]="'drivers'"
+        [number]="'76'"
+        label="'Total number of drivers'"
+      ></app-card>
+    </div>
+
+    <div class="col-span-1 md:col-span-2 llg:col-span-1">
+      <app-card
+        [icon]="'/assets/icons/vuesax.svg'"
+        [title]="'deliveries'"
+        [number]="'120'"
+        label="'Total number of deliveries'"
+      ></app-card>
+    </div>
+
+    <div class="col-span-1 md:col-span-2 llg:col-span-1">
+      <app-card
+        [icon]="'/assets/icons/pending.svg'"
+        [title]="'open complaints'"
+        [number]="'4'"
+        label="'Total number of open complaints'"
+      ></app-card>
+    </div>
+
+    <div class="col-span-1 md:col-span-2 llg:col-span-1">
+      <app-card
+        [icon]="'/assets/icons/resolved.svg'"
+        [title]="'resolved complaints'"
+        [number]="'65'"
+        label="'Total number of resolved complaints'"
+      ></app-card>
+    </div>
+
+    <div class="sm:hidden complaints col-span-1 md:col-span-2 llg:col-span-1">
+      <app-card
+        [icon]="'/assets/icons/complaint.svg'"
+        [title]="'Complaints'"
+        [number]="'4'"
+        label="'Total number of complaints"
+      ></app-card>
+    </div>
+  </div>
+</section>

@@ -1,7 +1,7 @@
+import { HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Token } from '../dto/token.dto';
 import { AuthService } from '../service/auth.service';
 
 @Injectable({
@@ -9,12 +9,12 @@ import { AuthService } from '../service/auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private readonly service: AuthService,
+    private readonly authService: AuthService,
     private readonly route: Router,
     private readonly jwtHelper: JwtHelperService
   ) {}
   async canActivate() {
-    if (this.service.isLoggedOut()) {
+    if (this.authService.isLoggedOut()) {
       localStorage.clear();
       this.route.navigate(['/login']);
       alert('Access Denied Token Not Found');

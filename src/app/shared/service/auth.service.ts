@@ -84,7 +84,7 @@ export class AuthService {
     localStorage.clear();
     const token = localStorage.getItem('accesstoken');
     if (token === null) {
-      this.route.navigate(['authentication/login']);
+      this.route.navigate(['/authentication/login']);
     }
   }
   token: string | null = localStorage.getItem('refreshtoken');

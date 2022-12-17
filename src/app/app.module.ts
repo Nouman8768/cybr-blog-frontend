@@ -11,8 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { TokenInterceptorService } from './shared/service/token-interceptor.service';
-import { UserModule } from './pages/user/user.module';
-import { AuthGuard } from './shared/guard/auth.guard';
 
 @NgModule({
   imports: [
