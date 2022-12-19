@@ -10,7 +10,7 @@ export class CardComponent implements OnInit {
 
   @Input() icon!: string;
   @Input() title!: string;
-  @Input() number!: string;
+  @Input() number!: number;
   @Input() label!: string;
 
   ngOnInit(): void {}

@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
       } else if (this.profile.role[0] === 1) {
         this.route.navigate(['admin/dashboard']);
       } else if (this.profile.role[0] === 2) {
+        localStorage.clear();
         alert('Your Account is Ban Till a specific Time');
       } else {
         throw new Error('Users with this Role does not have access');

@@ -9,6 +9,11 @@ module.exports = {
         white: "#ffffff",
         black: "#000000",
       },
+      boxShadow: {
+        primary: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+        card: "1px 5px 14px rgba(23, 39, 46, 0.12)",
+        table: "1px 5px 14px rgba(23, 39, 46, 0.12)",
+      },
     },
     screens: {
       xxsm: "380px",

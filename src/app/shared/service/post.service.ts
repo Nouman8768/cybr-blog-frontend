@@ -13,14 +13,6 @@ export class PostService {
 
   url: string = environment.serverUrl;
 
-  public setter(post: Post) {
-    this.post = post;
-  }
-
-  public getter() {
-    return this.post;
-  }
-
   public async create(post: Post): Promise<Post> {
     let res = this.http.post<Post>(`${this.url}/blog-posts`, post);
     let data = await lastValueFrom(res);
@@ -52,6 +44,12 @@ export class PostService {
         },
       }
     );
+  }
+
+  public async count(): Promise<number> {
+    let res = this.http.get<number>(`${this.url}/blog-posts/count`);
+    let data = await lastValueFrom(res);
+    return data;
   }
 
   public search(text: string): Observable<Post[] | Post> {

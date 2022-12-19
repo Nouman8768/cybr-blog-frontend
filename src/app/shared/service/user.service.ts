@@ -22,4 +22,10 @@ export class UserService {
   public findAll(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(`${this.url}/users`);
   }
+
+  public async count(): Promise<number> {
+    let res = this.http.get<number>(`${this.url}/users/count`);
+    let data = await lastValueFrom(res);
+    return data;
+  }
 }
