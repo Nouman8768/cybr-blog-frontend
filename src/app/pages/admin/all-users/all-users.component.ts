@@ -12,7 +12,14 @@ export class AllUsersComponent implements OnInit {
 
   users: UserDto[] = [];
 
+  arr: number[] = [];
+
+  showDetails: boolean = false;
+
   ngOnInit(): void {
+    for (let index = 0; index < 50; index++) {
+      this.arr.push(1);
+    }
     this.get();
   }
 
@@ -21,5 +28,11 @@ export class AllUsersComponent implements OnInit {
       this.users = res;
       console.log('USERS', this.users);
     });
+  }
+
+  closeModal(event: any) {
+    if (event.target.className.includes('details-modal')) {
+      this.showDetails = false;
+    }
   }
 }

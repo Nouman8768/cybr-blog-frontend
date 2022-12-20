@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 })
 export class SignupComponent implements OnInit {
   constructor(
-    private readonly service: AuthService,
+    private readonly authService: AuthService,
     private readonly route: Router
   ) {}
 
@@ -58,7 +58,7 @@ export class SignupComponent implements OnInit {
     if (
       this.signUpForm.value.password === this.signUpForm.value.confirmpassword
     ) {
-      this.result = await this.service.signUp(this.signUpForm.value);
+      this.result = await this.authService.signUp(this.signUpForm.value);
       console.log(this.result);
       return this.result;
     } else {
@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
 
-      const uploadImage = await this.service.uploadProfileImage(formData);
+      const uploadImage = await this.authService.uploadProfileImage(formData);
 
       console.log('uploaded response: ', uploadImage);
     }
@@ -82,7 +82,6 @@ export class SignupComponent implements OnInit {
     this.file = (event.target as HTMLInputElement).files![0];
     this.signUpForm.patchValue({ image: this.file });
     const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-    // this.signUpForm.get('image')?.updateValueAndValidity();
     if (this.file && allowedMimeTypes.includes(this.file.type)) {
       const reader = new FileReader();
       reader.onload = () => {

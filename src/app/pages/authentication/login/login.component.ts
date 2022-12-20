@@ -59,11 +59,14 @@ export class LoginComponent implements OnInit {
       this.tokenInfo = this.authService.getUserProfile();
       this.profile = await this.userService.getUser(this.tokenInfo.user);
       console.log('ROLE', this.profile.role);
-      if (this.profile.role[0] === 0) {
+      if (this.profile.role[0] === 0 && this.profile.isActive === true) {
         this.route.navigate(['user']);
-      } else if (this.profile.role[0] === 1) {
+      } else if (this.profile.role[0] === 1 && this.profile.isActive === true) {
         this.route.navigate(['admin/dashboard']);
-      } else if (this.profile.role[0] === 2) {
+      } else if (
+        this.profile.role[0] === 0 ||
+        (this.profile.role[0] === 1 && this.profile.isActive === false)
+      ) {
         localStorage.clear();
         alert('Your Account is Ban Till a specific Time');
       } else {

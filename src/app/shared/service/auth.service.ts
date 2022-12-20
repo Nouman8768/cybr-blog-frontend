@@ -1,5 +1,5 @@
 import { lastValueFrom, Observable } from 'rxjs';
-import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserDto } from '../dto/user.dto';
@@ -16,6 +16,7 @@ export class AuthService {
     private readonly route: Router,
     private readonly jwtHelper: JwtHelperService
   ) {}
+
   url: string = environment.serverUrl;
 
   public async signUp(body: UserDto): Promise<UserDto> {
@@ -28,7 +29,9 @@ export class AuthService {
         },
       }
     );
+
     let data = await lastValueFrom(res);
+
     return data;
   }
 
@@ -42,13 +45,17 @@ export class AuthService {
         },
       }
     );
+
     let data = await lastValueFrom(res);
+
     return data;
   }
 
   public async uploadProfileImage(image: FormData): Promise<FormData> {
     let res = this.http.post<FormData | any>(`${this.url}/profile`, image);
+
     let data = await lastValueFrom(res);
+
     return data['url'];
   }
 
@@ -84,7 +91,7 @@ export class AuthService {
     localStorage.clear();
     const token = localStorage.getItem('accesstoken');
     if (token === null) {
-      this.route.navigate(['/authentication/login']);
+      this.route.navigate(['/login']);
     }
   }
   token: string | null = localStorage.getItem('refreshtoken');
@@ -94,6 +101,7 @@ export class AuthService {
       'Authorization',
       'Bearer ' + this.token!
     );
+
     let res = this.http.get<Token>(`${this.url}/authentication/refresh`, {
       headers: header,
     });

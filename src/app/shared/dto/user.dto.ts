@@ -16,6 +16,8 @@ export class UserDto {
   role!: Role[];
 
   refreshToken!: string;
+
+  isActive!: boolean;
 }
 export interface LooggedUser {
   user: string;
