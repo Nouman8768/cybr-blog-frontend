@@ -39,15 +39,55 @@
             >Faqs</a
           >
         </li>
-        <li
-          class="self-start rounded-lg font-[bold] shadow-lg custom-transition"
-        >
+        <li class="rounded-lg font-[bold] shadow-lg custom-transition">
           <a
             [routerLink]="['posts/create']"
             [routerLinkActive]="'font-bold text-primary'"
             [routerLinkActiveOptions]="{ exact: true }"
             >Add Post</a
           >
+        </li>
+        <li class="rounded-lg font-[bold] shadow-lg custom-transition">
+          <a
+            [routerLink]="['login']"
+            [routerLinkActive]="'font-bold text-primary'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Login</a
+          >
+        </li>
+        <li class="relative">
+          <div
+            class="user h-12 w-12 overflow-hidden flex items-center justify-center rounded-[50%] cursor-pointer relative"
+            (click)="showOptions = !showOptions"
+          >
+            <img
+              src="/assets/images/user.jpg"
+              class="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
+          <div
+            class="options absolute px-4 py-2 bg-white bg-opacity-70 backdrop-blur-sm rounded-md text-slate-700 text-sm font-[bold] w-28 z-50"
+            *ngIf="showOptions"
+          >
+            <ul class="flex flex-col gap-2">
+              <li>
+                <a href="#" class="custom-transition hover:text-slate-800"
+                  >Profile</a
+                >
+              </li>
+              <li>
+                <a href="#" class="custom-transition hover:text-slate-800"
+                  >My Posts</a
+                >
+              </li>
+              <li>
+                <a href="#" class="custom-transition hover:text-slate-800"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
