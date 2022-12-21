@@ -1,7 +1,8 @@
-<section class="header" *ngIf="rootPath()">
+<section class="header">
   <app-social-links></app-social-links>
   <app-navigation></app-navigation>
   <div
+    *ngIf="rootPath()"
     class="container mx-auto px-3 header-posts flex 2xl:justify-center flex-wrap gap-8 py-8 justify-center"
   >
     <app-header-post></app-header-post>
