@@ -16,6 +16,7 @@
             />
           </a>
           <div
+            *ngIf="showdots === true"
             class="cdots absolute top-2 right-2 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-2 overflow-hidden dots-bg rounded-[50%] w-[40px] h-[40px]"
             [ngClass]="'highlighted-dots' + i"
           >

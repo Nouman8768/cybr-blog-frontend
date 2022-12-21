@@ -39,7 +39,10 @@
             >Faqs</a
           >
         </li>
-        <li class="rounded-lg font-[bold] shadow-lg custom-transition">
+        <li
+          *ngIf="optionsAfter_UserLogsIn === true"
+          class="rounded-lg font-[bold] shadow-lg custom-transition"
+        >
           <a
             [routerLink]="['posts/create']"
             [routerLinkActive]="'font-bold text-primary'"
@@ -47,7 +50,10 @@
             >Add Post</a
           >
         </li>
-        <li class="rounded-lg font-[bold] shadow-lg custom-transition">
+        <li
+          *ngIf="optionsAfter_UserLogsIn === false"
+          class="rounded-lg font-[bold] shadow-lg custom-transition"
+        >
           <a
             [routerLink]="['login']"
             [routerLinkActive]="'font-bold text-primary'"
@@ -57,8 +63,9 @@
         </li>
         <li class="relative">
           <div
+            *ngIf="optionsAfter_UserLogsIn === true"
             class="user h-12 w-12 overflow-hidden flex items-center justify-center rounded-[50%] cursor-pointer relative"
-            (click)="showOptions = !showOptions"
+            (click)="showUserProfileOptions = !showUserProfileOptions"
           >
             <img
               src="/assets/images/user.jpg"
@@ -68,21 +75,27 @@
           </div>
           <div
             class="options absolute px-4 py-2 bg-white bg-opacity-70 backdrop-blur-sm rounded-md text-slate-700 text-sm font-[bold] w-28 z-50"
-            *ngIf="showOptions"
+            *ngIf="showUserProfileOptions"
           >
             <ul class="flex flex-col gap-2">
               <li>
-                <a href="#" class="custom-transition hover:text-slate-800"
+                <a
+                  [routerLink]="['/user']"
+                  class="custom-transition hover:text-slate-800"
                   >Profile</a
                 >
               </li>
               <li>
-                <a href="#" class="custom-transition hover:text-slate-800"
+                <a
+                  [routerLink]="['my-posts']"
+                  class="custom-transition hover:text-slate-800"
                   >My Posts</a
                 >
               </li>
               <li>
-                <a href="#" class="custom-transition hover:text-slate-800"
+                <a
+                  (click)="loggedOut()"
+                  class="custom-transition hover:text-slate-800"
                   >Logout</a
                 >
               </li>

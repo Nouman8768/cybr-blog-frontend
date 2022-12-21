@@ -13,7 +13,7 @@ import { PostService } from 'src/app/shared/service/post.service';
 })
 export class UpdateComponent implements OnInit {
   constructor(
-    private readonly service: PostService,
+    private readonly postsService: PostService,
     private readonly route: Router,
     private readonly activeroute: ActivatedRoute
   ) {}
@@ -29,7 +29,7 @@ export class UpdateComponent implements OnInit {
   async getAll() {
     let id = this.activeroute.snapshot.paramMap.get('id');
 
-    this.post = await this.service.findOne(id!);
+    this.post = await this.postsService.findOne(id!);
 
     this.postForm = new FormGroup({
       _id: new FormControl(this.post._id),
@@ -47,7 +47,7 @@ export class UpdateComponent implements OnInit {
 
   async updatePost(): Promise<Post> {
     console.log('Response Before', this.postForm.value);
-    const response = await this.service.update(
+    const response = await this.postsService.update(
       this.postForm.value._id,
       this.postForm.value
     );
@@ -59,10 +59,10 @@ export class UpdateComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
 
-      const unlinked = await this.service.unlinkImagefromServer(
+      const unlinked = await this.postsService.unlinkImagefromServer(
         this.postForm.value.image
       );
-      const uploadImage = await this.service.uploadImage(formData);
+      const uploadImage = await this.postsService.uploadImage(formData);
       this.postForm.value.image = uploadImage;
     }
   }

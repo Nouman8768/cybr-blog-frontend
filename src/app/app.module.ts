@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { TokenInterceptorService } from './shared/service/token-interceptor.service';
+import { AuthenticationModule } from './pages/authentication/authentication.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { TokenInterceptorService } from './shared/service/token-interceptor.serv
     NgxPaginationModule,
     PagesModule,
     SharedModule,
+    AuthenticationModule,
   ],
   declarations: [AppComponent],
   providers: [

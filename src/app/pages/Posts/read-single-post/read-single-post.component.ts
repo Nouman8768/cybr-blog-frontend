@@ -11,7 +11,7 @@ import { Post } from '../../../shared/dto/post.schema';
 })
 export class ReadSinglePostComponent implements OnInit {
   constructor(
-    private readonly service: PostService,
+    private readonly postsService: PostService,
     private readonly route: Router,
     private readonly activeroute: ActivatedRoute
   ) {}
@@ -26,7 +26,7 @@ export class ReadSinglePostComponent implements OnInit {
     this.blogpost$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
         const postSlug: string = param['id'];
-        return this.service.findOne(postSlug);
+        return this.postsService.findOne(postSlug);
       })
     );
   }

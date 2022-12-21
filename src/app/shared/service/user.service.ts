@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Post } from '../dto/post.schema';
 import { UserDto } from '../dto/user.dto';
 
 @Injectable({
@@ -21,6 +22,10 @@ export class UserService {
 
   public findAll(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(`${this.url}/users`);
+  }
+
+  public getUserPosts(id: string): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.url}/blog-posts/userPosts/${id}`);
   }
 
   public async count(): Promise<number> {

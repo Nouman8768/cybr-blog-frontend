@@ -83,8 +83,4 @@ export class UserComponent implements OnInit {
       role: new FormControl(0, [Validators.required]),
     });
   }
-
-  loggedOut() {
-    this.authService.logout();
-  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/shared/dto/post.schema';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { PostService } from 'src/app/shared/service/post.service';
 
 @Component({
@@ -10,15 +11,19 @@ import { PostService } from 'src/app/shared/service/post.service';
 })
 export class BigPostComponent implements OnInit {
   constructor(
-    private readonly service: PostService,
+    private readonly postsService: PostService,
+    private readonly authService: AuthService,
     private readonly route: Router
   ) {}
-
+  showdots: boolean = false;
   confirmationState: boolean = true;
   highlightedPosts: Post[] = [];
 
   async ngOnInit() {
     await this.getAllPosts();
+
+    this.showDots();
+
     setTimeout(() => {
       const b_posts = document.querySelectorAll('.big-post');
 
@@ -49,7 +54,7 @@ export class BigPostComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.service.findAll().subscribe((data: Post[]) => {
+    this.postsService.findAll().subscribe((data: Post[]) => {
       this.highlightedPosts = data.slice(3, 4);
     });
   }
@@ -70,8 +75,16 @@ export class BigPostComponent implements OnInit {
   }
 
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.delete(id);
-    const unlinked = await this.service.unlinkImagefromServer(filename);
+    const deleted = await this.postsService.delete(id);
+    const unlinked = await this.postsService.unlinkImagefromServer(filename);
     this.getAllPosts();
+  }
+
+  showDots() {
+    if (this.authService.tokenNotExpired()) {
+      this.showdots = true;
+    } else {
+      this.showdots;
+    }
   }
 }

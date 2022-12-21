@@ -11,7 +11,7 @@ import { Post } from '../../../shared/dto/post.schema';
 })
 export class CreateComponent implements OnInit {
   constructor(
-    private readonly service: PostService,
+    private readonly postsService: PostService,
     private readonly route: Router
   ) {}
 
@@ -35,7 +35,7 @@ export class CreateComponent implements OnInit {
   }
 
   async savePost(): Promise<Post> {
-    this.result = await this.service.create(this.postForm.value);
+    this.result = await this.postsService.create(this.postForm.value);
     console.log(this.result);
     return this.result;
   }
@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
 
-      const uploadImage = await this.service.uploadImage(formData);
+      const uploadImage = await this.postsService.uploadImage(formData);
 
       console.log('uploaded response: ', uploadImage);
     }

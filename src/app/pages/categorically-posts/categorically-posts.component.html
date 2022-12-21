@@ -86,6 +86,7 @@
               </div>
             </div>
             <div
+              *ngIf="showdots === true"
               class="dots absolute top-8 sm:top-0 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer overflow-hidden dots-bg rounded-[50%] w-[40px] h-[40px]"
               [ngClass]="'cp-dots' + i"
             >

@@ -1,8 +1,10 @@
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { map, Observable, switchMap } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Post } from 'src/app/shared/dto/post.schema';
 import { PostService } from '../../service/post.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-header-post',
@@ -12,14 +14,19 @@ import { PostService } from '../../service/post.service';
 export class HeaderPostComponent implements OnInit {
   constructor(
     private readonly service: PostService,
-    private readonly route: Router
+    private readonly route: Router,
+    private readonly jwtHelper: JwtHelperService,
+    private readonly authService: AuthService
   ) {}
+
+  showdots: boolean = false;
 
   options: boolean = false;
   confirmationState: boolean = true;
   columnPosts: Post[] = [];
 
   async ngOnInit() {
+    this.showDots();
     await this.getAllPosts();
     setTimeout(() => {
       const cPosts = document.querySelectorAll('.header-post');
@@ -80,5 +87,13 @@ export class HeaderPostComponent implements OnInit {
     const deleted = await this.service.delete(id);
     const unlinked = await this.service.unlinkImagefromServer(filename);
     this.getAllPosts();
+  }
+
+  showDots() {
+    if (this.authService.tokenNotExpired()) {
+      this.showdots = true;
+    } else {
+      this.showdots;
+    }
   }
 }

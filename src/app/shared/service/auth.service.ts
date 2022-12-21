@@ -83,6 +83,11 @@ export class AuthService {
     return this.jwtHelper.isTokenExpired(token!);
   }
 
+  public tokenNotExpired(): boolean {
+    const token = localStorage.getItem('accesstoken');
+    return !this.jwtHelper.isTokenExpired(token!);
+  }
+
   public getAccessToken() {
     return localStorage.getItem('accesstoken');
   }

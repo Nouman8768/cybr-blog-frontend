@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
 import { Post } from 'src/app/shared/dto/post.schema';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { PostService } from 'src/app/shared/service/post.service';
 
 @Component({
@@ -11,11 +12,13 @@ import { PostService } from 'src/app/shared/service/post.service';
 })
 export class SearchResultsComponent implements OnInit {
   constructor(
-    private readonly service: PostService,
+    private readonly postsService: PostService,
+    private readonly authService: AuthService,
     private readonly route: Router,
     private readonly activeroute: ActivatedRoute
   ) {}
 
+  showdots: boolean = false;
   page: number = 1;
   blogposts$!: Observable<Post[] | any>;
   posts!: Post[];
@@ -66,7 +69,7 @@ export class SearchResultsComponent implements OnInit {
     this.blogposts$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
         const postCategory: string = param['category'];
-        return this.service.findByCategory(postCategory).pipe(
+        return this.postsService.findByCategory(postCategory).pipe(
           map((blogEntery: Post[]) => {
             this.posts = blogEntery;
             this.category = blogEntery[0].category;
@@ -86,8 +89,16 @@ export class SearchResultsComponent implements OnInit {
     });
   }
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.delete(id);
-    const unlinked = await this.service.unlinkImagefromServer(filename);
+    const deleted = await this.postsService.delete(id);
+    const unlinked = await this.postsService.unlinkImagefromServer(filename);
     this.getAllPosts();
+  }
+
+  showDots() {
+    if (this.authService.tokenNotExpired()) {
+      this.showdots = true;
+    } else {
+      this.showdots;
+    }
   }
 }

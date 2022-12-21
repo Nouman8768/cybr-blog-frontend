@@ -50,6 +50,7 @@
         </div>
       </div>
       <div
+        *ngIf="showdots === true"
         class="cdots absolute top-2 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer px-2 overflow-hidden dots-bg rounded-[50%] w-[30px] h-[30px]"
         [ngClass]="'fl-dots' + i"
       >

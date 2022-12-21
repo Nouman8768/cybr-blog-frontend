@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/shared/dto/post.schema';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { PostService } from 'src/app/shared/service/post.service';
 
 @Component({
@@ -10,9 +11,12 @@ import { PostService } from 'src/app/shared/service/post.service';
 })
 export class LatestPostsComponent implements OnInit {
   constructor(
-    private readonly service: PostService,
+    private readonly postsService: PostService,
+    private readonly authService: AuthService,
     private readonly route: Router
   ) {}
+
+  showdots: boolean = false;
 
   confirmationState: boolean = true;
 
@@ -20,6 +24,9 @@ export class LatestPostsComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAllPosts();
+
+    this.showDots();
+
     setTimeout(() => {
       const fllPosts = document.querySelectorAll('.fll-post');
 
@@ -61,7 +68,7 @@ export class LatestPostsComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.service.findAll().subscribe((data: Post[]) => {
+    this.postsService.findAll().subscribe((data: Post[]) => {
       this.flPosts = data.slice(2, 6);
     });
   }
@@ -72,8 +79,16 @@ export class LatestPostsComponent implements OnInit {
     this.route.navigate([`posts/single-post/${details._id}`]);
   }
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.delete(id);
-    const unlinked = await this.service.unlinkImagefromServer(filename);
+    const deleted = await this.postsService.delete(id);
+    const unlinked = await this.postsService.unlinkImagefromServer(filename);
     this.getAllPosts();
+  }
+
+  showDots() {
+    if (this.authService.tokenNotExpired()) {
+      this.showdots = true;
+    } else {
+      this.showdots;
+    }
   }
 }

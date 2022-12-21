@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       this.profile = await this.userService.getUser(this.tokenInfo.user);
       console.log('ROLE', this.profile.role);
       if (this.profile.role[0] === 0 && this.profile.isActive === true) {
-        this.route.navigate(['user']);
+        this.route.navigate(['']);
       } else if (this.profile.role[0] === 1 && this.profile.isActive === true) {
         this.route.navigate(['admin/dashboard']);
       } else if (
