@@ -75,7 +75,7 @@
                     <a
                       *ngIf="user.role[0] === 1"
                       class="text-red-500"
-                      (click)="dismissAsAdmin()"
+                      (click)="dismissAsAdmin(user._id)"
                       >Dismiss Admin</a
                     >
                   </li>

@@ -30,8 +30,8 @@ export class AllUsersComponent implements OnInit {
     });
   }
 
-  async dismissAsAdmin() {
-    let res = await this.userService.dismissAsAdmin(this.users[2]._id);
+  async dismissAsAdmin(id: string) {
+    let res = await this.userService.dismissAsAdmin(id);
     console.log(res);
   }
 
