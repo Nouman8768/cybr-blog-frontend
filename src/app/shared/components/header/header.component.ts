@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit {
           path.url === '/login' ||
           path.url === '/signup' ||
           path.url === '/my-profile' ||
-          path.url === '/admin'
+          path.url === '/admin' ||
+          path.url === '/admin/dashboard' ||
+          path.url === '/admin/allusers'
         ) {
           this.showheader = false;
         } else {

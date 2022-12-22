@@ -8,6 +8,7 @@ import { PostService } from 'src/app/shared/service/post.service';
 import { LoginComponent } from '../../authentication/login/login.component';
 import { UserService } from 'src/app/shared/service/user.service';
 import { LooggedUser } from 'src/app/shared/dto/user.dto';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-posts',
@@ -30,6 +31,10 @@ export class UserPostsComponent implements OnInit {
   posts!: Post[];
   category!: string;
   global!: number;
+
+  postForm!: FormGroup;
+  file!: File;
+  selectedImage!: string;
 
   loggedUserId!: LooggedUser;
 
@@ -125,6 +130,46 @@ export class UserPostsComponent implements OnInit {
       this.showdots = true;
     } else {
       this.showdots;
+    }
+  }
+
+  async submitUpdateForm() {
+    await this.submitImage();
+    await this.updatePost();
+    await this.route.navigate(['/']);
+  }
+
+  async updatePost(): Promise<Post> {
+    console.log('Response Before', this.postForm.value);
+    const response = await this.postsService.update(
+      this.postForm.value._id,
+      this.postForm.value
+    );
+    return response;
+  }
+
+  async submitImage() {
+    if (this.selectedImage != undefined) {
+      const formData = new FormData();
+      formData.append('file', this.file);
+
+      const unlinked = await this.postsService.unlinkImagefromServer(
+        this.postForm.value.image
+      );
+      const uploadImage = await this.postsService.uploadImage(formData);
+      this.postForm.value.image = uploadImage;
+    }
+  }
+
+  async attachFile(event: any) {
+    this.file = (event.target as HTMLInputElement).files![0];
+    const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+    if (this.file && allowedMimeTypes.includes(this.file.type)) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.selectedImage = reader.result as string;
+      };
+      reader.readAsDataURL(this.file);
     }
   }
 }
