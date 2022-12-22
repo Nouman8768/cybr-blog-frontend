@@ -32,6 +32,10 @@ export class SignupComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if (this.authRoute()) {
+      this.route.navigate(['/']);
+    }
+
     const show_icon = document.querySelector('.show-icon');
     let pass_input = document.querySelector('#pass-input') as HTMLElement;
     let con_input = document.querySelector('#con-pass-input') as HTMLElement;
@@ -46,6 +50,10 @@ export class SignupComponent implements OnInit {
         : con_input.setAttribute('type', 'password');
       this.show = !this.show;
     });
+  }
+
+  authRoute() {
+    return this.route.url.includes('authentication/signup');
   }
 
   async submitAuthForm() {

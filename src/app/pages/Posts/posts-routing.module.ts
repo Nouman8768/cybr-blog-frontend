@@ -27,7 +27,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'search-results',
+    path: 'search-results/:text',
     loadChildren: () => SearchResultsModule,
   },
 ];

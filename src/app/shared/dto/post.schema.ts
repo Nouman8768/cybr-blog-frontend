@@ -1,3 +1,5 @@
+import { UserDto } from './user.dto';
+
 export interface Post {
   _id: string;
 
@@ -10,4 +12,8 @@ export interface Post {
   image: string;
 
   slug: string;
+
+  author: UserDto;
+
+  text: string;
 }

@@ -14,15 +14,15 @@ export class SearchResultsComponent implements OnInit {
   constructor(
     private readonly postsService: PostService,
     private readonly authService: AuthService,
-    private readonly route: Router,
-    private readonly activeroute: ActivatedRoute
+    private readonly activeroute: ActivatedRoute,
+    private readonly route: Router
   ) {}
 
   showdots: boolean = false;
   page: number = 1;
   blogposts$!: Observable<Post[] | any>;
   posts!: Post[];
-  category!: string;
+  searchedText!: string;
 
   ngOnInit(): void {
     this.getAllPosts();
@@ -68,15 +68,22 @@ export class SearchResultsComponent implements OnInit {
   async getAllPosts() {
     this.blogposts$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
-        const postCategory: string = param['category'];
-        return this.postsService.findByCategory(postCategory).pipe(
-          map((blogEntery: Post[]) => {
-            this.posts = blogEntery;
-            this.category = blogEntery[0].category;
+        const searchedText: string = param['text'];
+        return this.postsService.search(searchedText).pipe(
+          map((res: Post[]) => {
+            this.posts = res;
+            this.searchedText = searchedText;
           })
         );
       })
     );
+    // this.service.search(this.search.value).subscribe((data) => {
+    //   this.result = data;
+    //   console.log(data);
+    //   console.log(this.result);
+
+    //   this.search.reset();
+    // });
   }
   async moveToUpdatePage(id: string) {
     this.route.navigate([`update/${id}`], {

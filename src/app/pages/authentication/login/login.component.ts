@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if (this.authRoute()) {
+      this.route.navigate(['/']);
+    }
     const show_icon = document.querySelector('.show-icon');
     var pass_input = document.querySelector('#pass-input') as HTMLElement;
 
@@ -45,6 +48,10 @@ export class LoginComponent implements OnInit {
         : pass_input.setAttribute('type', 'password');
       this.show = !this.show;
     });
+  }
+
+  authRoute() {
+    return this.route.url.includes('authentication/login');
   }
 
   async submitCredentialForm() {
