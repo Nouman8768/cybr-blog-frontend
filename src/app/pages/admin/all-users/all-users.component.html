@@ -35,12 +35,20 @@
                   class="w-full h-full object-cover"
                   alt=""
                 />
+                <img
+                  *ngIf="!user.image"
+                  src="../../../../assets/images/no-image.jpg"
+                  class="w-full h-full object-cover"
+                  alt=""
+                />
               </div>
               {{ user.username }}
             </td>
             <td>{{ user.firstname }}</td>
             <td>{{ user.lastname }}</td>
-            <td>{{ user.role }}</td>
+            <td *ngIf="user.role[0] === 1">Admin</td>
+            <td *ngIf="user.role[0] === 0">User</td>
+
             <td class="relative actions">
               <input type="checkbox" name="actions" id="actions{{ i }}" />
               <label for="actions{{ i }}" class="cursor-pointer w-full">
@@ -52,13 +60,21 @@
               >
                 <ul class="flex flex-col gap-2 font-[semibold]">
                   <li>
-                    <a href="#">Remove</a>
+                    <a href="#" class="text-red-700">Remove</a>
                   </li>
                   <li>
-                    <a href="#">Block</a>
+                    <a href="#" class="text-yellow-600">Block</a>
                   </li>
                   <li>
-                    <a href="#">Make Admin</a>
+                    <a
+                      *ngIf="user.role[0] === 0"
+                      href="#"
+                      class="text-green-600"
+                      >Make Admin</a
+                    >
+                    <a *ngIf="user.role[0] === 1" href="#" class="text-red-500"
+                      >Dismiss Admin</a
+                    >
                   </li>
                 </ul>
               </div>

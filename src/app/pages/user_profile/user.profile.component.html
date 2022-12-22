@@ -18,6 +18,7 @@
       <form
         *ngIf="userForm"
         [formGroup]="userForm"
+        (ngSubmit)="submitUpdateForm()"
         class="relative bg-slate-900 bg-opacity-20 shadow-lg backdrop-blur-sm p-12 rounded-[20px] flex flex-col gap-14"
       >
         <div class="edit_profile absolute top-6 right-6">
@@ -34,7 +35,7 @@
             class="profile-img w-[200px] h-[200px] flex items-center justify-center rounded-[50%] overflow-hidden border relative"
           >
             <img
-              src="{{ url }}/{{ profile.image }}"
+              src="{{ url }}/{{ userForm.value.image }}"
               class="h-full w-full object-cover relative"
               alt=""
             />
@@ -58,15 +59,22 @@
             [ngClass]="editPic ? '' : 'hidden'"
             >Choose Picture</label
           >
-          <input type="file" name="profile" class="hidden" id="profile-pic" />
+          <input
+            type="file"
+            name="profile"
+            class="hidden"
+            id="profile-pic"
+            (change)="attachFile($event)"
+          />
 
           <div
-            class="choosed-pic w-[250px] overflow-hidden mt-4 flex flex-col gap-2"
+            *ngIf="selectedImage"
+            class="choosed-pic w-[200px] overflow-hidden mt-4 flex flex-col gap-2"
           >
             <span class="text-white font-[medium]">You choosed</span>
             <img
-              src="/assets/images/signup.jpg"
-              class="w-full object-cover"
+              [src]="selectedImage"
+              class="w-full h-[200px] object-cover rounded-full"
               alt=""
             />
           </div>
@@ -121,6 +129,7 @@
 
           <div class="form-group text-center col-span-2 mt-3">
             <button
+              [disabled]="userForm.invalid"
               type="submit"
               class="cursor-pointer bg-primary font-[bold] px-6 py-3 rounded-md custom-transition hover:ml-3 shadow-lg"
               *ngIf="visibleFields"

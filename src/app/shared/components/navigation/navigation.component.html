@@ -62,7 +62,10 @@
             >Login</a
           >
         </li>
-        <li class="get-started text-center">
+        <li
+          *ngIf="optionsAfter_UserLogsIn === false"
+          class="get-started text-center"
+        >
           <a
             [routerLink]="['signup']"
             class="text-sm bg-primary border rounded-lg custom-transition border-black block py-1 px-2 text-black hover:text-primary hover:bg-black font-[bold]"

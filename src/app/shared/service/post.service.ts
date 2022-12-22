@@ -73,7 +73,7 @@ export class PostService {
   }
 
   public async uploadImage(imageBody: FormData): Promise<FormData> {
-    let res = this.http.post<any>(`${this.url}/posts`, imageBody);
+    let res = this.http.post<any>(`${this.url}/blogpost`, imageBody);
     let data = await lastValueFrom(res);
     return data['url'];
   }

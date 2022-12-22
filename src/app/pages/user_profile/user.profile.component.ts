@@ -5,6 +5,7 @@ import { LooggedUser, UserDto } from 'src/app/shared/dto/user.dto';
 import { Token } from 'src/app/shared/dto/token.dto';
 import { UserService } from 'src/app/shared/service/user.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -14,7 +15,8 @@ import { environment } from 'src/environments/environment';
 export class UserComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly route: Router
   ) {}
 
   editPic: boolean = false;
@@ -25,6 +27,9 @@ export class UserComponent implements OnInit {
   profile!: UserDto;
   userForm!: FormGroup;
   url: string = environment.serverUrl;
+
+  file!: File;
+  selectedImage!: string;
 
   ngOnInit() {
     this.loadProfile();
@@ -72,9 +77,49 @@ export class UserComponent implements OnInit {
 
       username: new FormControl(this.profile.username, [Validators.required]),
 
-      image: new FormControl(),
+      image: new FormControl(this.profile.image),
 
       role: new FormControl(0, [Validators.required]),
     });
+  }
+
+  async submitUpdateForm() {
+    await this.submitImage();
+    await this.updatePost();
+    await this.route.navigate(['/']);
+  }
+
+  async updatePost(): Promise<UserDto> {
+    console.log('Response Before', this.userForm.value);
+    const response = await this.userService.updateProfile(
+      this.profile._id,
+      this.userForm.value
+    );
+    return response;
+  }
+
+  async submitImage() {
+    if (this.selectedImage != undefined) {
+      const formData = new FormData();
+      formData.append('file', this.file);
+
+      const unlinked = await this.userService.unlinkImagefromServer(
+        this.userForm.value.image
+      );
+      const uploadImage = await this.userService.uploadImage(formData);
+      this.userForm.value.image = uploadImage;
+    }
+  }
+
+  async attachFile(event: any) {
+    this.file = (event.target as HTMLInputElement).files![0];
+    const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+    if (this.file && allowedMimeTypes.includes(this.file.type)) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.selectedImage = reader.result as string;
+      };
+      reader.readAsDataURL(this.file);
+    }
   }
 }

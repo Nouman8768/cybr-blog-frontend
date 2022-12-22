@@ -28,8 +28,28 @@ export class UserService {
     return this.http.get<Post[]>(`${this.url}/blog-posts/userPosts/${id}`);
   }
 
+  public async updateProfile(id: string, body: UserDto): Promise<UserDto> {
+    let res = this.http.patch<UserDto>(`${this.url}/users/${id}`, body);
+    let data = await lastValueFrom(res);
+    return data;
+  }
+
   public async count(): Promise<number> {
     let res = this.http.get<number>(`${this.url}/users/count`);
+    let data = await lastValueFrom(res);
+    return data;
+  }
+
+  public async uploadImage(imageBody: FormData): Promise<FormData> {
+    let res = this.http.post<any>(`${this.url}/profile`, imageBody);
+    let data = await lastValueFrom(res);
+    return data['url'];
+  }
+
+  public async unlinkImagefromServer(filename: string): Promise<string> {
+    let res = this.http.delete<string>(
+      `${this.url}/blog-posts/server/${filename}`
+    );
     let data = await lastValueFrom(res);
     return data;
   }

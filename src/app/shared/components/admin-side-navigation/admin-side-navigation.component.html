@@ -1,5 +1,5 @@
 <nav
-  class="lg:w-[250px] bg-slate-500 text-[#CDCDCD] min-h-full relative custom-transition"
+  class="lg:w-[250px] bg-slate-700 text-[#CDCDCD] min-h-full relative custom-transition"
   [ngClass]="openMenu ? 'w-[250px]' : 'w-24'"
 >
   <div
@@ -21,7 +21,11 @@
   </div>
   <div class="logo flex justify-center pt-20">
     <a [routerLink]="['/dashboard']">
-      <img src="../../../../assets/images/create.jpg" alt="" />
+      <img
+        class="rounded-full h-[8rem] w-[8rem]"
+        src="../../../../assets/images/create.jpg"
+        alt=""
+      />
     </a>
   </div>
 
