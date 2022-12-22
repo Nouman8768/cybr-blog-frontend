@@ -29,6 +29,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     if (!this.authService.isLoggedOut()) {
       let res: LooggedUser = this.authService.getUserProfile();
       this.user = await this.userService.getUser(res.user);
+      console.log('USER', this.user);
+
       if (this.user.role[0] === 0) {
         alert('Access Denied! Only Admin Has Access');
         this.route.navigate(['/']);

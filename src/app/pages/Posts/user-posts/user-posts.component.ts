@@ -126,7 +126,7 @@ export class UserPostsComponent implements OnInit {
   }
 
   showDots() {
-    if (this.authService.tokenNotExpired() && this.global) {
+    if (this.authService.tokenNotExpired()) {
       this.showdots = true;
     } else {
       this.showdots;
