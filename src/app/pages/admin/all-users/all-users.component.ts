@@ -14,13 +14,20 @@ export class AllUsersComponent implements OnInit {
 
   arr: number[] = [];
 
-  showDetails: boolean = false;
+  showActions: boolean = true;
 
   ngOnInit(): void {
     for (let index = 0; index < 50; index++) {
       this.arr.push(1);
     }
     this.get();
+  }
+
+  closeActions(event: any) {
+    if (!event.target.className.includes('user-options')) {
+      this.showActions = false;
+      console.log('clicked');
+    }
   }
 
   get() {
@@ -32,7 +39,7 @@ export class AllUsersComponent implements OnInit {
 
   closeModal(event: any) {
     if (event.target.className.includes('details-modal')) {
-      this.showDetails = false;
+      this.showActions = false;
     }
   }
 }

@@ -13,10 +13,6 @@
   box-sizing: border-box;
 }
 
-
-
-
-
 @font-face {
   font-family: "logo";
   src: url("./assets/fonts/Montserrat-Regular.ttf");
@@ -47,6 +43,11 @@
   src: url("./assets/fonts/Poppins-Black.ttf");
 }
 
+@font-face {
+  font-family: "semibold";
+  src: url("./assets/fonts/Poppins-Medium.ttf");
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -73,9 +74,6 @@ body {
 }
 
 .dots-bg {
-
-  
-
   background: radial-gradient(
     circle,
     rgba(35, 255, 234, 0.9923319669664741) 0%,
@@ -192,5 +190,78 @@ select {
 .ngx-pagination {
   .small-screen {
     display: none !important;
+  }
+}
+
+table {
+  border-radius: 5px;
+  table-layout: auto;
+  width: 100%;
+  border-collapse: collapse;
+  tbody {
+    height: 30px;
+    tr {
+      font-size: 14px;
+      td.username {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        text-transform: capitalize;
+        font-family: "bold";
+      }
+    }
+  }
+  tr {
+    border-bottom: 1px solid #cdcdcd;
+    transition: all 400ms ease;
+    &:last-child {
+      border: none;
+    }
+    &:hover {
+      background-color: rgb(247, 248, 249);
+    }
+  }
+  td {
+    padding: 12px 32px;
+    white-space: nowrap;
+    letter-spacing: 1px;
+  }
+  th {
+    position: sticky;
+    background-color: white;
+    top: 0;
+    font-size: 14px;
+
+    color: #6c6c6c;
+    padding: 16px 0;
+    text-align: left;
+    padding: 12px 32px;
+    border-bottom: 1px solid #cdcdcd;
+    letter-spacing: 1px;
+  }
+}
+
+section {
+  .data-table {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 8px;
+      height: 14px;
+      background-color: #cdcdcd;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      &:hover {
+        background-color: #9e9c9c;
+      }
+    }
   }
 }

@@ -1,47 +1,13 @@
-table {
-  border-radius: 5px;
-  table-layout: auto;
-  width: 100%;
-  border-collapse: collapse;
-  tbody {
-    height: 30px;
-    tr {
-      font-size: 14px;
-      td.username {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        text-transform: capitalize;
-        font-family: "bold";
-      }
+section {
+  table {
+    td.actions > input {
+      display: none;
     }
-  }
-  tr {
-    border-bottom: 1px solid #cdcdcd;
-    transition: all 400ms ease;
-    &:last-child {
-      border: none;
+    td.actions > input ~ .user-options {
+      display: none;
     }
-    &:hover {
-      background-color: rgb(247, 248, 249);
+    td.actions > input:checked ~ .user-options {
+      display: flex;
     }
-  }
-  td {
-    padding: 12px 32px;
-    white-space: nowrap;
-    letter-spacing: 1px;
-  }
-  th {
-    position: sticky;
-    background-color: white;
-    top: 0;
-    font-size: 14px;
-
-    color: #6c6c6c;
-    padding: 16px 0;
-    text-align: left;
-    padding: 12px 32px;
-    border-bottom: 1px solid #cdcdcd;
-    letter-spacing: 1px;
   }
 }

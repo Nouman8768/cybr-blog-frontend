@@ -22,7 +22,7 @@
   <div class="navigation min-h-screen" *ngIf="adminRoute()">
     <app-admin-side-navigation></app-admin-side-navigation>
   </div>
-  <div class="content flex-1" [ngClass]="adminRoute() ? 'px-10 py-12' : ' '">
+  <div class="content flex-1" [ngClass]="adminRoute() ? 'px-6 py-12' : ' '">
     <app-header></app-header>
     <router-outlet></router-outlet>
   </div>

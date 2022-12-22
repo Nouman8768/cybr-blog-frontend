@@ -1,186 +1,8 @@
 <section
   class="users bg-white max-w-screen-2xl 2xl:min-w-full overflow-x-hidden py-12 relative px-3 xsm:px-10 min-h-screen h-full"
+  (click)="closeActions($event)"
 >
-  <!-- <div
-    class="model details-modal bg-primary bg-opacity-20 w-full min-h-full fixed z-50 top-0 left-0 items-center justify-center flex"
-    *ngIf="showDetails"
-    (click)="closeModal($event)"
-  >
-    <div
-      class="content relative bg-white md:w-[710px] rounded-md shadow-table md:py-14 py-8"
-    >
-      <div
-        class="close absolute top-3 right-3 cursor-pointer bg-primary text-white h-6 w-6 rounded-[50%] flex md:hidden items-center justify-center leading-3 overflow-hidden"
-        (click)="showDetails = !showDetails"
-      >
-        <img
-          src="/assets/icons/close.png"
-          class="w-full h-full object-cover"
-          alt=""
-        />
-      </div>
-      <div
-        class="heading capitalize text-xl font-[semibold] text-primary text-center mb-6"
-      >
-        <h2>Business Info</h2>
-      </div>
-      <ul
-        class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 md:pl-0 md:mb-4 justify-center gap-3 md:gap-11 ml-7"
-        id="tabs-tab"
-        role="tablist"
-      >
-        <li class="nav-item" role="presentation">
-          <a
-            href="#tabs-about"
-            class="nav-link md:block font-[medium] text-sm border-x-0 border-t-0 border-b-2 border-transparent px-1 py-1 hover:border-transparent focus:border-transparent active leading-[18px] text-black capitalize"
-            id="tabs-home-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#tabs-about"
-            role="tab"
-            aria-controls="tabs-about"
-            aria-selected="true"
-            >about</a
-          >
-        </li>
-        <li class="nav-item" role="presentation">
-          <a
-            href="#tabs-business"
-            class="nav-link md:block font-[medium] text-sm border-x-0 border-t-0 border-b-2 border-transparent px-1 py-1 hover:border-transparent focus:border-transparent leading-[18px] text-black capitalize"
-            id="tabs-home-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#tabs-business"
-            role="tab"
-            aria-controls="tabs-business"
-            aria-selected="true"
-            >business</a
-          >
-        </li>
-        <li class="nav-item" role="presentation">
-          <a
-            href="#tabs-subscription"
-            class="nav-link md:block font-[medium] text-sm border-x-0 border-t-0 border-b-2 border-transparent px-1 py-1 hover:border-transparent focus:border-transparent leading-[18px] text-black capitalize"
-            id="tabs-home-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#tabs-subscription"
-            role="tab"
-            aria-controls="tabs-subscription"
-            aria-selected="true"
-            >Subscription</a
-          >
-        </li>
-      </ul>
-      <div class="tab-content px-10 md:px-[100px]" id="tabs-tabContent">
-        <div
-          class="tab-pane fade show active"
-          id="tabs-about"
-          role="tabpanel"
-          aria-labelledby="tabs-about-tab"
-        >
-          <div class="flex flex-col md:flex-row gap-8 justify-center">
-            <div
-              class="bussiness-image rounded-md w-[185px] h-[185px] overflow-hidden flex items-center justify-center"
-            >
-              <img
-                src="/assets/images/business.png"
-                class="w-full h-full object-cover"
-                alt=""
-              />
-            </div>
-            <div class="other-details">
-              <ul class="text-sm text-text flex flex-col gap-3">
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Name:</label>
-                  <span class="text-black font-[semibold]">Jhon Doe</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Email:</label>
-                  <span class="text-black font-[semibold]">Jhon@gmail.com</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Number:</label>
-                  <span class="text-black font-[semibold]">+42 3453545413</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Rating:</label>
-                  <span class="text-black font-[semibold]">4.5</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Delivery Placed:</label>
-                  <span class="text-black font-[semibold]">11</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="tabs-business"
-          role="tabpanel"
-          aria-labelledby="tabs-business-tab"
-        >
-          <div class="flex flex-col md:flex-row gap-8 justify-center">
-            <div
-              class="bussiness-image rounded-md w-[185px] h-[185px] overflow-hidden flex items-center justify-center"
-            >
-              <img
-                src="/assets/images/bbusiness.png"
-                class="w-full h-full object-cover"
-                alt=""
-              />
-            </div>
-            <div class="other-details">
-              <ul class="text-sm text-text flex flex-col gap-3">
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Business Name:</label>
-                  <span class="text-black font-[semibold]">Jhon Doe</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Business Email:</label>
-                  <span class="text-black font-[semibold]">Jhon@gmail.com</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Business Number:</label>
-                  <span class="text-black font-[semibold]">+42 3453545413</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Location:</label>
-                  <span class="text-black font-[semibold]"
-                    >71 seaford road, UK</span
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="tabs-subscription"
-          role="tabpanel"
-          aria-labelledby="tabs-subscription-tab"
-        >
-          <div class="flex justify-center pt-[67px] pb-[34px]">
-            <div class="other-details">
-              <ul class="text-sm text-text flex flex-col gap-3">
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Package:</label>
-                  <span class="text-black font-[semibold]">Yearly</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Amount:</label>
-                  <span class="text-black font-[semibold]">£44</span>
-                </li>
-                <li class="grid grid-cols-2 gap-14">
-                  <label>Expiry Date:</label>
-                  <span class="text-black font-[semibold]">11-03-2023</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <div class="flex flex-col gap-6">
+  <div class="flex flex-col gap-6 min-h-screen h-full">
     <div class="flex flex-col gap-4">
       <div
         class="heading text-black text-[32px] font-[semibold] capitalize leading-9"
@@ -189,24 +11,21 @@
       </div>
     </div>
     <div
-      class="data-table max-w-[380px] xxsm:max-w-[540px] xsm:max-w-sm sm:max-w-md md:max-w-lg llg:max-w-full min-w-full flex-1 min-h-full max-h-[65vh] llg:max-h-[80vh] shadow-table rounded-[5px] overflow-x-auto"
+      class="options data-table max-w-[380px] xxsm:max-w-[540px] xsm:max-w-sm sm:max-w-md md:max-w-lg llg:max-w-full min-w-full flex-1 max-h-[65vh] llg:max-h-[80vh] rounded-[5px] overflow-x-auto"
     >
-      <table class="table-auto users shadow-table">
+      <table id="user-table" class="table-auto users shadow-table">
         <thead>
           <tr>
             <th>Username</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>Role</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr
-            *ngFor="let user of users"
-            class="cursor-pointer"
-            (click)="showDetails = true"
-          >
+          <tr *ngFor="let user of users; index as i" class="cursor-pointer">
             <td class="username">
               <div
                 class="image w-7 h-7 overflow-hidden rounded-[50%] flex items-center justify-center"
@@ -222,6 +41,28 @@
             <td>{{ user.firstname }}</td>
             <td>{{ user.lastname }}</td>
             <td>{{ user.role }}</td>
+            <td class="relative actions">
+              <input type="checkbox" name="actions" id="actions{{ i }}" />
+              <label for="actions{{ i }}" class="cursor-pointer w-full">
+                <img src="/assets/icons/dots.svg" alt="" />
+              </label>
+              <div
+                class="user-options absolute bg-slate-400 bg-opacity-40 backdrop-blur-sm rounded-md py-2 px-3 z-50"
+                [ngClass]="showActions ? '' : 'hidden'"
+              >
+                <ul class="flex flex-col gap-2 font-[semibold]">
+                  <li>
+                    <a href="#">Remove</a>
+                  </li>
+                  <li>
+                    <a href="#">Block</a>
+                  </li>
+                  <li>
+                    <a href="#">Make Admin</a>
+                  </li>
+                </ul>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -65,7 +65,7 @@
         <li class="get-started text-center">
           <a
             [routerLink]="['signup']"
-            class="text-lg bg-primary border rounded-lg custom-transition border-black block py-1 px-2 text-black hover:text-primary hover:bg-black font-[bold]"
+            class="text-sm bg-primary border rounded-lg custom-transition border-black block py-1 px-2 text-black hover:text-primary hover:bg-black font-[bold]"
             ><span>Get Started</span></a
           >
         </li>
@@ -90,6 +90,7 @@
                 <a
                   [routerLink]="['my-profile']"
                   class="custom-transition hover:text-slate-800"
+                  (click)="showUserProfileOptions = !showUserProfileOptions"
                   >Profile</a
                 >
               </li>
@@ -97,6 +98,7 @@
                 <a
                   [routerLink]="['my-posts']"
                   class="custom-transition hover:text-slate-800"
+                  (click)="showUserProfileOptions = !showUserProfileOptions"
                   >My Posts</a
                 >
               </li>
