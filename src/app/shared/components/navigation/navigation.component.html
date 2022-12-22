@@ -79,7 +79,13 @@
             (click)="showUserProfileOptions = !showUserProfileOptions"
           >
             <img
-              src="/assets/images/user.jpg"
+              src="http://localhost:3000/{{ profile.image }}"
+              class="w-full h-full object-cover"
+              alt=""
+            />
+            <img
+              *ngIf="!profile.image"
+              src="../../../../assets/images/no-image.jpg"
               class="w-full h-full object-cover"
               alt=""
             />

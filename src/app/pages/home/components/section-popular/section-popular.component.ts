@@ -21,13 +21,6 @@ export class SectionPopularComponent implements OnInit {
   ngOnInit(): void {}
 
   async submit() {
-    // this.service.search(this.search.value).subscribe((data) => {
-    //   this.result = data;
-    //   console.log(data);
-    //   console.log(this.result);
-
-    //   this.search.reset();
-    // });
     this.route.navigate([`/search-results/${this.text.value}`], {
       queryParams: { text: this.text.value },
     });
