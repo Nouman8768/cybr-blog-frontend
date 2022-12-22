@@ -13,13 +13,13 @@ export class AppComponent implements OnInit {
   isLoginPage: boolean = true;
   authState: boolean = false;
   mobileNavState: boolean = false;
-  recieveState(state: boolean) {
-    this.mobileNavState = false;
-  }
 
   ngOnInit(): void {}
 
-  abcroute() {
+  adminRoute() {
     return this.route.url.includes('admin');
+  }
+  recieveState(state: boolean) {
+    this.mobileNavState = false;
   }
 }

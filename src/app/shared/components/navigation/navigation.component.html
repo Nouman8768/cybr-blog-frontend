@@ -50,6 +50,7 @@
             >Add Post</a
           >
         </li>
+
         <li
           *ngIf="optionsAfter_UserLogsIn === false"
           class="rounded-lg font-[bold] shadow-lg custom-transition"
@@ -59,6 +60,13 @@
             [routerLinkActive]="'font-bold text-primary'"
             [routerLinkActiveOptions]="{ exact: true }"
             >Login</a
+          >
+        </li>
+        <li class="get-started text-center">
+          <a
+            [routerLink]="['/signup']"
+            class="text-lg bg-primary border rounded-lg custom-transition border-black block py-1 px-2 text-black hover:text-primary hover:bg-black font-[bold]"
+            ><span>Get Started</span></a
           >
         </li>
         <li class="relative">
