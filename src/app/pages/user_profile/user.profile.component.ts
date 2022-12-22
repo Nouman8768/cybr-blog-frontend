@@ -1,4 +1,4 @@
-import { AuthService } from './../../shared/service/auth.service';
+import { AuthService } from '../../shared/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LooggedUser, UserDto } from 'src/app/shared/dto/user.dto';
@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  templateUrl: './user.profile.component.html',
+  styleUrls: ['./user.profile.component.scss'],
 })
 export class UserComponent implements OnInit {
   constructor(
@@ -71,12 +71,6 @@ export class UserComponent implements OnInit {
       lastname: new FormControl(this.profile.lastname, [Validators.required]),
 
       username: new FormControl(this.profile.username, [Validators.required]),
-
-      password: new FormControl(this.profile.password, [Validators.required]),
-
-      confirmpassword: new FormControl(this.profile.confirmpassword, [
-        Validators.required,
-      ]),
 
       image: new FormControl(),
 

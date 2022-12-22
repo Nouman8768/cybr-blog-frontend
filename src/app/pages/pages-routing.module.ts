@@ -5,12 +5,12 @@ import { AuthGuard } from '../shared/guard/auth.guard';
 import { CategoricallyPostsModule } from './categorically-posts/categorically-posts.module';
 import { PagesComponent } from './pages.component';
 import { PostsModule } from './posts/posts.module';
-import { UserModule } from './user/user.module';
+import { UserModule } from './user_profile/user.profile.module';
 
 const routes: Routes = [
   { path: '', component: PagesComponent },
   {
-    path: 'user',
+    path: 'my-profile',
     loadChildren: () => UserModule,
     canActivate: [AuthGuard],
   },

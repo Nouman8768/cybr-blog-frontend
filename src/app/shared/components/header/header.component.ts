@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +7,23 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private readonly route: Router) {}
+  showheader!: boolean;
+  constructor(private readonly route: Router) {
+    route.events.subscribe((path) => {
+      if (path instanceof NavigationEnd) {
+        if (
+          path.url === '/login' ||
+          path.url === '/signup' ||
+          path.url === '/my-profile' ||
+          path.url === '/admin'
+        ) {
+          this.showheader = false;
+        } else {
+          this.showheader = true;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {}
 

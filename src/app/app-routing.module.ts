@@ -14,7 +14,7 @@ import { AnonymousPostModule } from './shared/module/anonymous-post/anonymous-po
 import { FooterModule } from './shared/module/footer/footer.module';
 import { PopularSidebarPostModule } from './shared/module/popular-sidebar-post/popular-sidebar-post.module';
 import { SharedModule } from './shared/shared.module';
-import { UserModule } from './pages/user/user.module';
+import { UserModule } from './pages/user_profile/user.profile.module';
 import { PostsModule } from './pages/posts/posts.module';
 
 const routes: Routes = [
