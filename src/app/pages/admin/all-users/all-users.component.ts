@@ -23,18 +23,23 @@ export class AllUsersComponent implements OnInit {
     this.get();
   }
 
-  closeActions(event: any) {
-    if (!event.target.className.includes('user-options')) {
-      this.showActions = false;
-      console.log('clicked');
-    }
-  }
-
   get() {
     this.userService.findAll().subscribe((res: UserDto[]) => {
       this.users = res;
       console.log('USERS', this.users);
     });
+  }
+
+  async dismissAsAdmin() {
+    let res = await this.userService.dismissAsAdmin(this.users[2]._id);
+    console.log(res);
+  }
+
+  closeActions(event: any) {
+    if (!event.target.className.includes('user-options')) {
+      this.showActions = false;
+      console.log('clicked');
+    }
   }
 
   closeModal(event: any) {

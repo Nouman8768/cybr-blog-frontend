@@ -40,6 +40,16 @@ export class UserService {
     return data;
   }
 
+  public async dismissAsAdmin(id: string): Promise<UserDto> {
+    let res = this.http.patch<UserDto>(
+      `${this.url}/users/dismissAsAdmin/${id}`,
+      {}
+    );
+
+    let data = await lastValueFrom(res);
+    return data;
+  }
+
   public async uploadImage(imageBody: FormData): Promise<FormData> {
     let res = this.http.post<any>(`${this.url}/profile`, imageBody);
     let data = await lastValueFrom(res);

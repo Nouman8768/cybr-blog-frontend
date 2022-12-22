@@ -72,7 +72,10 @@
                       class="text-green-600"
                       >Make Admin</a
                     >
-                    <a *ngIf="user.role[0] === 1" href="#" class="text-red-500"
+                    <a
+                      *ngIf="user.role[0] === 1"
+                      class="text-red-500"
+                      (click)="dismissAsAdmin()"
                       >Dismiss Admin</a
                     >
                   </li>
