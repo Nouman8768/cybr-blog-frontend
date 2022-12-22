@@ -12,14 +12,11 @@ export class AllUsersComponent implements OnInit {
 
   users: UserDto[] = [];
 
-  arr: number[] = [];
-
   showActions: boolean = true;
 
+  blockRes!: UserDto;
+
   ngOnInit(): void {
-    for (let index = 0; index < 50; index++) {
-      this.arr.push(1);
-    }
     this.get();
   }
 
@@ -33,6 +30,19 @@ export class AllUsersComponent implements OnInit {
   async dismissAsAdmin(id: string) {
     let res = await this.userService.dismissAsAdmin(id);
     console.log(res);
+    this.get();
+  }
+
+  async makeAdmin(id: string) {
+    let res = await this.userService.makeAdmin(id);
+    console.log(res);
+    this.get();
+  }
+
+  async blockUser(id: string) {
+    this.blockRes = await this.userService.blockUser(id);
+    console.log(this.blockRes);
+    this.get();
   }
 
   closeActions(event: any) {

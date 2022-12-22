@@ -4,8 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../shared/guard/auth.guard';
 import { CategoricallyPostsModule } from './categorically-posts/categorically-posts.module';
 import { PagesComponent } from './pages.component';
-import { PostsModule } from './posts/posts.module';
+
 import { UserModule } from './user_profile/user.profile.module';
+import { PostsModule } from './posts/posts.module';
 
 const routes: Routes = [
   { path: '', component: PagesComponent },
@@ -25,9 +26,9 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => AdminModule,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
+    loadChildren: () => AdminModule,
   },
 ];
 

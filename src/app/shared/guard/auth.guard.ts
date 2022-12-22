@@ -8,9 +8,10 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { LooggedUser, UserDto } from '../dto/user.dto';
 import { AuthService } from '../service/auth.service';
+import { UserService } from '../service/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,15 +19,27 @@ import { AuthService } from '../service/auth.service';
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private readonly authService: AuthService,
-    private readonly route: Router,
-    private readonly jwtHelper: JwtHelperService
+    private readonly userService: UserService,
+    private readonly route: Router
   ) {}
 
+  user!: UserDto;
+
   async canActivate() {
-    if (this.authService.isLoggedOut()) {
+    if (!this.authService.isLoggedOut()) {
+      let res: LooggedUser = this.authService.getUserProfile();
+      this.user = await this.userService.getUser(res.user);
+      if (this.user.role[0] === 0) {
+        alert('Access Denied! Only Admin Has Access');
+        this.route.navigate(['/']);
+        return false;
+      } else {
+        return true;
+      }
+    } else if (this.authService.isLoggedOut()) {
       localStorage.clear();
-      this.route.navigate(['/login']);
       alert('Access Denied Token Not Found');
+      this.route.navigate(['/login']);
       return false;
     } else {
       return true;

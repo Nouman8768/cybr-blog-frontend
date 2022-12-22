@@ -46,8 +46,9 @@
             </td>
             <td>{{ user.firstname }}</td>
             <td>{{ user.lastname }}</td>
-            <td *ngIf="user.role[0] === 1">Admin</td>
-            <td *ngIf="user.role[0] === 0">User</td>
+            <td *ngIf="user.role[0] === 1 && user.isActive === true">Admin</td>
+            <td *ngIf="user.role[0] === 0 && user.isActive === true">User</td>
+            <td *ngIf="user.isActive === false">Ban</td>
 
             <td class="relative actions">
               <input type="checkbox" name="actions" id="actions{{ i }}" />
@@ -63,13 +64,15 @@
                     <a href="#" class="text-red-700">Remove</a>
                   </li>
                   <li>
-                    <a href="#" class="text-yellow-600">Block</a>
+                    <a class="text-yellow-600" (click)="blockUser(user._id)"
+                      >Block</a
+                    >
                   </li>
                   <li>
                     <a
                       *ngIf="user.role[0] === 0"
-                      href="#"
                       class="text-green-600"
+                      (click)="makeAdmin(user._id)"
                       >Make Admin</a
                     >
                     <a

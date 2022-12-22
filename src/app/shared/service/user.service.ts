@@ -40,12 +40,24 @@ export class UserService {
     return data;
   }
 
+  public async makeAdmin(id: string): Promise<UserDto> {
+    let res = this.http.patch<UserDto>(`${this.url}/users/makeAdmin/${id}`, {});
+    let data = await lastValueFrom(res);
+    return data;
+  }
+
   public async dismissAsAdmin(id: string): Promise<UserDto> {
     let res = this.http.patch<UserDto>(
       `${this.url}/users/dismissAsAdmin/${id}`,
       {}
     );
 
+    let data = await lastValueFrom(res);
+    return data;
+  }
+
+  public async blockUser(id: string): Promise<UserDto> {
+    let res = this.http.patch<UserDto>(`${this.url}/users/banUser/${id}`, {});
     let data = await lastValueFrom(res);
     return data;
   }
