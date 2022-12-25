@@ -16,4 +16,6 @@ export interface Post {
   author: UserDto;
 
   text: string;
+
+  createdAt: Date;
 }

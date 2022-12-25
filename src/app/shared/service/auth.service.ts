@@ -1,8 +1,8 @@
-import { lastValueFrom, Observable } from 'rxjs';
+import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { UserDto } from '../dto/user.dto';
+import { LooggedUser, UserDto } from '../dto/user.dto';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Token } from '../dto/token.dto';
@@ -35,8 +35,8 @@ export class AuthService {
     return data;
   }
 
-  public async login(credentials: UserDto): Promise<any> {
-    let res = this.http.post<any>(
+  public async login(credentials: UserDto): Promise<Token> {
+    let res = this.http.post<Token>(
       `${this.url}/authentication/login`,
       credentials,
       {
@@ -59,11 +59,6 @@ export class AuthService {
     return data['url'];
   }
 
-  public isLoggedOut(): boolean {
-    const token = localStorage.getItem('refreshtoken');
-    return this.jwtHelper.isTokenExpired(token!);
-  }
-
   public getUserProfile() {
     const token = localStorage.getItem('accesstoken');
     let payload;
@@ -78,18 +73,21 @@ export class AuthService {
     return {};
   }
 
-  public accessTokenExpired(): boolean {
+  public accessToken_Expired(): boolean {
     const token = localStorage.getItem('accesstoken');
     return this.jwtHelper.isTokenExpired(token!);
   }
 
-  public tokenNotExpired(): boolean {
+  public accessToken_NotExpired(): boolean {
     const token = localStorage.getItem('accesstoken');
     return !this.jwtHelper.isTokenExpired(token!);
   }
 
   public getAccessToken() {
     return localStorage.getItem('accesstoken');
+  }
+  public noAccessToken() {
+    return !localStorage.getItem('accesstoken');
   }
 
   public logout() {

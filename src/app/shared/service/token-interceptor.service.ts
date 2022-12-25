@@ -42,7 +42,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const accesstoken = this.authService.getAccessToken();
-    const accessTokenExpired = this.authService.accessTokenExpired();
+    const accessTokenExpired = this.authService.accessToken_Expired();
     let authRequest = req;
 
     if (accesstoken && !accessTokenExpired) {
@@ -61,7 +61,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   }
 
   handleRefToken(req: HttpRequest<any>, next: HttpHandler) {
-    const accessTokenExpired = this.authService.accessTokenExpired();
+    const accessTokenExpired = this.authService.accessToken_Expired();
     const accesstoken = this.authService.getAccessToken();
     let refreshtoken = localStorage.getItem('refreshtoken');
 

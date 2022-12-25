@@ -21,13 +21,21 @@
         (ngSubmit)="submitUpdateForm()"
         class="relative bg-slate-900 bg-opacity-20 shadow-lg backdrop-blur-sm p-12 rounded-[20px] flex flex-col gap-14"
       >
-        <div class="edit_profile absolute top-6 right-6">
+        <div class="edit_profile absolute top-6 right-6 flex gap-1">
           <button
             type="button"
             class="edit-profile text-white bg-primary bg-opacity-30 custom-transition hover:bg-opacity-50 shadow-md backdrop-blur-[2px] py-2 px-3 rounded-md"
-            (click)="visibleFields = true"
+            (click)="visibleFields = true && (editClicked = true)"
           >
-            Edit Profile
+            Edit
+          </button>
+          <button
+            *ngIf="editClicked === true"
+            type="button"
+            class="edit-profile text-white bg-primary bg-opacity-30 custom-transition hover:bg-opacity-50 hover:bg-red-600 shadow-md backdrop-blur-[2px] py-2 px-3 rounded-md"
+            (click)="hideCanclebtn()"
+          >
+            X
           </button>
         </div>
         <div class="form-group flex justify-center flex-col items-center">
@@ -53,12 +61,27 @@
               </button>
             </div>
           </div>
-          <label
-            for="profile-pic"
-            class="bg-slate-700 bg-opacity-20 backdrop-blur-[2px] py-1 px-3 rounded-md text-primary font-[bold] cursor-pointer"
-            [ngClass]="editPic ? '' : 'hidden'"
-            >Choose Picture</label
-          >
+          <div class="flex gap-2 pt-2">
+            <label
+              for="profile-pic"
+              class="bg-slate-700 bg-opacity-20 backdrop-blur-[2px] py-1 px-3 rounded-md text-primary font-[bold] cursor-pointer"
+              [ngClass]="editPic ? '' : 'hidden'"
+              >Choose
+            </label>
+            <label
+              (click)="remove()"
+              class="bg-slate-700 bg-opacity-20 backdrop-blur-[2px] py-1 px-3 rounded-md text-primary font-[bold] cursor-pointer"
+              [ngClass]="editPic ? '' : 'hidden'"
+              >Remove
+            </label>
+            <label
+              *ngIf="clicked === true"
+              (click)="cancle()"
+              class="bg-slate-700 bg-opacity-20 backdrop-blur-[2px] py-1 px-3 rounded-md text-primary font-[bold] cursor-pointer"
+              [ngClass]="editPic ? '' : 'hidden'"
+              >Cancle</label
+            >
+          </div>
           <input
             type="file"
             name="profile"
@@ -68,11 +91,12 @@
           />
 
           <div
-            *ngIf="selectedImage"
+            *ngIf="clicked === true"
             class="choosed-pic w-[200px] overflow-hidden mt-4 flex flex-col gap-2"
           >
             <span class="text-white font-[medium]">You choosed</span>
             <img
+              *ngIf="selectedImage"
               [src]="selectedImage"
               class="w-full h-[200px] object-cover rounded-full"
               alt=""

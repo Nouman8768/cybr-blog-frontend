@@ -18,6 +18,8 @@ export class UserDto {
   refreshToken!: string;
 
   isActive!: boolean;
+
+  createdAt!: Date;
 }
 export interface LooggedUser {
   user: string;

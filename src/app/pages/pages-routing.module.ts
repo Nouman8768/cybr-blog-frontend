@@ -7,6 +7,7 @@ import { PagesComponent } from './pages.component';
 
 import { UserModule } from './user_profile/user.profile.module';
 import { PostsModule } from './posts/posts.module';
+import { AdminGuard } from '../shared/guard/admin.guard';
 
 const routes: Routes = [
   { path: '', component: PagesComponent },
@@ -26,8 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    canActivate: [AdminGuard],
+
     loadChildren: () => AdminModule,
   },
 ];

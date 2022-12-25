@@ -19,6 +19,9 @@ export class UserComponent implements OnInit {
     private readonly route: Router
   ) {}
 
+  clicked: boolean = false;
+  editClicked: boolean = false;
+
   editPic: boolean = false;
   show: boolean = false;
   visibleFields: boolean = false;
@@ -103,7 +106,7 @@ export class UserComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
 
-      const unlinked = await this.userService.unlinkImagefromServer(
+      const unlinked = await this.userService.unlinkProfileImagefromServer(
         this.userForm.value.image
       );
       const uploadImage = await this.userService.uploadImage(formData);
@@ -121,5 +124,19 @@ export class UserComponent implements OnInit {
       };
       reader.readAsDataURL(this.file);
     }
+    this.clicked = true;
+  }
+
+  remove() {
+    this.userForm.value.image = 'no-image.jpg';
+    this.clicked = true;
+  }
+  cancle() {
+    this.userForm.value.image = this.profile.image;
+    this.clicked = false;
+  }
+  hideCanclebtn() {
+    this.visibleFields = false;
+    this.editClicked = false;
   }
 }

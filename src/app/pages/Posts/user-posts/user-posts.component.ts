@@ -20,14 +20,12 @@ export class UserPostsComponent implements OnInit {
     private readonly postsService: PostService,
     private readonly authService: AuthService,
     private readonly userService: UserService,
-
-    private readonly route: Router,
-    private readonly activeroute: ActivatedRoute
+    private readonly route: Router
   ) {}
 
   showdots: boolean = false;
   page: number = 1;
-  blogposts$!: Observable<Post[] | any>;
+
   posts!: Post[];
   category!: string;
   global!: number;
@@ -39,8 +37,6 @@ export class UserPostsComponent implements OnInit {
   loggedUserId!: LooggedUser;
 
   ngOnInit(): void {
-    // this.getAllPosts();
-
     this.showDots();
 
     this.getUserPosts();
@@ -84,19 +80,7 @@ export class UserPostsComponent implements OnInit {
       }
     }, 800);
   }
-  // async getAllPosts() {
-  //   this.blogposts$ = this.activeroute.params.pipe(
-  //     switchMap((param: Params) => {
-  //       const postCategory: string = param['category'];
-  //       return this.postsService.findByCategory(postCategory).pipe(
-  //         map((blogEntery: Post[]) => {
-  //           this.posts = blogEntery;
-  //           this.category = blogEntery[0].category;
-  //         })
-  //       );
-  //     })
-  //   );
-  // }
+
   async moveToUpdatePage(id: string) {
     this.route.navigate([`update/${id}`], {
       queryParams: { id: id },
@@ -110,7 +94,7 @@ export class UserPostsComponent implements OnInit {
   async deletePost(id: string, filename: string) {
     const deleted = await this.postsService.delete(id);
     const unlinked = await this.postsService.unlinkImagefromServer(filename);
-    // this.getAllPosts();
+    this.getUserPosts();
   }
 
   async getUserPosts() {
@@ -126,50 +110,10 @@ export class UserPostsComponent implements OnInit {
   }
 
   showDots() {
-    if (this.authService.tokenNotExpired()) {
+    if (this.authService.accessToken_NotExpired()) {
       this.showdots = true;
     } else {
       this.showdots;
-    }
-  }
-
-  async submitUpdateForm() {
-    await this.submitImage();
-    await this.updatePost();
-    await this.route.navigate(['/']);
-  }
-
-  async updatePost(): Promise<Post> {
-    console.log('Response Before', this.postForm.value);
-    const response = await this.postsService.update(
-      this.postForm.value._id,
-      this.postForm.value
-    );
-    return response;
-  }
-
-  async submitImage() {
-    if (this.selectedImage != undefined) {
-      const formData = new FormData();
-      formData.append('file', this.file);
-
-      const unlinked = await this.postsService.unlinkImagefromServer(
-        this.postForm.value.image
-      );
-      const uploadImage = await this.postsService.uploadImage(formData);
-      this.postForm.value.image = uploadImage;
-    }
-  }
-
-  async attachFile(event: any) {
-    this.file = (event.target as HTMLInputElement).files![0];
-    const allowedMimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-    if (this.file && allowedMimeTypes.includes(this.file.type)) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.selectedImage = reader.result as string;
-      };
-      reader.readAsDataURL(this.file);
     }
   }
 }

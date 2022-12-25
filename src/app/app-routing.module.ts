@@ -24,29 +24,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'footer',
-    loadChildren: () => FooterModule,
-  },
-  {
-    path: 'PopularSidebarPost',
-    loadChildren: () => PopularSidebarPostModule,
-  },
-  {
-    path: 'anonymous-post',
-    loadChildren: () => AnonymousPostModule,
-  },
-
-  {
     path: 'shared',
     loadChildren: () => SharedModule,
   },
   {
     path: 'pages',
     loadChildren: () => PagesModule,
-  },
-  {
-    path: 'authentication',
-    loadChildren: () => AuthenticationModule,
   },
 ];
 

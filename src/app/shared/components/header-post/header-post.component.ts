@@ -14,9 +14,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class HeaderPostComponent implements OnInit {
   constructor(
     private readonly service: PostService,
-    private readonly route: Router,
-    private readonly jwtHelper: JwtHelperService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly route: Router
   ) {}
 
   showdots: boolean = false;
@@ -28,6 +27,7 @@ export class HeaderPostComponent implements OnInit {
   async ngOnInit() {
     this.showDots();
     await this.getAllPosts();
+
     setTimeout(() => {
       const cPosts = document.querySelectorAll('.header-post');
 
@@ -90,7 +90,7 @@ export class HeaderPostComponent implements OnInit {
   }
 
   showDots() {
-    if (this.authService.tokenNotExpired()) {
+    if (this.authService.accessToken_NotExpired()) {
       this.showdots = true;
     } else {
       this.showdots;

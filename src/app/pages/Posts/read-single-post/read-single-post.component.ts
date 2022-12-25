@@ -12,8 +12,8 @@ import { Post } from '../../../shared/dto/post.schema';
 export class ReadSinglePostComponent implements OnInit {
   constructor(
     private readonly postsService: PostService,
-    private readonly route: Router,
-    private readonly activeroute: ActivatedRoute
+    private readonly activeroute: ActivatedRoute,
+    private readonly route: Router
   ) {}
 
   blogpost$!: Observable<Post | any>;

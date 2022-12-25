@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Post } from '../dto/post.schema';
@@ -14,7 +14,7 @@ export class UserService {
 
   token: string | null = localStorage.getItem('accesstoken');
 
-  public async getUser(id: string): Promise<UserDto> {
+  public async getUser(id: string | ElementRef<string>): Promise<UserDto> {
     let res = this.http.get<UserDto>(`${this.url}/users/byId/${id}`);
     let data = await lastValueFrom(res);
     return data;
@@ -68,10 +68,15 @@ export class UserService {
     return data['url'];
   }
 
-  public async unlinkImagefromServer(filename: string): Promise<string> {
+  public async unlinkPostsImagefromServer(filename: string): Promise<string> {
     let res = this.http.delete<string>(
       `${this.url}/blog-posts/server/${filename}`
     );
+    let data = await lastValueFrom(res);
+    return data;
+  }
+  public async unlinkProfileImagefromServer(filename: string): Promise<string> {
+    let res = this.http.delete<string>(`${this.url}/users/server/${filename}`);
     let data = await lastValueFrom(res);
     return data;
   }

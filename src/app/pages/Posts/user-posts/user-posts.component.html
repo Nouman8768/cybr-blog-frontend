@@ -17,7 +17,7 @@
                       id: 'paginate',
                       itemsPerPage: 4,
                       currentPage: page,
-                      totalItems: (blogposts$ | async)?.length || 0
+                      totalItems: posts.length || 0
                     };
               index as i
             "

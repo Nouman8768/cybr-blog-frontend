@@ -79,13 +79,14 @@
             (click)="showUserProfileOptions = !showUserProfileOptions"
           >
             <img
+              *ngIf="profile"
               src="http://localhost:3000/{{ profile.image }}"
+              alt="/assets/images/no-image.jpg"
               class="w-full h-full object-cover"
               alt=""
-              aria-placeholder="/assets/images/no-image.jpg"
             />
             <img
-              *ngIf="!profile.image"
+              *ngIf="!profile"
               src="../../../../assets/images/no-image.jpg"
               class="w-full h-full object-cover"
               alt=""
@@ -100,7 +101,6 @@
                 <a
                   [routerLink]="['my-profile']"
                   class="custom-transition hover:text-slate-800"
-                  (click)="showUserProfileOptions = !showUserProfileOptions"
                   >Profile</a
                 >
               </li>
@@ -108,7 +108,6 @@
                 <a
                   [routerLink]="['my-posts']"
                   class="custom-transition hover:text-slate-800"
-                  (click)="showUserProfileOptions = !showUserProfileOptions"
                   >My Posts</a
                 >
               </li>

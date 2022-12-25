@@ -67,50 +67,6 @@
           </div>
         </div>
       </div>
-      <div
-        *ngIf="showdots === true"
-        class="dots absolute top-8 sm:top-0 right-0 text-5xl flex flex-col leading-3 justify-center items-center cursor-pointer overflow-hidden dots-bg rounded-[50%] w-[50px] h-[50px]"
-        [ngClass]="'all-posts-dots' + i"
-      >
-        <img src="/assets/icons/dots.png" class="rotate-90" alt="" />
-      </div>
-      <div
-        class="b-options absolute top-8 right-6 hidden flex-col font-[bold] bg-slate-100 px-3 py-2 rounded-md bg-opacity-50 backdrop-blur-md gap-2"
-        [ngClass]="'all-posts-options' + i"
-      >
-        <a
-          (click)="moveToUpdatePage(post._id)"
-          class="block cursor-pointer hover:text-green-800"
-          >Edit</a
-        >
-        <a
-          class="cursor-pointer hover:text-red-700 b-delete"
-          [ngClass]="'all-posts-delete' + i"
-          >Delete</a
-        >
-      </div>
-      <div
-        class="delete-confirmation absolute top-0 w-full h-full bg-black backdrop-blur-sm bg-opacity-70 z-50 hidden justify-center items-center b-confirmation"
-        [ngClass]="'all-posts-confirmation' + i"
-      >
-        <div class="wrapper flex flex-col gap-3">
-          <span class="text-2xl font-[bold] text-white"
-            >Do you really want to delete?</span
-          >
-          <div class="actions w-full flex justify-center items-center gap-2">
-            <a
-              class="cursor-pointer text-xl font-[medium] bg-primary bg-opacity-70 py-2 px-4 rounded-md custom-transition hover:bg-opacity-100 shadow-md b-No"
-              [ngClass]="'all-posts-No' + i"
-              >No</a
-            >
-            <a
-              (click)="deletePost(post._id, post.image)"
-              class="cursor-pointer text-xl font-[medium] bg-red-700 py-2 px-4 rounded-md text-white custom-transition hover:bg-red-900 shadow-md"
-              >Yes</a
-            >
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <div class="pagination mt-16">
