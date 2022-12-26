@@ -80,4 +80,13 @@ export class UserService {
     let data = await lastValueFrom(res);
     return data;
   }
+
+  public async removeUserPhoto(id: string): Promise<UserDto> {
+    let res = this.http.patch<UserDto>(
+      `${this.url}/users/removeUserImage/${id}`,
+      {}
+    );
+    let data = await lastValueFrom(res);
+    return data;
+  }
 }

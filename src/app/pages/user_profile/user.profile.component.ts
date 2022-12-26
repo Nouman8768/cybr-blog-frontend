@@ -104,7 +104,7 @@ export class UserComponent implements OnInit {
   async submitImage() {
     if (this.selectedImage != undefined) {
       const formData = new FormData();
-      formData.append('file', this.file);
+      formData.append('file', this.file!);
 
       const unlinked = await this.userService.unlinkProfileImagefromServer(
         this.userForm.value.image
@@ -127,9 +127,19 @@ export class UserComponent implements OnInit {
     this.clicked = true;
   }
 
-  remove() {
-    this.userForm.value.image = 'no-image.jpg';
+  async remove() {
     this.clicked = true;
+    this.selectedImage = './assets/images/no-image.jpg';
+    const unlinked = await this.userService.unlinkProfileImagefromServer(
+      this.userForm.value.image
+    );
+    console.log(unlinked);
+
+    let user: UserDto = await this.userService.removeUserPhoto(
+      this.profile._id
+    );
+    console.log(user);
+    await this.route.navigate(['/']);
   }
   cancle() {
     this.userForm.value.image = this.profile.image;
