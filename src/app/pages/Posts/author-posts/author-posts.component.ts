@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable, switchMap, map } from 'rxjs';
-import { AuthService } from 'src/app/shared/service/auth.service';
+import { Post } from 'src/app/shared/dto/post.schema';
 import { PostService } from 'src/app/shared/service/post.service';
-import { Post } from '../../shared/dto/post.schema';
 
 @Component({
-  selector: 'app-categorically-posts',
-  templateUrl: './categorically-posts.component.html',
-  styleUrls: ['./categorically-posts.component.scss'],
+  selector: 'app-author-posts',
+  templateUrl: './author-posts.component.html',
+  styleUrls: ['./author-posts.component.scss'],
 })
-export class CategoricallyPostsComponent implements OnInit {
+export class AuthorPostsComponent implements OnInit {
   constructor(
     private readonly postsService: PostService,
     private readonly activeroute: ActivatedRoute,
@@ -20,29 +19,26 @@ export class CategoricallyPostsComponent implements OnInit {
   page: number = 1;
   blogposts$!: Observable<Post[] | any>;
   posts!: Post[];
-  category!: string;
+  author!: string;
 
   ngOnInit(): void {
     this.getAllPosts();
   }
+
   async getAllPosts() {
     this.blogposts$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
-        const postCategory: string = param['category'];
-        return this.postsService.findByCategory(postCategory).pipe(
+        const postCategory: string = param['author'];
+        return this.postsService.getByAuthorPosts(postCategory).pipe(
           map((blogEntery: Post[]) => {
             this.posts = blogEntery;
-            this.category = blogEntery[0].category;
+            console.log('AUTHOR', blogEntery);
+
+            this.author = blogEntery[0].author.firstname;
           })
         );
       })
     );
-  }
-
-  async moveToAuthorPostsPage(author: string) {
-    this.route.navigate([`author-posts/${author}`], {
-      queryParams: { author: author },
-    });
   }
 
   async moveToSinglePostPage(id: string) {

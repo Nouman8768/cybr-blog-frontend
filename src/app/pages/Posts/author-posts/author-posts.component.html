@@ -2,18 +2,18 @@
   <div class="container mx-auto px-3 flex gap-16">
     <div class="main w-full llg:w-2/3">
       <h1
-        class="text-4xl font-[medium] relative after:content-[''] after:absolute after:block after:w-1/4 after:h-[5px] after:bg-primary after:bottom-[-1rem]"
+        class="text-4xl font-[medium] relative after:content-[''] after:absolute after:block after:w-1/3 after:h-[5px] after:bg-primary after:bottom-[-1rem]"
       >
-        Showing resuts about
+        Showing results about
         <span
           class="uppercase text-primary font-[bold] bg-black bg-opacity-50 px-2"
-          >{{ searchedText }}</span
+          >{{ author }}</span
         >
       </h1>
       <div class="mt-16">
         <div class="all-posts flex flex-col gap-16">
           <div
-            class="specific-user-posts flex flex-col sm:flex-row gap-8 relative"
+            class="specific-category-posts flex flex-col sm:flex-row gap-8 relative"
             *ngFor="
               let post of posts
                 | paginate
@@ -68,9 +68,7 @@
                       />
                     </div>
                     <div class="name" *ngIf="post.author">
-                      <span (click)="moveToAuthorPostsPage(post.author._id)">{{
-                        post.author.firstname
-                      }}</span>
+                      <span>{{ post.author.firstname }}</span>
                     </div>
                   </a>
                 </div>

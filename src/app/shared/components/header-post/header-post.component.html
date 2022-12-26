@@ -87,8 +87,10 @@
               >
                 <img src="/assets/icons/author.png" alt="" />
               </div>
-              <div class="name">
-                <span>{{ post.author }}</span>
+              <div class="name" *ngIf="post.author">
+                <span (click)="moveToAuthorPostsPage(post.author._id)">{{
+                  post.author.firstname
+                }}</span>
               </div>
             </a>
           </div>

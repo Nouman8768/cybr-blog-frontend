@@ -33,4 +33,10 @@ export class AnonymousPostComponent implements OnInit {
       queryParams: { id: id },
     });
   }
+
+  async moveToAuthorPostsPage(author: string) {
+    this.route.navigate([`author-posts/${author}`], {
+      queryParams: { author: author },
+    });
+  }
 }

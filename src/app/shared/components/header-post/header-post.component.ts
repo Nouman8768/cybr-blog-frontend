@@ -26,7 +26,7 @@ export class HeaderPostComponent implements OnInit {
 
   async ngOnInit() {
     this.showDots();
-    await this.getAllPosts();
+    this.getAllPosts();
 
     setTimeout(() => {
       const cPosts = document.querySelectorAll('.header-post');
@@ -80,6 +80,12 @@ export class HeaderPostComponent implements OnInit {
   async moveToCategoryPostPage(category: string) {
     this.route.navigate([`category-post/${category}`], {
       queryParams: { category: category },
+    });
+  }
+
+  async moveToAuthorPostsPage(author: string) {
+    this.route.navigate([`author-posts/${author}`], {
+      queryParams: { author: author },
     });
   }
 

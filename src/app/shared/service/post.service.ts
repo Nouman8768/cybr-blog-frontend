@@ -46,6 +46,10 @@ export class PostService {
     );
   }
 
+  public getByAuthorPosts(author: string): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.url}/blog-posts?author=${author}`);
+  }
+
   public async count(): Promise<number> {
     let res = this.http.get<number>(`${this.url}/blog-posts/count`);
     let data = await lastValueFrom(res);

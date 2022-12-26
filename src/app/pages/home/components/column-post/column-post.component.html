@@ -43,7 +43,11 @@
               >
                 <img src="/assets/icons/author.png" alt="" />
               </div>
-              <div class="name"><span>mkzubairi</span></div>
+              <div class="name" *ngIf="post.author">
+                <span (click)="moveToAuthorPostsPage(post.author._id)">{{
+                  post.author.firstname
+                }}</span>
+              </div>
             </a>
           </div>
           <div class="date flex items-center gap-2">
@@ -53,7 +57,7 @@
               <img src="/assets/icons/date.svg" alt="" />
             </div>
             <div>
-              <span>July 11, 2022</span>
+              <span>{{ post.createdAt | date }}</span>
             </div>
           </div>
         </div>

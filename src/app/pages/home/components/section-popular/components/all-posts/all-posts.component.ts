@@ -40,4 +40,10 @@ export class AllPostsComponent implements OnInit {
       queryParams: { category: category },
     });
   }
+
+  async moveToAuthorPostsPage(author: string) {
+    this.route.navigate([`author-posts/${author}`], {
+      queryParams: { author: author },
+    });
+  }
 }

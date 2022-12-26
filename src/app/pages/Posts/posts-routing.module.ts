@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/guard/auth.guard';
+import { AuthorPostsModule } from './author-posts/author-posts.module';
 import { CreateModule } from './create/create.module';
 import { ReadSinglePostModule } from './read-single-post/read-single-post.module';
 import { SearchResultsModule } from './search-results/search-results.module';
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'search-results/:text',
     loadChildren: () => SearchResultsModule,
+  },
+  {
+    path: 'author-posts/:author',
+    loadChildren: () => AuthorPostsModule,
   },
 ];
 
