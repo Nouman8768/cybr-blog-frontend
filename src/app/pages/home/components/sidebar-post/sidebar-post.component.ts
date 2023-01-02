@@ -1,3 +1,4 @@
+import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/shared/dto/post.schema';
@@ -17,16 +18,18 @@ export class SidebarPostComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  sidebarPosts: Post[] = [];
+  sidebarPosts$!: Observable<Post[]>;
 
   async ngOnInit() {
     await this.getAllPosts();
   }
 
   async getAllPosts() {
-    this.postsService.findAll().subscribe((data: Post[]) => {
-      this.sidebarPosts = data.slice(2, 6);
-    });
+    this.sidebarPosts$ = this.postsService.findAll().pipe(
+      map((data: Post[]) => {
+        return data.slice(2, 6);
+      })
+    );
   }
 
   async moveToSinglePostPage(id: string) {
@@ -39,5 +42,9 @@ export class SidebarPostComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

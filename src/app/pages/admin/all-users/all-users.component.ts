@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { UserDto } from './../../../shared/dto/user.dto';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/service/user.service';
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/shared/service/user.service';
 export class AllUsersComponent implements OnInit {
   constructor(private readonly userService: UserService) {}
 
-  users: UserDto[] = [];
+  users$!: Observable<UserDto[]>;
 
   showActions: boolean = true;
 
@@ -21,10 +22,7 @@ export class AllUsersComponent implements OnInit {
   }
 
   get() {
-    this.userService.findAll().subscribe((res: UserDto[]) => {
-      this.users = res;
-      console.log('USERS', this.users);
-    });
+    this.users$ = this.userService.findAll();
   }
 
   async dismissAsAdmin(id: string) {
@@ -56,5 +54,9 @@ export class AllUsersComponent implements OnInit {
     if (event.target.className.includes('details-modal')) {
       this.showActions = false;
     }
+  }
+
+  trackByFunc(index: number, user: UserDto) {
+    return user._id;
   }
 }

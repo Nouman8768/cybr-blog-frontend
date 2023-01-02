@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 import { Post } from 'src/app/shared/dto/post.schema';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { PostService } from 'src/app/shared/service/post.service';
@@ -25,9 +26,12 @@ export class AllPostsComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.postsService.findAll().subscribe((data: Post[]) => {
-      this.allPosts = data.reverse();
-    });
+    this.postsService
+      .findAll()
+      .pipe(take(1))
+      .subscribe((data: Post[]) => {
+        this.allPosts = data.reverse();
+      });
   }
 
   async moveToSinglePostPage(id: string) {
@@ -45,5 +49,9 @@ export class AllPostsComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

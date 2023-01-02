@@ -10,7 +10,11 @@
       <div class="side-posts grid md:grid-cols-2 gap-8 mt-8">
         <div
           class="side-post flex items-start gap-4 relative"
-          *ngFor="let post of sidePosts; index as i"
+          *ngFor="
+            let post of sidePosts$ | async;
+            index as i;
+            trackBy: trackByFunc
+          "
         >
           <div class="post-image relative border">
             <a

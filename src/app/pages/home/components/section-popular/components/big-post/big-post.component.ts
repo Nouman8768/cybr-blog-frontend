@@ -1,3 +1,4 @@
+import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/shared/dto/post.schema';
@@ -17,16 +18,18 @@ export class BigPostComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  highlightedPosts: Post[] = [];
+  highlightedPosts$!: Observable<Post[]>;
 
   async ngOnInit() {
     await this.getAllPosts();
   }
 
   async getAllPosts() {
-    this.postsService.findAll().subscribe((data: Post[]) => {
-      this.highlightedPosts = data.slice(3, 4);
-    });
+    this.highlightedPosts$ = this.postsService.findAll().pipe(
+      map((data: Post[]) => {
+        return data.slice(3, 4);
+      })
+    );
   }
 
   async moveToSinglePostPage(id: string) {
@@ -34,6 +37,7 @@ export class BigPostComponent implements OnInit {
       queryParams: { id: id },
     });
   }
+
   async moveToCategoryPostPage(category: string) {
     this.route.navigate([`category-post/${category}`], {
       queryParams: { category: category },
@@ -44,5 +48,9 @@ export class BigPostComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

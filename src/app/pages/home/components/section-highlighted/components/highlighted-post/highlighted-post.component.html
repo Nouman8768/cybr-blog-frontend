@@ -1,5 +1,12 @@
 <div class="flex w-full justify-center gap-8 flex-wrap">
-  <div class="post" *ngFor="let post of highlightedPosts; index as i">
+  <div
+    class="post"
+    *ngFor="
+      let post of highlightedPosts$ | async;
+      index as i;
+      trackBy: trackByFunc
+    "
+  >
     <div class="wrapper flex flex-col gap-6 w-[300px]">
       <div class="relative">
         <div

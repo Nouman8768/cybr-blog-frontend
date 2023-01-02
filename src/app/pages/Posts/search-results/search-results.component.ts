@@ -26,6 +26,7 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPosts();
   }
+
   async getAllPosts() {
     this.blogposts$ = this.activeroute.params.pipe(
       switchMap((param: Params) => {
@@ -50,5 +51,9 @@ export class SearchResultsComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

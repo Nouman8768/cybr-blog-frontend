@@ -2,8 +2,8 @@
   class="headerPost mt-8 flex flex-col items-center justify-center sm:flex-row gap-8 flex-wrap"
 >
   <div
+    *ngFor="let post of columnPosts$ | async; index as i; trackBy: trackByFunc"
     class="header-post flex-1 ngf flex justify-center"
-    *ngFor="let post of columnPosts; index as i"
   >
     <div
       class="post-image w-[299px] h-[340px] md:w-[396px] md:h-[427px] overflow-hidden relative"

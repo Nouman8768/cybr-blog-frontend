@@ -1,7 +1,7 @@
 <div class="columnPost mt-8 flex justify-between flex-col sm:flex-row gap-8">
   <div
     class="column-post flex-1 ngf"
-    *ngFor="let post of columnPosts; index as i"
+    *ngFor="let post of columnPosts$ | async; index as i; trackBy: trackByFunc"
   >
     <div class="post-image w-full h-[326px] overflow-hidden relative">
       <a

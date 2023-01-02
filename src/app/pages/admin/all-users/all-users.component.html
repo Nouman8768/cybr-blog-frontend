@@ -25,7 +25,14 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let user of users; index as i" class="cursor-pointer">
+          <tr
+            *ngFor="
+              let user of users$ | async;
+              index as i;
+              trackBy: trackByFunc
+            "
+            class="cursor-pointer"
+          >
             <td class="username">
               <div
                 class="image w-7 h-7 overflow-hidden rounded-[50%] flex items-center justify-center"

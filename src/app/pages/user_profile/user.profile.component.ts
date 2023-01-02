@@ -24,10 +24,13 @@ export class UserComponent implements OnInit {
 
   editPic: boolean = false;
   show: boolean = false;
+
   visibleFields: boolean = false;
   result!: Token;
+
   tokenInfo!: LooggedUser;
   profile!: UserDto;
+
   userForm!: FormGroup;
   url: string = environment.serverUrl;
 
@@ -36,6 +39,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfile();
+
     const pass = document.querySelector('.pass-input') as HTMLInputElement;
 
     const con_pass = document.querySelector('#con-pass-input') as HTMLElement;

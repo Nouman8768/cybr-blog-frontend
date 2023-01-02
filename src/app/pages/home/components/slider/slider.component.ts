@@ -1,3 +1,4 @@
+import { map, Observable } from 'rxjs';
 import { AuthService } from './../../../../shared/service/auth.service';
 import {
   Component,
@@ -33,7 +34,7 @@ export class SliderComponent implements OnInit {
 
   options: boolean = false;
   confirmationState: boolean = true;
-  sliderPosts: Post[] = [];
+  sliderPosts$!: Observable<Post[]>;
 
   swiperConfig: SwiperOptions = {
     slidesPerView: 1,
@@ -66,10 +67,11 @@ export class SliderComponent implements OnInit {
   }
 
   async getAllPosts() {
-    this.postsService.findAll().subscribe((data: Post[]) => {
-      console.log('Author', data[49].author.firstname);
-      this.sliderPosts = data.reverse();
-    });
+    this.sliderPosts$ = this.postsService.findAll().pipe(
+      map((data: Post[]) => {
+        return data.reverse();
+      })
+    );
   }
 
   async moveToSinglePostPage(id: string) {
@@ -88,5 +90,9 @@ export class SliderComponent implements OnInit {
     this.route.navigate([`category-post/${category}`], {
       queryParams: { category: category },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

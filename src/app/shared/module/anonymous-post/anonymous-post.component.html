@@ -1,5 +1,8 @@
 <div class="anonymousPost mt-8 flex justify-between flex-col sm:flex-row gap-8">
-  <div class="anonymous-post flex-1" *ngFor="let post of anonymousPosts">
+  <div
+    class="anonymous-post flex-1"
+    *ngFor="let post of anonymousPosts$ | async; trackBy: trackByFunc"
+  >
     <div class="post-image w-full h-[400px] overflow-hidden relative">
       <a
         (click)="moveToSinglePostPage(post._id)"

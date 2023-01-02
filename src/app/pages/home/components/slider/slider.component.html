@@ -1,5 +1,8 @@
 <swiper [pagination]="pagination" class="mySwiper">
-  <ng-template swiperSlide *ngFor="let post of sliderPosts; index as i">
+  <ng-template
+    swiperSlide
+    *ngFor="let post of sliderPosts$ | async; index as i; trackBy: trackByFunc"
+  >
     <div class="sliderPost flex justify-between flex-col sm:flex-row gap-8">
       <div class="slider-post flex-1 ngf">
         <div class="post-image w-[full] h-[492px] overflow-hidden relative">

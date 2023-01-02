@@ -50,4 +50,8 @@ export class CategoricallyPostsComponent implements OnInit {
       queryParams: { id: id },
     });
   }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
+  }
 }
