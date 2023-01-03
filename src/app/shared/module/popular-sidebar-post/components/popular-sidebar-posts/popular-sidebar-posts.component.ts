@@ -1,8 +1,9 @@
+import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginComponent } from 'src/app/pages/authentication/login/login.component';
+
 import { Post } from 'src/app/shared/dto/post.schema';
-import { AuthService } from 'src/app/shared/service/auth.service';
+
 import { PostService } from 'src/app/shared/service/post.service';
 
 @Component({
@@ -17,16 +18,18 @@ export class PopularSidebarPostsComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  sidebarPosts: Post[] = [];
+  sidebarPosts$!: Observable<Post[]>;
 
   async ngOnInit() {
-    await this.getAllPosts();
+    this.getAllPosts();
   }
 
   getAllPosts() {
-    this.postsService.findAll().subscribe((data: Post[]) => {
-      this.sidebarPosts = data.slice(0, 4);
-    });
+    this.sidebarPosts$ = this.postsService.findAll().pipe(
+      map((data) => {
+        return data.slice(0, 4);
+      })
+    );
   }
 
   async moveToSinglePostPage(id: string) {
@@ -39,5 +42,9 @@ export class PopularSidebarPostsComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

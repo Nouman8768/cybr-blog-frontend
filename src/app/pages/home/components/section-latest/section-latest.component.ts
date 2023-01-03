@@ -1,3 +1,4 @@
+import { map, Observable } from 'rxjs';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/shared/dto/post.schema';
@@ -17,16 +18,18 @@ export class SectionLatestComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  sidePosts: Post[] = [];
+  sidePosts$!: Observable<Post[]>;
 
   async ngOnInit() {
     await this.getAllPosts();
   }
 
   async getAllPosts() {
-    this.postsService.findAll().subscribe((data: Post[]) => {
-      this.sidePosts = data.reverse().slice(1, 7);
-    });
+    this.sidePosts$ = this.postsService.findAll().pipe(
+      map((data) => {
+        return data.slice(1, 7);
+      })
+    );
   }
 
   async moveToSinglePostPage(id: string) {
@@ -39,5 +42,9 @@ export class SectionLatestComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

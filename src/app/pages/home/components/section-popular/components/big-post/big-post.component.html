@@ -1,5 +1,8 @@
 <div class="bigPost">
-  <div class="big-post" *ngFor="let post of highlightedPosts">
+  <div
+    class="big-post"
+    *ngFor="let post of highlightedPosts$ | async; trackBy: trackByFunc"
+  >
     <div class="post-image w-full h-[500px] relative overflow-hidden">
       <a
         (click)="moveToSinglePostPage(post._id)"

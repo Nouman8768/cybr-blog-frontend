@@ -1,10 +1,9 @@
 import { AuthService } from 'src/app/shared/service/auth.service';
-import { map, Observable, switchMap } from 'rxjs';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/shared/dto/post.schema';
 import { PostService } from '../../service/post.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-header-post',
@@ -13,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class HeaderPostComponent implements OnInit {
   constructor(
-    private readonly service: PostService,
+    private readonly postService: PostService,
     private readonly authService: AuthService,
     private readonly route: Router
   ) {}
@@ -22,7 +21,7 @@ export class HeaderPostComponent implements OnInit {
 
   options: boolean = false;
   confirmationState: boolean = true;
-  columnPosts: Post[] = [];
+  columnPosts$!: Observable<Post[]>;
 
   async ngOnInit() {
     this.showDots();
@@ -62,21 +61,25 @@ export class HeaderPostComponent implements OnInit {
   }
 
   getAllPosts() {
-    this.service.findAll().subscribe((data: Post[]) => {
-      this.columnPosts = data.slice(0, 3);
-      console.log(data);
-    });
+    this.columnPosts$ = this.postService.findAll().pipe(
+      map((data) => {
+        return data.slice(0, 3).reverse();
+      })
+    );
   }
+
   async moveToUpdatePage(id: string) {
     this.route.navigate([`update/${id}`], {
       queryParams: { id: id },
     });
   }
+
   async moveToSinglePostPage(id: string) {
     this.route.navigate([`single-post/${id}`], {
       queryParams: { id: id },
     });
   }
+
   async moveToCategoryPostPage(category: string) {
     this.route.navigate([`category-post/${category}`], {
       queryParams: { category: category },
@@ -90,8 +93,8 @@ export class HeaderPostComponent implements OnInit {
   }
 
   async deletePost(id: string, filename: string) {
-    const deleted = await this.service.delete(id);
-    const unlinked = await this.service.unlinkImagefromServer(filename);
+    const deleted = await this.postService.delete(id);
+    const unlinked = await this.postService.unlinkImagefromServer(filename);
     this.getAllPosts();
   }
 
@@ -101,5 +104,9 @@ export class HeaderPostComponent implements OnInit {
     } else {
       this.showdots;
     }
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

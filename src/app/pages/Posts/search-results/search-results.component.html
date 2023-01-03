@@ -23,7 +23,8 @@
                       currentPage: page,
                       totalItems: (blogposts$ | async)?.length || 0
                     };
-              index as i
+              index as i;
+              trackBy: trackByFunc
             "
           >
             <div

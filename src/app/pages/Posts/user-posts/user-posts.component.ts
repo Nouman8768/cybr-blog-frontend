@@ -28,11 +28,6 @@ export class UserPostsComponent implements OnInit {
 
   posts!: Post[];
   category!: string;
-  global!: number;
-
-  postForm!: FormGroup;
-  file!: File;
-  selectedImage!: string;
 
   loggedUserId!: LooggedUser;
 
@@ -81,22 +76,6 @@ export class UserPostsComponent implements OnInit {
     }, 800);
   }
 
-  async moveToUpdatePage(id: string) {
-    this.route.navigate([`update/${id}`], {
-      queryParams: { id: id },
-    });
-  }
-  async moveToSinglePostPage(id: string) {
-    this.route.navigate([`single-post/${id}`], {
-      queryParams: { id: id },
-    });
-  }
-  async deletePost(id: string, filename: string) {
-    const deleted = await this.postsService.delete(id);
-    const unlinked = await this.postsService.unlinkImagefromServer(filename);
-    this.getUserPosts();
-  }
-
   async getUserPosts() {
     this.loggedUserId = this.authService.getUserProfile();
 
@@ -107,6 +86,24 @@ export class UserPostsComponent implements OnInit {
 
         this.posts = data;
       });
+  }
+
+  async moveToUpdatePage(id: string) {
+    this.route.navigate([`update/${id}`], {
+      queryParams: { id: id },
+    });
+  }
+
+  async moveToSinglePostPage(id: string) {
+    this.route.navigate([`single-post/${id}`], {
+      queryParams: { id: id },
+    });
+  }
+
+  async deletePost(id: string, filename: string) {
+    const deleted = await this.postsService.delete(id);
+    const unlinked = await this.postsService.unlinkImagefromServer(filename);
+    this.getUserPosts();
   }
 
   showDots() {
@@ -121,5 +118,9 @@ export class UserPostsComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

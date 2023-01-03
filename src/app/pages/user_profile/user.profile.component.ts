@@ -24,10 +24,13 @@ export class UserComponent implements OnInit {
 
   editPic: boolean = false;
   show: boolean = false;
+
   visibleFields: boolean = false;
   result!: Token;
+
   tokenInfo!: LooggedUser;
   profile!: UserDto;
+
   userForm!: FormGroup;
   url: string = environment.serverUrl;
 
@@ -36,6 +39,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfile();
+
     const pass = document.querySelector('.pass-input') as HTMLInputElement;
 
     const con_pass = document.querySelector('#con-pass-input') as HTMLElement;
@@ -104,7 +108,7 @@ export class UserComponent implements OnInit {
   async submitImage() {
     if (this.selectedImage != undefined) {
       const formData = new FormData();
-      formData.append('file', this.file);
+      formData.append('file', this.file!);
 
       const unlinked = await this.userService.unlinkProfileImagefromServer(
         this.userForm.value.image
@@ -127,9 +131,19 @@ export class UserComponent implements OnInit {
     this.clicked = true;
   }
 
-  remove() {
-    this.userForm.value.image = 'no-image.jpg';
+  async remove() {
     this.clicked = true;
+    this.selectedImage = './assets/images/no-image.jpg';
+    const unlinked = await this.userService.unlinkProfileImagefromServer(
+      this.userForm.value.image
+    );
+    console.log(unlinked);
+
+    let user: UserDto = await this.userService.removeUserPhoto(
+      this.profile._id
+    );
+    console.log(user);
+    await this.route.navigate(['/']);
   }
   cancle() {
     this.userForm.value.image = this.profile.image;

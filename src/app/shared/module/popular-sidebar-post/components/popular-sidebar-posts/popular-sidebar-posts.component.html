@@ -1,7 +1,7 @@
 <div class="popullar-sidebar-posts flex flex-col gap-6">
   <div
     class="side-post flex items-start gap-4 relative"
-    *ngFor="let post of sidebarPosts; index as i"
+    *ngFor="let post of sidebarPosts$ | async; index as i; trackBy: trackByFunc"
   >
     <div class="post-image relative">
       <a

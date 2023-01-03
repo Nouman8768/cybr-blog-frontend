@@ -2,7 +2,11 @@
   <div class="wrapper flex flex-col gap-6">
     <div
       class="fll-post flex items-start gap-4 relative"
-      *ngFor="let post of flPosts; index as i"
+      *ngFor="
+        let post of footerLatestPosts$ | async;
+        index as i;
+        trackBy: trackByFunc
+      "
     >
       <div class="post-image relative">
         <a

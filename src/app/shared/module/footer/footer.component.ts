@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { Post } from 'src/app/shared/dto/post.schema';
 import { AuthService } from '../../service/auth.service';
 import { PostService } from '../../service/post.service';
@@ -16,16 +17,18 @@ export class FooterComponent implements OnInit {
   ) {}
 
   confirmationState: boolean = true;
-  fpPosts!: Post[];
+  footerPosts$!: Observable<Post[]>;
 
   async ngOnInit() {
     await this.getAllPosts();
   }
 
   async getAllPosts() {
-    this.postsService.findAll().subscribe((data: Post[]) => {
-      this.fpPosts = data.slice(0, 4);
-    });
+    this.footerPosts$ = this.postsService.findAll().pipe(
+      map((data) => {
+        return data.slice(0, 4);
+      })
+    );
   }
 
   async moveToSinglePostPage(id: string) {
@@ -38,5 +41,9 @@ export class FooterComponent implements OnInit {
     this.route.navigate([`author-posts/${author}`], {
       queryParams: { author: author },
     });
+  }
+
+  trackByFunc(index: number, post: Post) {
+    return post._id;
   }
 }

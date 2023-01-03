@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   adminRoute() {
     return this.route.url.includes('admin');
   }
+
   recieveState(state: boolean) {
     this.mobileNavState = false;
   }
