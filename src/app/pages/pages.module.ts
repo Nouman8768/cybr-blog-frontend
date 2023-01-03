@@ -10,9 +10,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { PostsModule } from './posts/posts.module';
 import { AdminModule } from './admin/admin.module';
+import { Page403Component } from './page403/page403.component';
+import { Page404Component } from './page404/page404.component';
 
 @NgModule({
-  declarations: [PagesComponent],
+  declarations: [PagesComponent, Page403Component, Page404Component],
   imports: [
     CommonModule,
     PagesRoutingModule,

@@ -67,8 +67,8 @@ export class SliderComponent implements OnInit {
 
   async getAllPosts() {
     this.postsService.findAll().subscribe((data: Post[]) => {
-      console.log('Author', data[49].author.firstname);
       this.sliderPosts = data.reverse();
+      console.log(this.sliderPosts);
     });
   }
 
